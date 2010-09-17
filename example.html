@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script>
+  <title>jQuery Modal</title>  
+  <style type="text/css" media="screen">
+    body {
+      font: normal 14px/21px "Lucida Grande", Verdana, sans-serif;
+    }
+    .modal {
+      display: none;
+      width: 400px;
+      background: #fff;
+      padding: 15px;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+      -webkit-box-shadow: 0 0 10px #000;
+      -moz-box-shadow: 0 0 10px #000;
+      box-shadow: 0 0 10px #000;
+    }
+  </style>
+</head> 
+<body>
+  
+  <p><a href="#hello" rel="modal">Click me</a></p>
+  
+  <div class="modal" id="hello">
+    <h1>Hello there!</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p><a href="#close_modal">Close</a></p>
+  </div>
+  
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      
+      $('a[rel="modal"]').click(function(event) {
+        event.preventDefault();
+        $($(this).attr('href')).modal();
+      });
+      
+      $('a[href="#close_modal"]').click(function(event) {
+        event.preventDefault();
+        $.fn.modal.close();
+      });
+      
+      $(document).keydown(function(event) {
+        if(event.which == 27) {
+          $.fn.modal.close();
+        }
+      });
+      
+    });
+  </script>
+  
+</body> 
+</html>
