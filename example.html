@@ -6,8 +6,17 @@
   <title>jQuery Modal</title>  
   <style type="text/css" media="screen">
     body {
-      font: normal 14px/21px "Lucida Grande", Verdana, sans-serif;
+      font: normal 14px/24px "Lucida Grande", Verdana, sans-serif;
+      color: #333;
+      width: 400px;
+      margin: 0 auto;
     }
+    
+    #header {
+        margin: 50px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    
     .modal {
       display: none;
       width: 400px;
@@ -23,19 +32,32 @@
   </style>
 </head> 
 <body>
+    
+    <div id="header">
+        <h1>jQuery Modal</h1>
+        <h3>the simplest modal you ever did see.</h3>
+    </div>
+    
+    <h2>Example 1: Default options</h2>
+<code><pre>
+$('a[href="#hello"]').click(function(event) {
+  event.preventDefault();
+  $($(this).attr('href')).modal();
+});
+</pre></code>
+    <p><a href="#hello" rel="modal">Open Modal</a></p>
+    <div class="modal" id="hello">
+      <h1>Hello there!</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p><a href="#close_modal">Close</a></p>
+    </div>
   
-  <p><a href="#hello" rel="modal">Click me</a></p>
-  
-  <div class="modal" id="hello">
-    <h1>Hello there!</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p><a href="#close_modal">Close</a></p>
-  </div>
+
   
   <script type="text/javascript" charset="utf-8">
     $(function() {
       
-      $('a[rel="modal"]').click(function(event) {
+      $('a[href="#hello"]').click(function(event) {
         event.preventDefault();
         $($(this).attr('href')).modal();
       });
@@ -43,12 +65,6 @@
       $('a[href="#close_modal"]').click(function(event) {
         event.preventDefault();
         $.fn.modal.close();
-      });
-      
-      $(document).keydown(function(event) {
-        if(event.which == 27) {
-          $.fn.modal.close();
-        }
       });
       
     });

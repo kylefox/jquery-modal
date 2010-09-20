@@ -9,24 +9,30 @@
     options = $.extend({}, $.fn.modal.defaults, options);
 
     function block() {
-      current_modal.blocker = $('<div class="jquery-modal"></div>').css({
+      current_modal.blocker = $('<div class="jquery-modal blocker"></div>').css({
         top: 0, right: 0, bottom: 0, left: 0,
         width: "100%", height: "100%",
         position: "fixed",
-        zIndex: 100,
-        background: "#000",
+        zIndex: options.zIndex,
+        background: options.overlay,
         opacity: options.opacity
       });
+      if(options.escapeClose) {
+        $(document).keydown(function(event) {
+          if(event.which == 27) {$.fn.modal.close();}
+        });
+      }
       $('body').append(current_modal.blocker);
     }
 
     function show() {
       $elm.css({
         position: 'absolute',
-        top: 35,
+        top: "50%",
         left: "50%",
+        marginTop: - ($elm.height() / 2),
         marginLeft: - ($elm.outerWidth() / 2),
-        zIndex: 101
+        zIndex: options.zIndex + 1
       });
       $elm.show();
     }
@@ -37,8 +43,10 @@
   };
 
   $.fn.modal.defaults = {
+    overlay: "#000",
     opacity: 0.75,
-    zIndex: 100
+    zIndex: 100,
+    escapeClose: true
   };
 
   $.fn.modal.close = function() {
