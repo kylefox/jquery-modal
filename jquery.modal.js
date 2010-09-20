@@ -36,7 +36,7 @@
 
     function show() {
       $elm.css({
-        position: 'absolute',
+        position: 'fixed',
         top: "50%",
         left: "50%",
         marginTop: - ($elm.height() / 2),
