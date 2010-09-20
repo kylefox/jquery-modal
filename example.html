@@ -2,26 +2,32 @@
 <html> 
 <head> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script>
+  <!-- // <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script> -->
+  <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="highlight/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8"> hljs.initHighlightingOnLoad(); </script>
+  <link rel="stylesheet" href="highlight/github.css" type="text/css" media="screen" />
+  <style type="text/css" media="screen">
+    body { font: normal 14px/21px "Helvetica Neue", Arial, sans-serif; color: #777; padding: 30px 60px; }
+    small { color: #aaa; }
+    h1,h2,h3,h4 { color: #444; }
+    a { color: #0086B3; font-weight: bold; }
+    a:hover { color: #000; }
+    p code, li code {background:#ffffcc; color: #444;}
+    pre { font-size: 12px; line-height: 18px; }
+    hr { height: 10px; background: #eee; border: none; }
+  </style>
   <title>jQuery Modal</title>  
   <style type="text/css" media="screen">
-    body {
-      font: normal 14px/24px "Lucida Grande", Verdana, sans-serif;
-      color: #333;
-      width: 400px;
-      margin: 0 auto;
-    }
     
-    #header {
-        margin: 50px 0;
-        border-bottom: 1px solid #ddd;
-    }
+/*    pre { background: #f4f4f4; padding: 10px;}*/
     
     .modal {
       display: none;
       width: 400px;
       background: #fff;
-      padding: 15px;
+      padding: 15px 30px;
       -webkit-border-radius: 12px;
       -moz-border-radius: 12px;
       border-radius: 12px;
@@ -33,42 +39,55 @@
 </head> 
 <body>
     
-    <div id="header">
-        <h1>jQuery Modal</h1>
-        <h3>the simplest modal you ever did see.</h3>
-    </div>
-    
-    <h2>Example 1: Default options</h2>
-<code><pre>
-$('a[href="#hello"]').click(function(event) {
-  event.preventDefault();
-  $($(this).attr('href')).modal();
-});
-</pre></code>
-    <p><a href="#hello" rel="modal">Open Modal</a></p>
-    <div class="modal" id="hello">
-      <h1>Hello there!</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p><a href="#close_modal">Close</a></p>
-    </div>
-  
+<h1>jQuery Modal</h1>
+<p><em>the simplest modal you ever did see.</em></p>
+<ul>
+  <li>Automatic binding using HTML semantics</li>
+  <li>No images</li>
+  <li>Light weight <small>(about 1k minified)</small></li>
+  <li>Close with click or ESC key</li>
+  <li>Works in every single browser known to man (including Lynx)</li>
+</ul>
 
-  
-  <script type="text/javascript" charset="utf-8">
-    $(function() {
-      
-      $('a[href="#hello"]').click(function(event) {
-        event.preventDefault();
-        $($(this).attr('href')).modal();
-      });
-      
-      $('a[href="#close_modal"]').click(function(event) {
-        event.preventDefault();
-        $.fn.modal.close();
-      });
-      
-    });
-  </script>
+
+
+
+    
+<hr />
+
+<h3>Example 1 (simplest): Open &amp; Close with links</h3>
+<ol>
+  <li>Embed modal HTML in document <small>(and hide it)</small></li>
+  <li>Create a link with <code>rel="open-modal"</code> and set the <code>href</code> attribute to the modal's DOM id.</li> 
+</ol>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;/style&gt;
+  &lt;!-- Don't forget to include jQuery ;) --&gt;
+  &lt;script src=&quot;jquery.modal.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Modal HTML embedded directly into document --&gt;
+  &lt;div id=&quot;ex1&quot; style=&quot;display:none;&quot;&gt;
+    &lt;p&gt;Thanks for clicking.  That felt good.  &lt;a href=&quot;#&quot; rel=&quot;close-modal&quot;&gt;Close&lt;/a&gt; or press ESC&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Link to open the modal --&gt;
+  &lt;p&gt;&lt;a href=&quot;#ex1&quot; rel=&quot;open-modal&quot;&gt;Open Modal&lt;/a&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<!-- Link to open the modal -->
+<h3>Demo: <a href="#ex1" rel="open-modal">Open Modal</a></h3>
+
+<!-- Modal HTML embedded directly into document -->
+<div class="modal" id="ex1" style="display:none;">
+  <p>Thanks for clicking.  That felt good.  <br />Click <a href="#" rel="close-modal">close</a>, click the overlay, or press ESC</p>
+</div>
   
 </body> 
 </html>

@@ -3,8 +3,14 @@
   var current_modal = null;
 
   $.fn.modal = function(options) {
-
+    
     var $elm = $(this);
+    
+    // If this is a link, bind to the click event.
+    if($elm.attr('href')) {
+      $elm.click(open_modal_from_link);
+      return;
+    }
 
     options = $.extend({}, $.fn.modal.defaults, options);
 
@@ -22,6 +28,9 @@
           if(event.which == 27) {$.fn.modal.close();}
         });
       }
+      if(options.clickClose) {
+        current_modal.blocker.click($.fn.modal.close);
+      }
       $('body').append(current_modal.blocker);
     }
 
@@ -34,7 +43,7 @@
         marginLeft: - ($elm.outerWidth() / 2),
         zIndex: options.zIndex + 1
       });
-      $elm.show();
+      $elm.addClass(options.modalClass).addClass('current').show();
     }
 
     current_modal = {elm: $elm};
@@ -45,11 +54,16 @@
   $.fn.modal.defaults = {
     overlay: "#000",
     opacity: 0.75,
-    zIndex: 100,
-    escapeClose: true
+    zIndex: 1,
+    escapeClose: true,
+    clickClose: true,
+    modalClass: "modal"
   };
 
-  $.fn.modal.close = function() {
+  $.fn.modal.close = function(event) {
+    if(event) {
+      event.preventDefault();
+    }
     if(!current_modal) {
       return;
     }
@@ -57,4 +71,13 @@
     current_modal.elm.hide();
   };
 
+  function open_modal_from_link(event) {
+    event.preventDefault();
+    $($(this).attr('href')).modal();
+  }
+  
+  // Automatically bind links with rel="close-modal" to, well, close the modal.
+  $('a[rel="open-modal"]').live('click', open_modal_from_link);
+  $('a[rel="close-modal"]').live('click', $.fn.modal.close);
+  
 })();
