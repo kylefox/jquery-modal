@@ -32,6 +32,7 @@
         current_modal.blocker.click($.fn.modal.close);
       }
       $('body').append(current_modal.blocker);
+      $(document).trigger($.fn.modal.BLOCK, [current_modal]);
     }
 
     function show() {
@@ -44,10 +45,13 @@
         zIndex: options.zIndex + 1
       });
       $elm.addClass(options.modalClass).addClass('current').show();
+      $(document).trigger($.fn.modal.OPEN, [current_modal]);
     }
 
     current_modal = {elm: $elm};
+    $(document).trigger($.fn.modal.BEFORE_BLOCK, [current_modal]);
     block();
+    $(document).trigger($.fn.modal.BEFORE_OPEN, [current_modal]);
     show();
   };
 
@@ -60,6 +64,14 @@
     modalClass: "modal"
   };
 
+  // Event constants:
+  $.fn.modal.BEFORE_BLOCK = 'modal:before-block';
+  $.fn.modal.BLOCK = 'modal:block';
+  $.fn.modal.BEFORE_OPEN = 'modal:before-open';
+  $.fn.modal.OPEN = 'modal:open';
+  $.fn.modal.BEFORE_CLOSE = 'modal:before-close';
+  $.fn.modal.CLOSE = 'modal:close';
+
   $.fn.modal.close = function(event) {
     if(event) {
       event.preventDefault();
@@ -67,8 +79,10 @@
     if(!current_modal) {
       return;
     }
+    $(document).trigger($.fn.modal.BEFORE_CLOSE, [current_modal]);
     current_modal.blocker.remove();
     current_modal.elm.hide();
+    $(document).trigger($.fn.modal.CLOSE, [null]);
   };
 
   function open_modal_from_link(event) {

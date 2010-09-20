@@ -2,8 +2,9 @@
 <html> 
 <head> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <!-- // <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script> -->
-  <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="jquery.modal.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="modal.css" type="text/css" media="screen" />
   
   <script src="highlight/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8"> hljs.initHighlightingOnLoad(); </script>
@@ -18,24 +19,7 @@
     pre { font-size: 12px; line-height: 18px; }
     hr { height: 10px; background: #eee; border: none; }
   </style>
-  <title>jQuery Modal</title>  
-  <style type="text/css" media="screen">
-    
-/*    pre { background: #f4f4f4; padding: 10px;}*/
-    
-    .modal {
-      display: none;
-      width: 400px;
-      background: #fff;
-      padding: 15px 30px;
-      -webkit-border-radius: 12px;
-      -moz-border-radius: 12px;
-      border-radius: 12px;
-      -webkit-box-shadow: 0 0 10px #000;
-      -moz-box-shadow: 0 0 10px #000;
-      box-shadow: 0 0 10px #000;
-    }
-  </style>
+  <title>jQuery Modal</title>
 </head> 
 <body>
     
@@ -43,8 +27,8 @@
 <p><em>the simplest modal you ever did see.</em></p>
 <ul>
   <li>Automatic binding using HTML semantics</li>
-  <li>No images</li>
-  <li>Light weight <small>(about 1k minified)</small></li>
+  <li>No images &amp; light-weight <small>(about 1k minified)</small></li>
+  <li>Attach custom behaviour using <a href="http://api.jquery.com/category/events/">jQuery events</a></li>
   <li>Close with click or ESC key</li>
   <li>Works in every single browser known to man (including Lynx)</li>
 </ul>
@@ -89,5 +73,23 @@
   <p>Thanks for clicking.  That felt good.  <br />Click <a href="#" rel="close-modal">close</a>, click the overlay, or press ESC</p>
 </div>
   
+  
+  
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    
+    function log_modal_event(event, modal) {
+      if(console && console.log) console.log("[event] " + event.type);
+    };
+    
+    $(document).bind($.fn.modal.BEFORE_BLOCK, log_modal_event);
+    $(document).bind($.fn.modal.BLOCK, log_modal_event);
+    $(document).bind($.fn.modal.BEFORE_OPEN, log_modal_event);
+    $(document).bind($.fn.modal.OPEN, log_modal_event);
+    $(document).bind($.fn.modal.BEFORE_CLOSE, log_modal_event);
+    $(document).bind($.fn.modal.CLOSE, log_modal_event);
+    
+  });
+</script>
 </body> 
 </html>
