@@ -1,0 +1,1 @@
+View docs & demo [here.](http://dl.dropbox.com/u/780754/jquery-modal/example.html)
