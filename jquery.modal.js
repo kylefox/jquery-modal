@@ -1,3 +1,7 @@
+/*
+    A simple jQuery modal (http://github.com/kylefox/jquery-modal)
+    Version 0.1
+*/
 (function() {
 
   var current_modal = null;
