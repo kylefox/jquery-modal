@@ -6,7 +6,7 @@
     
     var $elm = $(this);
     
-    // If this is a link, bind to the click event.
+    // If this is a link, bind to its click event.
     if($elm.attr('href')) {
       $elm.click(open_modal_from_link);
       return;

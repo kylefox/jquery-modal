@@ -18,6 +18,38 @@
     p code, li code {background:#ffffcc; color: #444;}
     pre { font-size: 12px; line-height: 18px; }
     hr { height: 10px; background: #eee; border: none; }
+    
+    
+    /* Example 2 (login form) */
+    .login_form.modal {
+      border-radius: 0;
+      line-height: 18px;
+      padding: 0;
+      font-family: "Lucida Grande", Verdana, sans-serif;
+    }
+    
+    .login_form h3 {
+      margin: 0;
+      padding: 10px;
+      color: #fff;
+      font-size: 14px;
+      background: -moz-linear-gradient(top, #2e5764, #1e3d47);
+      background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #1e3d47),color-stop(1, #2e5764));
+    }
+    
+    .login_form.modal p { padding: 20px 30px; border-bottom: 1px solid #ddd; margin: 0;
+      background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #eee),color-stop(1, #fff));  
+      overflow: hidden;
+    }
+    .login_form.modal p:last-child { border: none; }
+    .login_form.modal p label { float: left; font-weight: bold; color: #333; font-size: 13px; width: 110px; line-height: 22px; }
+    .login_form.modal p input[type="text"],
+    .login_form.modal p input[type="password"] {
+      font: normal 12px/18px "Lucida Grande", Verdana;
+      padding: 3px;
+      border: 1px solid #ddd;
+      width: 200px;
+    }
   </style>
   <title>jQuery Modal</title>
 </head> 
@@ -28,6 +60,7 @@
 <ul>
   <li>Automatic binding using HTML semantics</li>
   <li>No images &amp; light-weight <small>(about 1k minified)</small></li>
+  <li>Simple markup makes it easy to style</li>
   <li>Attach custom behaviour using <a href="http://api.jquery.com/category/events/">jQuery events</a></li>
   <li>Close with click or ESC key</li>
   <li>Works in every single browser known to man (including Lynx)</li>
@@ -73,6 +106,21 @@
   <p>Thanks for clicking.  That felt good.  <br />Click <a href="#" rel="close-modal">close</a>, click the overlay, or press ESC</p>
 </div>
   
+  
+<hr />
+
+<h2>Example 2: styled login form &amp; events</h2>
+
+<!-- Link to open the modal -->
+<h3>Demo: <a href="#ex2" rel="open-modal">Login!</a></h3>
+
+<!-- Modal HTML embedded directly into document -->
+<form action="" class="login_form modal" id="ex2" style="display:none;">
+  <h3>Please login to continue</h3>
+  <p><label>Username:</label><input type="text" /></p>
+  <p><label>Password:</label><input type="password" /></p>
+  <p><input type="submit" value="Login" /></p>
+</form>
   
   
 <script type="text/javascript" charset="utf-8">
