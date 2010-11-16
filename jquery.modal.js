@@ -70,13 +70,18 @@
   $.fn.modal.CLOSE = 'modal:close';
 
   $.fn.modal.close = function(event) {
-    if(event) event.preventDefault();
-    if(!current_modal) return;
+    if(event) {
+      event.preventDefault();
+    }
+    if(!current_modal) {
+      return;
+    }
     
-    $(document).trigger($.fn.modal.BEFORE_CLOSE, [current_modal]);
+    current_modal.elm.trigger($.fn.modal.BEFORE_CLOSE, [current_modal]);
     current_modal.blocker.remove();
     current_modal.elm.hide();
-    $(document).trigger($.fn.modal.CLOSE, [null]);
+    current_modal.elm.trigger($.fn.modal.CLOSE, [current_modal]);
+    current_modal = null;
   };
   
   $.fn.modal.resize = function() {
