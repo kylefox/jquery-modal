@@ -40,19 +40,12 @@
     }
 
     function show() {
-      $elm.css({
-        position: 'fixed',
-        top: "50%",
-        left: "50%",
-        marginTop: - ($elm.height() / 2),
-        marginLeft: - ($elm.outerWidth() / 2),
-        zIndex: options.zIndex + 1
-      });
+      center_modal(current_modal);
       $elm.addClass(options.modalClass).addClass('current').show();
       $elm.trigger($.fn.modal.OPEN, [current_modal]);
     }
 
-    current_modal = {elm: $elm};
+    current_modal = {elm: $elm, options: options};
     $elm.trigger($.fn.modal.BEFORE_BLOCK, [current_modal]);
     block();
     $elm.trigger($.fn.modal.BEFORE_OPEN, [current_modal]);
@@ -85,11 +78,26 @@
     current_modal.elm.hide();
     $(document).trigger($.fn.modal.CLOSE, [null]);
   };
+  
+  $.fn.modal.resize = function() {
+    center_modal(current_modal);
+  };
 
   function open_modal_from_link(event) {
     event.preventDefault();
     $($(this).attr('href')).modal();
   }
+  
+  function center_modal(modal) {
+    modal.elm.css({
+      position: 'fixed',
+      top: "50%",
+      left: "50%",
+      marginTop: - (modal.elm.height() / 2),
+      marginLeft: - (modal.elm.outerWidth() / 2),
+      zIndex: modal.options.zIndex + 1
+    });
+  };
   
   // Automatically bind links with rel="modal:close" to, well, close the modal.
   $('a[rel="modal:open"]').live('click', open_modal_from_link);
