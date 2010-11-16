@@ -36,7 +36,7 @@
         current_modal.blocker.click($.fn.modal.close);
       }
       $('body').append(current_modal.blocker);
-      $(document).trigger($.fn.modal.BLOCK, [current_modal]);
+      $elm.trigger($.fn.modal.BLOCK, [current_modal]);
     }
 
     function show() {
@@ -49,13 +49,13 @@
         zIndex: options.zIndex + 1
       });
       $elm.addClass(options.modalClass).addClass('current').show();
-      $(document).trigger($.fn.modal.OPEN, [current_modal]);
+      $elm.trigger($.fn.modal.OPEN, [current_modal]);
     }
 
     current_modal = {elm: $elm};
-    $(document).trigger($.fn.modal.BEFORE_BLOCK, [current_modal]);
+    $elm.trigger($.fn.modal.BEFORE_BLOCK, [current_modal]);
     block();
-    $(document).trigger($.fn.modal.BEFORE_OPEN, [current_modal]);
+    $elm.trigger($.fn.modal.BEFORE_OPEN, [current_modal]);
     show();
   };
 
@@ -77,12 +77,9 @@
   $.fn.modal.CLOSE = 'modal:close';
 
   $.fn.modal.close = function(event) {
-    if(event) {
-      event.preventDefault();
-    }
-    if(!current_modal) {
-      return;
-    }
+    if(event) event.preventDefault();
+    if(!current_modal) return;
+    
     $(document).trigger($.fn.modal.BEFORE_CLOSE, [current_modal]);
     current_modal.blocker.remove();
     current_modal.elm.hide();
@@ -94,8 +91,8 @@
     $($(this).attr('href')).modal();
   }
   
-  // Automatically bind links with rel="close-modal" to, well, close the modal.
-  $('a[rel="open-modal"]').live('click', open_modal_from_link);
-  $('a[rel="close-modal"]').live('click', $.fn.modal.close);
+  // Automatically bind links with rel="modal:close" to, well, close the modal.
+  $('a[rel="modal:open"]').live('click', open_modal_from_link);
+  $('a[rel="modal:close"]').live('click', $.fn.modal.close);
   
 })();

@@ -50,6 +50,12 @@
       border: 1px solid #ddd;
       width: 200px;
     }
+    
+    
+    .part {
+      display: none;
+    }
+    
   </style>
   <title>jQuery Modal</title>
 </head> 
@@ -75,7 +81,7 @@
 <h3>Example 1 (simplest): Open &amp; Close with links</h3>
 <ol>
   <li>Embed modal HTML in document <small>(and hide it)</small></li>
-  <li>Create a link with <code>rel="open-modal"</code> and set the <code>href</code> attribute to the modal's DOM id.</li> 
+  <li>Create a link with <code>rel="modal:open"</code> and set the <code>href</code> attribute to the modal's DOM id.</li> 
 </ol>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -88,22 +94,22 @@
 
   &lt;!-- Modal HTML embedded directly into document --&gt;
   &lt;div id=&quot;ex1&quot; style=&quot;display:none;&quot;&gt;
-    &lt;p&gt;Thanks for clicking.  That felt good.  &lt;a href=&quot;#&quot; rel=&quot;close-modal&quot;&gt;Close&lt;/a&gt; or press ESC&lt;/p&gt;
+    &lt;p&gt;Thanks for clicking.  That felt good.  &lt;a href=&quot;#&quot; rel=&quot;modal:close&quot;&gt;Close&lt;/a&gt; or press ESC&lt;/p&gt;
   &lt;/div&gt;
 
   &lt;!-- Link to open the modal --&gt;
-  &lt;p&gt;&lt;a href=&quot;#ex1&quot; rel=&quot;open-modal&quot;&gt;Open Modal&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;#ex1&quot; rel=&quot;modal:open&quot;&gt;Open Modal&lt;/a&gt;&lt;/p&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 
 <!-- Link to open the modal -->
-<h3>Demo: <a href="#ex1" rel="open-modal">Open Modal</a></h3>
+<h3>Demo: <a href="#ex1" rel="modal:open">Open Modal</a></h3>
 
 <!-- Modal HTML embedded directly into document -->
 <div class="modal" id="ex1" style="display:none;">
-  <p>Thanks for clicking.  That felt good.  <br />Click <a href="#" rel="close-modal">close</a>, click the overlay, or press ESC</p>
+  <p>Thanks for clicking.  That felt good.  <br />Click <a href="#" rel="modal:close">close</a>, click the overlay, or press ESC</p>
 </div>
   
   
@@ -112,7 +118,7 @@
 <h2>Example 2: styled login form &amp; events</h2>
 
 <!-- Link to open the modal -->
-<h3>Demo: <a href="#ex2" rel="open-modal">Login!</a></h3>
+<h3>Demo: <a href="#ex2" rel="modal:open">Login!</a></h3>
 
 <!-- Modal HTML embedded directly into document -->
 <form action="" class="login_form modal" id="ex2" style="display:none;">
@@ -121,13 +127,22 @@
   <p><label>Password:</label><input type="password" /></p>
   <p><input type="submit" value="Login" /></p>
 </form>
+
+<hr />
+
+<h2>Example 3: resizing</h2>
+<p>This <a href="#ex3" rel="modal:open">example</a> shows how <code>resize()</code> can be invoked on a modal.</p>
+<div id="ex3" class="modal">
+  <p><a id="more" href="#more">More!</a></p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
   
   
 <script type="text/javascript" charset="utf-8">
   $(function() {
     
     function log_modal_event(event, modal) {
-      if(console && console.log) console.log("[event] " + event.type);
+      if(typeof console != 'undefined' && console.log) console.log("[event] " + event.type);
     };
     
     $(document).bind($.fn.modal.BEFORE_BLOCK, log_modal_event);
@@ -136,6 +151,12 @@
     $(document).bind($.fn.modal.OPEN, log_modal_event);
     $(document).bind($.fn.modal.BEFORE_CLOSE, log_modal_event);
     $(document).bind($.fn.modal.CLOSE, log_modal_event);
+    
+    $('#more').click(function() {
+      $(this).parent().after($(this).parent().next().clone());
+      // $('#ex3').modal.center();
+      return false;
+    });
     
   });
 </script>
