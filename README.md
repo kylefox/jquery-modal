@@ -35,9 +35,20 @@ An even simpler way is to add `rel="modal:open"` to links.  When the link is cli
 
 I know somebody is going to ask, so here's an example of how you could load content with AJAX:
 
-    $.get('/login-form', function(html) {
-      $(html).modal();
+    $.get('/login-form', {}, function(html) {
+      $(html)
+      
+        // Append the resulting HTML to the document:
+        .appendTo('body')
+        
+        // Completely remove the modal's DOM element when it's closed:
+        .bind('modal:close', function(event, modal) { modal.elm.remove() })
+        
+        // Open them modal:
+        .modal();
     });
+    
+Since you'll probably want to remove the modal from the DOM when it's closed:
     
 # Closing modals
 
@@ -78,6 +89,8 @@ The first and only argument passed to these event handlers is the `modal` object
 
 So, you could do something like this:
 
-    $('#purchase-form').bind('modal:before-close', function(modal) {
+    $('#purchase-form').bind('modal:before-close', function(event, modal) {
       clear_shopping_cart();
     });
+
+If you wish to remove the modal element from the DOM when it's closed, you must do so manually by binding to `modal:close` (see AJAX section).
