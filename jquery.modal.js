@@ -90,7 +90,17 @@
 
   function open_modal_from_link(event) {
     event.preventDefault();
-    $($(this).attr('href')).modal();
+    var target = $(this).attr('href');
+    if(target.match(/^#/)) { // DOM id
+      $(target).modal();
+    } else { // AJAX
+      $.get(target, {}, function(html) {
+        $(html)
+          .appendTo('body')
+          .bind('modal:close', function(event, modal) { modal.elm.remove(); })
+          .modal();
+      });
+    }
   }
   
   function center_modal(modal) {
