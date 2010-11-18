@@ -66,7 +66,7 @@ _TODO: this should be changed so that when called on a specific element, the ele
 
 Similar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="modal:close"`:
 
-    <a href="#login-form" rel="modal:open">Login</a>
+    <a href="#close" rel="modal:close">Close window</a>
     
 _(Note that modals loaded with AJAX are removed from the DOM when closed)._
     
