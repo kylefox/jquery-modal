@@ -1,6 +1,6 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.2
+    Version 0.2.1
 */
 (function() {
 
@@ -41,6 +41,9 @@
 
     function show() {
       center_modal(current_modal);
+      if(options.showClose) {
+        current_modal.elm.append('<a href="#close-modal" rel="modal:close" class="close-modal">Close</a>');
+      }
       $elm.addClass(options.modalClass).addClass('current').show();
       $elm.trigger($.fn.modal.OPEN, [current_modal]);
     }
@@ -58,7 +61,8 @@
     zIndex: 1,
     escapeClose: true,
     clickClose: true,
-    modalClass: "modal"
+    modalClass: "modal",
+    showClose: true
   };
 
   // Event constants:

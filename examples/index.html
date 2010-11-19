@@ -10,7 +10,8 @@
   <script type="text/javascript" charset="utf-8"> hljs.initHighlightingOnLoad(); </script>
   <link rel="stylesheet" href="highlight/github.css" type="text/css" media="screen" />
   <style type="text/css" media="screen">
-    body { font: normal 14px/21px "Helvetica Neue", Arial, sans-serif; color: #777; padding: 30px 60px; }
+    html { background: #ddd; }
+    body { font: normal 14px/21px "Helvetica Neue", Arial, sans-serif; color: #777; padding: 30px 60px; width: 740px; margin: 0 auto; background: #fff; }
     small { color: #aaa; }
     h1,h2,h3,h4 { color: #444; }
     a { color: #0086B3; font-weight: bold; }
@@ -78,7 +79,7 @@
     
 <hr />
 
-<h3>Example 1 (simplest): Open &amp; Close with links</h3>
+<h2>Example 1 (simplest): Open &amp; Close with links</h2>
 <ol>
   <li>Embed modal HTML in document <small>(and hide it)</small></li>
   <li>Create a link with <code>rel="modal:open"</code> and set the <code>href</code> attribute to the modal's DOM id.</li> 
@@ -142,6 +143,23 @@
 <h2>Example 4: AJAX</h2>
 <p>This <a href="ajax.html" rel="modal:open">example</a> loads HTML with AJAX.</p>
   
+<hr />
+
+<h2>Example 5: the un-closable window</h2>
+<p>
+  This <a href="#ex5">example</a> demonstrates how to disable the default methods of closing the modal:
+  
+<pre><code> $("#sticky").modal({
+  escapeClose: false,
+  clickClose: false,
+  showClose: false
+});</code></pre>
+  
+  
+</p>
+<div id="ex5" class="modal">
+  <p>If you do this, be sure to provide the user with an alternate method of <a href="#" rel="modal:close">closing the window.</a></p>
+</div>
   
 <script type="text/javascript" charset="utf-8">
   $(function() {
@@ -160,6 +178,15 @@
     $('#more').click(function() {
       $(this).parent().after($(this).parent().next().clone());
       $('#ex3').modal.resize();
+      return false;
+    });
+    
+    $('a[href="#ex5"]').click(function() {
+      $($(this).attr('href')).modal({
+        escapeClose: false,
+        clickClose: false,
+        showClose: false
+      });
       return false;
     });
     

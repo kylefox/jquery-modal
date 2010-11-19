@@ -9,7 +9,7 @@ By contrast, this plugin handles the two most common scenarios I run into
 * displaying an existing DOM element
 * loading a page with AJAX
 
-and does so with as little HTML & CSS as possible -- and **no images.**
+and does so with as little HTML & CSS as possible.
 
 # Installation
 
@@ -77,6 +77,20 @@ There's really no need to modals, since the default styles don't specify a fixed
 However, when this occurs, you will probably want to at least re-center the modal in the viewport:
 
     $.fn.modal.resize()
+    
+# Options
+
+These are the supported options and their default values:
+
+    $.fn.modal.defaults = {
+      overlay: "#000",        // Overlay color
+      opacity: 0.75,          // Overlay opacity
+      zIndex: 1,              // Overlay z-index.
+      escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
+      clickClose: true,       // Allows the user to close the modal by clicking the overlay
+      showClose: true         // Shows a (X) icon/link in the top-right corner
+      modalClass: "modal",    // CSS class added to the element being displayed in the modal.
+    };
     
 # Events
 
