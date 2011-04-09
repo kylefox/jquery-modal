@@ -1,6 +1,6 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.2.1
+    Version 0.2.2
 */
 (function() {
 
@@ -42,7 +42,8 @@
     function show() {
       center_modal(current_modal);
       if(options.showClose) {
-        current_modal.elm.append('<a href="#close-modal" rel="modal:close" class="close-modal">Close</a>');
+        current_modal.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">Close</a>');
+        current_modal.elm.append(current_modal.closeButton);
       }
       $elm.addClass(options.modalClass).addClass('current').show();
       $elm.trigger($.fn.modal.OPEN, [current_modal]);
@@ -82,6 +83,9 @@
     }
     
     current_modal.elm.trigger($.fn.modal.BEFORE_CLOSE, [current_modal]);
+    if(current_modal.closeButton) {
+      current_modal.closeButton.remove();
+    }
     current_modal.blocker.remove();
     current_modal.elm.hide();
     current_modal.elm.trigger($.fn.modal.CLOSE, [current_modal]);
