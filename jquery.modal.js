@@ -1,6 +1,6 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.2.2
+    Version 0.2.3
 */
 (function() {
 
@@ -116,7 +116,7 @@
       position: 'fixed',
       top: "50%",
       left: "50%",
-      marginTop: - (modal.elm.height() / 2),
+      marginTop: - (modal.elm.outerHeight() / 2),
       marginLeft: - (modal.elm.outerWidth() / 2),
       zIndex: modal.options.zIndex + 1
     });
