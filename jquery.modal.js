@@ -28,7 +28,7 @@
         opacity: options.opacity
       });
       if(options.escapeClose) {
-        $(document).keydown(function(event) {
+        $(document).bind('keydown.modal', function(event) {
           if(event.which == 27) {$.fn.modal.close();}
         });
       }
@@ -91,6 +91,8 @@
     current_modal.elm.hide();
     current_modal.elm.trigger($.fn.modal.CLOSE, [current_modal]);
     current_modal = null;
+    
+    $(document).unbind('keydown.modal');
   };
   
   $.fn.modal.resize = function() {
