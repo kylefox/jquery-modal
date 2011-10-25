@@ -100,7 +100,7 @@
   function open_modal_from_link(event) {
     event.preventDefault();
     var target = $(this).attr('href');
-    if(target.match(/^#/)) { // DOM id
+    if(/^#/.test(target)) { // DOM id
       $(target).modal();
     } else { // AJAX
       $.get(target, {}, function(html) {
