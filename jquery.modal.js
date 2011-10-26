@@ -88,7 +88,7 @@
       current_modal.closeButton.remove();
     }
     current_modal.blocker.remove();
-    current_modal.elm.hide();
+    current_modal.elm.removeClass('current').hide();
     current_modal.elm.trigger($.fn.modal.CLOSE, [current_modal]);
     current_modal = null;
     
