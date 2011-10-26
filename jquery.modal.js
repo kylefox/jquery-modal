@@ -106,7 +106,8 @@
       $(target).modal();
     } else { // AJAX
       $.get(target, {}, function(html) {
-        $(html)
+        $('<div/>')
+          .html(html)
           .appendTo('body')
           .bind('modal:close', function(event, modal) { modal.elm.remove(); })
           .modal();
