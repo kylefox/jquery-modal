@@ -28,7 +28,7 @@
         opacity: options.opacity
       });
       if(options.escapeClose) {
-        $(document).keydown(function(event) {
+        $(document).bind('keydown.modal', function(event) {
           if(event.which == 27) {$.fn.modal.close();}
         });
       }
@@ -45,7 +45,7 @@
         current_modal.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + options.closeText + '</a>');
         current_modal.elm.append(current_modal.closeButton);
       }
-      $elm.addClass(options.modalClass).addClass('current').show();
+      $elm.addClass(options.modalClass + ' current').show();
       $elm.trigger($.fn.modal.OPEN, [current_modal]);
     }
 
@@ -88,9 +88,11 @@
       current_modal.closeButton.remove();
     }
     current_modal.blocker.remove();
-    current_modal.elm.hide();
+    current_modal.elm.removeClass('current').hide();
     current_modal.elm.trigger($.fn.modal.CLOSE, [current_modal]);
     current_modal = null;
+    
+    $(document).unbind('keydown.modal');
   };
   
   $.fn.modal.resize = function() {
@@ -104,7 +106,8 @@
       $(target).modal();
     } else { // AJAX
       $.get(target, {}, function(html) {
-        $(html)
+        $('<div/>')
+          .html(html)
           .appendTo('body')
           .bind('modal:close', function(event, modal) { modal.elm.remove(); })
           .modal();
