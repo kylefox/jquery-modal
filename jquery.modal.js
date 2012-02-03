@@ -2,7 +2,7 @@
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
     Version 0.2.4
 */
-(function() {
+(function($) {
 
   var current_modal = null;
 
@@ -130,4 +130,4 @@
   $('a[rel="modal:open"]').live('click', open_modal_from_link);
   $('a[rel="modal:close"]').live('click', $.fn.modal.close);
   
-})();
+})(jQuery);
