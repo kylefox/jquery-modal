@@ -28,7 +28,7 @@
         opacity: options.opacity
       });
       if(options.escapeClose) {
-        $(document).bind('keydown.modal', function(event) {
+        $(document).on('keydown.modal', function(event) {
           if(event.which == 27) {$.fn.modal.close();}
         });
       }
@@ -92,7 +92,7 @@
     current_modal.elm.trigger($.fn.modal.CLOSE, [current_modal]);
     current_modal = null;
     
-    $(document).unbind('keydown.modal');
+    $(document).off('keydown.modal');
   };
   
   $.fn.modal.resize = function() {
@@ -109,7 +109,7 @@
         $('<div/>')
           .html(html)
           .appendTo('body')
-          .bind('modal:close', function(event, modal) { modal.elm.remove(); })
+          .on('modal:close', function(event, modal) { modal.elm.remove(); })
           .modal();
       });
     }
@@ -127,7 +127,7 @@
   };
   
   // Automatically bind links with rel="modal:close" to, well, close the modal.
-  $('a[rel="modal:open"]').live('click', open_modal_from_link);
-  $('a[rel="modal:close"]').live('click', $.fn.modal.close);
+  $(document).on('click', 'a[rel="modal:open"]', open_modal_from_link);
+  $(document).on('click', 'a[rel="modal:close"]', $.fn.modal.close);
   
 })(jQuery);
