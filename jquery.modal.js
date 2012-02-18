@@ -35,7 +35,7 @@
 
   $.modal = function(el, options){
     var self = this;
-    this.$elm = $(el);
+    this.$elm = el;
     this.options = $.extend({},$.modal.defaults, options);
     
     if(this.$elm.attr('href')) {
@@ -118,9 +118,8 @@
   };
 
   $.fn.modal = function(options){
-    return this.each(function(){
-      new $.modal(this, options);
-    });
+    if (this.length === 1) { new $.modal(this, options); }
+    return this;
   };
 
   // Automatically bind links with rel="modal:close" to, well, close the modal.
