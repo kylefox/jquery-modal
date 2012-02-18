@@ -118,7 +118,7 @@
   };
 
   $.fn.modal = function(options){
-    new $.modal(this, options);
+    if(this.length > 0) { new $.modal(this, options); }
     return this;
   };
 
