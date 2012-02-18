@@ -22,6 +22,7 @@ Include the `jquery.modal.css` stylesheet:
 
     <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
     
+As of version 0.3.0, jQuery 1.7 is required. If you're using an earlier version of jQuery you can use the [v.0.2.5 tag.](https://github.com/kylefox/jquery-modal/tags)
 
 # Opening
 
