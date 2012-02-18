@@ -6,57 +6,82 @@
 
   var current_modal = null;
 
-  $.fn.modal = function(options) {
+  var open_modal_from_link = function(event) {
+    event.preventDefault();
+    var target = $(this).attr('href');
+    if(/^#/.test(target)) { // DOM id
+      $(target).modal();
+    } else { // AJAX
+      $.get(target, {}, function(html) {
+        $('<div/>')
+          .html(html)
+          .appendTo('body')
+          .on($.modal.CLOSE, function(event, modal) { modal.elm.remove(); })
+          .modal();
+      });
+    }
+  };
+
+  var center_modal = function(modal) {
+    modal.elm.css({
+      position: 'fixed',
+      top: "50%",
+      left: "50%",
+      marginTop: - (modal.elm.outerHeight() / 2),
+      marginLeft: - (modal.elm.outerWidth() / 2),
+      zIndex: modal.options.zIndex + 1
+    });
+  };
+
+  $.modal = function(el, options){
+    var self = this;
+    this.$elm = el;
+    this.options = $.extend({},$.modal.defaults, options);
     
-    var $elm = this;
-    
-    // If this is a link, bind to its click event.
-    if($elm.attr('href')) {
-      $elm.click(open_modal_from_link);
+    if(this.$elm.attr('href')) {
+      this.$elm.click(open_modal_from_link);
       return;
     }
 
-    options = $.extend({}, $.fn.modal.defaults, options);
-
-    function block() {
+    this.block = function() {
       current_modal.blocker = $('<div class="jquery-modal blocker"></div>').css({
         top: 0, right: 0, bottom: 0, left: 0,
         width: "100%", height: "100%",
         position: "fixed",
-        zIndex: options.zIndex,
-        background: options.overlay,
-        opacity: options.opacity
+        zIndex: self.options.zIndex,
+        background: self.options.overlay,
+        opacity: self.options.opacity
       });
-      if(options.escapeClose) {
+      if(self.options.escapeClose) {
         $(document).on('keydown.modal', function(event) {
-          if(event.which == 27) {$.fn.modal.close();}
+          if(event.which == 27) { $.modal.close(); }
         });
       }
-      if(options.clickClose) {
-        current_modal.blocker.click($.fn.modal.close);
+      if(self.options.clickClose) {
+        current_modal.blocker.click($.modal.close);
       }
       $('body').append(current_modal.blocker);
-      $elm.trigger($.fn.modal.BLOCK, [current_modal]);
-    }
+      self.$elm.trigger($.modal.BLOCK, [current_modal]);
+    };
 
-    function show() {
+    this.show = function() {
       center_modal(current_modal);
-      if(options.showClose) {
-        current_modal.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + options.closeText + '</a>');
+      if(self.options.showClose) {
+        current_modal.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + self.options.closeText + '</a>');
         current_modal.elm.append(current_modal.closeButton);
       }
-      $elm.addClass(options.modalClass + ' current').show();
-      $elm.trigger($.fn.modal.OPEN, [current_modal]);
-    }
+      self.$elm.addClass(self.options.modalClass + ' current').show();
+      self.$elm.trigger($.modal.OPEN, [current_modal]);
+    };
 
-    current_modal = {elm: $elm, options: options};
-    $elm.trigger($.fn.modal.BEFORE_BLOCK, [current_modal]);
-    block();
-    $elm.trigger($.fn.modal.BEFORE_OPEN, [current_modal]);
-    show();
+    current_modal = {elm: this.$elm, options: this.options};
+    this.$elm.trigger($.modal.BEFORE_BLOCK, [current_modal]);
+    this.block();
+    this.$elm.trigger($.modal.BEFORE_OPEN, [current_modal]);
+    this.show();
   };
-
-  $.fn.modal.defaults = {
+    
+  $.modal.defaults = {
     overlay: "#000",
     opacity: 0.75,
     zIndex: 1,
@@ -68,66 +93,35 @@
   };
 
   // Event constants:
-  $.fn.modal.BEFORE_BLOCK = 'modal:before-block';
-  $.fn.modal.BLOCK = 'modal:block';
-  $.fn.modal.BEFORE_OPEN = 'modal:before-open';
-  $.fn.modal.OPEN = 'modal:open';
-  $.fn.modal.BEFORE_CLOSE = 'modal:before-close';
-  $.fn.modal.CLOSE = 'modal:close';
+  $.modal.BEFORE_BLOCK = 'modal:before-block';
+  $.modal.BLOCK = 'modal:block';
+  $.modal.BEFORE_OPEN = 'modal:before-open';
+  $.modal.OPEN = 'modal:open';
+  $.modal.BEFORE_CLOSE = 'modal:before-close';
+  $.modal.CLOSE = 'modal:close';
 
-  $.fn.modal.close = function(event) {
-    if(event) {
-      event.preventDefault();
-    }
-    if(!current_modal) {
-      return;
-    }
-    
-    current_modal.elm.trigger($.fn.modal.BEFORE_CLOSE, [current_modal]);
-    if(current_modal.closeButton) {
-      current_modal.closeButton.remove();
-    }
+  $.modal.close = function() {
+    if(event) { event.preventDefault(); }
+    if(!current_modal) { return; }
+    current_modal.elm.trigger($.modal.BEFORE_CLOSE, [current_modal]);
+    if(current_modal.closeButton) { current_modal.closeButton.remove(); }
     current_modal.blocker.remove();
     current_modal.elm.removeClass('current').hide();
-    current_modal.elm.trigger($.fn.modal.CLOSE, [current_modal]);
+    current_modal.elm.trigger($.modal.CLOSE, [current_modal]);
     current_modal = null;
     
     $(document).off('keydown.modal');
   };
-  
-  $.fn.modal.resize = function() {
+
+  $.modal.resize = function() {
     center_modal(current_modal);
   };
 
-  function open_modal_from_link(event) {
-    event.preventDefault();
-    var target = $(this).attr('href');
-    if(/^#/.test(target)) { // DOM id
-      $(target).modal();
-    } else { // AJAX
-      $.get(target, {}, function(html) {
-        $('<div/>')
-          .html(html)
-          .appendTo('body')
-          .on($.fn.modal.CLOSE, function(event, modal) { modal.elm.remove(); })
-          .modal();
-      });
-    }
-  }
-  
-  function center_modal(modal) {
-    modal.elm.css({
-      position: 'fixed',
-      top: "50%",
-      left: "50%",
-      marginTop: - (modal.elm.outerHeight() / 2),
-      marginLeft: - (modal.elm.outerWidth() / 2),
-      zIndex: modal.options.zIndex + 1
-    });
+  $.fn.modal = function(options){
+    new $.modal(this, options);
   };
-  
+
   // Automatically bind links with rel="modal:close" to, well, close the modal.
   $(document).on('click', 'a[rel="modal:open"]', open_modal_from_link);
-  $(document).on('click', 'a[rel="modal:close"]', $.fn.modal.close);
-  
+  $(document).on('click', 'a[rel="modal:close"]', $.modal.close);
 })(jQuery);
