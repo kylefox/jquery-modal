@@ -61,7 +61,7 @@ The modal doesn't have a fixed height, and thus will expand & contract verticall
 
 Because there can be only one modal active at a single time, there's no need to select which modal to close:
 
-    $.fn.modal.close();
+    $.modal.close();
     
 _TODO: this should be changed so that when called on a specific element, the element is returned (normal jQuery fashion)._
 
@@ -77,13 +77,13 @@ There's really no need to modals, since the default styles don't specify a fixed
 
 However, when this occurs, you will probably want to at least re-center the modal in the viewport:
 
-    $.fn.modal.resize()
+    $.modal.resize()
     
 # Options
 
 These are the supported options and their default values:
 
-    $.fn.modal.defaults = {
+    $.modal.defaults = {
       overlay: "#000",        // Overlay color
       opacity: 0.75,          // Overlay opacity
       zIndex: 1,              // Overlay z-index.
@@ -98,12 +98,12 @@ These are the supported options and their default values:
 
 The following events are triggered on the modal element at various points in the open/close cycle.  Hopefully the names are self-explanatory.
 
-    $.fn.modal.BEFORE_BLOCK = 'modal:before-block';
-    $.fn.modal.BLOCK = 'modal:block';
-    $.fn.modal.BEFORE_OPEN = 'modal:before-open';
-    $.fn.modal.OPEN = 'modal:open';
-    $.fn.modal.BEFORE_CLOSE = 'modal:before-close';
-    $.fn.modal.CLOSE = 'modal:close';
+    $.modal.BEFORE_BLOCK = 'modal:before-block';
+    $.modal.BLOCK = 'modal:block';
+    $.modal.BEFORE_OPEN = 'modal:before-open';
+    $.modal.OPEN = 'modal:open';
+    $.modal.BEFORE_CLOSE = 'modal:before-close';
+    $.modal.CLOSE = 'modal:close';
     
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
@@ -113,7 +113,7 @@ The first and only argument passed to these event handlers is the `modal` object
 
 So, you could do something like this:
 
-    $('#purchase-form').bind('modal:before-close', function(event, modal) {
+    $('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
       clear_shopping_cart();
     });
 

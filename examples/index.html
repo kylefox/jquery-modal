@@ -168,12 +168,12 @@
       if(typeof console != 'undefined' && console.log) console.log("[event] " + event.type);
     };
     
-    $(document).bind($.fn.modal.BEFORE_BLOCK, log_modal_event);
-    $(document).bind($.fn.modal.BLOCK, log_modal_event);
-    $(document).bind($.fn.modal.BEFORE_OPEN, log_modal_event);
-    $(document).bind($.fn.modal.OPEN, log_modal_event);
-    $(document).bind($.fn.modal.BEFORE_CLOSE, log_modal_event);
-    $(document).bind($.fn.modal.CLOSE, log_modal_event);
+    $(document).on($.modal.BEFORE_BLOCK, log_modal_event);
+    $(document).on($.modal.BLOCK, log_modal_event);
+    $(document).on($.modal.BEFORE_OPEN, log_modal_event);
+    $(document).on($.modal.OPEN, log_modal_event);
+    $(document).on($.modal.BEFORE_CLOSE, log_modal_event);
+    $(document).on($.modal.CLOSE, log_modal_event);
     
     $('#more').click(function() {
       $(this).parent().after($(this).parent().next().clone());
