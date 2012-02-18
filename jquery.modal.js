@@ -119,6 +119,7 @@
 
   $.fn.modal = function(options){
     new $.modal(this, options);
+    return this;
   };
 
   // Automatically bind links with rel="modal:close" to, well, close the modal.
