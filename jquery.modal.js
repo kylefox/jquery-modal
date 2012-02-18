@@ -8,7 +8,7 @@
 
   $.fn.modal = function(options) {
     
-    var $elm = $(this);
+    var $elm = this;
     
     // If this is a link, bind to its click event.
     if($elm.attr('href')) {
@@ -109,7 +109,7 @@
         $('<div/>')
           .html(html)
           .appendTo('body')
-          .on('modal:close', function(event, modal) { modal.elm.remove(); })
+          .on($.fn.modal.CLOSE, function(event, modal) { modal.elm.remove(); })
           .modal();
       });
     }
