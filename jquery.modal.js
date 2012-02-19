@@ -53,7 +53,7 @@
     },
 
     block: function() {
-      this.$elm.trigger($.modal.BEFORE_BLOCK, [this]);
+      this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
       this.blocker = $('<div class="jquery-modal blocker"></div>').css({
         top: 0, right: 0, bottom: 0, left: 0,
         width: "100%", height: "100%",
@@ -63,7 +63,7 @@
         opacity: this.options.opacity
       });
       $('body').append(this.blocker);
-      this.$elm.trigger($.modal.BLOCK, [this]);
+      this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
 
     unblock: function() {
@@ -71,21 +71,21 @@
     },
 
     show: function() {
-      this.$elm.trigger($.modal.BEFORE_OPEN, [this]);
+      this.$elm.trigger($.modal.BEFORE_OPEN, [this._ctx()]);
       if (this.options.showClose) {
         this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + this.options.closeText + '</a>');
         this.$elm.append(this.closeButton);
       }
       this.$elm.addClass(this.options.modalClass + ' current');
       this.center();
-      this.$elm.show().trigger($.modal.OPEN, [this]);
+      this.$elm.show().trigger($.modal.OPEN, [this._ctx()]);
     },
 
     hide: function() {
-      this.$elm.trigger($.modal.BEFORE_CLOSE, [this]);
+      this.$elm.trigger($.modal.BEFORE_CLOSE, [this._ctx()]);
       if (this.closeButton) this.closeButton.remove();
       this.$elm.removeClass('current').hide();
-      this.$elm.trigger($.modal.CLOSE, [this]);
+      this.$elm.trigger($.modal.CLOSE, [this._ctx()]);
     },
 
     center: function() {
@@ -97,7 +97,12 @@
         marginLeft: - (this.$elm.outerWidth() / 2),
         zIndex: this.options.zIndex + 1
       });
-    }
+    },
+
+    //Return context for custom events
+    _ctx: function() {
+      return { elm: this.$elm, blocker: this.blocker, options: this.options };
+    },
   };
 
   //resize is alias for center for now
