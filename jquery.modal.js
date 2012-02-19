@@ -43,7 +43,7 @@
           if (event.which == 27) $.modal.close();
         });
       }
-      if (this.options.clickClose) this.blocker.on('click', $.modal.close);
+      if (this.options.clickClose) this.blocker.click($.modal.close);
     },
 
     close: function() {
