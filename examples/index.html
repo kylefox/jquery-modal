@@ -181,13 +181,13 @@
       return false;
     });
     
-    $('a[href="#ex5"]').click(function() {
-      $($(this).attr('href')).modal({
+    $('a[href="#ex5"]').click(function(event) {
+      event.preventDefault();
+      $(this).modal({
         escapeClose: false,
         clickClose: false,
         showClose: false
       });
-      return false;
     });
     
   });
