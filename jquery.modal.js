@@ -14,6 +14,7 @@
       //Select element by id from href
       if (/^#/.test(target)) { 
         this.$elm = $(target);
+        if (this.$elm.length !== 1) return null;
         this.open();
       //AJAX
       } else { 
@@ -43,7 +44,7 @@
           if (event.which == 27) self.close();
         });
       }
-      if (this.options.clickClose) this.blocker.click(this.close, this);
+      if (this.options.clickClose) this.blocker.on('click', $.modal.close);
     },
 
     close: function() {
