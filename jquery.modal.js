@@ -102,7 +102,7 @@
     //Return context for custom events
     _ctx: function() {
       return { elm: this.$elm, blocker: this.blocker, options: this.options };
-    },
+    }
   };
 
   //resize is alias for center for now
