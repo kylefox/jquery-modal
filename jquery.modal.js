@@ -65,13 +65,13 @@
     };
 
     this.show = function() {
-      center_modal(current_modal);
       if(self.options.showClose) {
         current_modal.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + self.options.closeText + '</a>');
         current_modal.elm.append(current_modal.closeButton);
       }
-      self.$elm.addClass(self.options.modalClass + ' current').show();
-      self.$elm.trigger($.modal.OPEN, [current_modal]);
+      self.$elm.addClass(self.options.modalClass + ' current');
+      center_modal(current_modal);
+      self.$elm.show().trigger($.modal.OPEN, [current_modal]);
     };
 
     current_modal = {elm: this.$elm, options: this.options};
@@ -100,7 +100,7 @@
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
 
-  $.modal.close = function() {
+  $.modal.close = function(event) {
     if(event) { event.preventDefault(); }
     if(!current_modal) { return; }
     current_modal.elm.trigger($.modal.BEFORE_CLOSE, [current_modal]);
@@ -114,6 +114,7 @@
   };
 
   $.modal.resize = function() {
+    if(!current_modal) { return; }
     center_modal(current_modal);
   };
 
