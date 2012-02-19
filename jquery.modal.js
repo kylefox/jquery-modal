@@ -19,7 +19,7 @@
       //AJAX
       } else { 
         this.$elm = $('<div>');
-        remove = function(event, modal) { modal.$elm.remove(); };
+        remove = function(event, modal) { modal.elm.remove(); };
         $.get(target, {}, function(html) {
           if (!current) return;
           current.$elm.html(html).appendTo('body').on($.modal.CLOSE, remove);
