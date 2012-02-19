@@ -38,10 +38,9 @@
     open: function() {
       this.block();
       this.show();
-      var self = this;
       if (this.options.escapeClose) {
         $(document).on('keydown.modal', function(event) {
-          if (event.which == 27) self.close();
+          if (event.which == 27) $.modal.close();
         });
       }
       if (this.options.clickClose) this.blocker.on('click', $.modal.close);
