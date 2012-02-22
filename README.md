@@ -37,7 +37,16 @@ Basic usage is to embed your modal's HTML (with the 'modal' class) directly into
 and then invoke `modal()` on the element.
 
     $('#login-form').modal();
-    
+
+You can also invoke `modal()` on links.
+
+    <a href="#ex5"> Open modal by getting the dom id from href</a>
+    <a href="ajax.html"> Open modal by making an AJAX call</a>
+
+    $(a).click(function(event) {
+      event.preventDefault();
+      $(this).modal();
+    });
 
 **Method 2: Automatically attaching to links**
 
