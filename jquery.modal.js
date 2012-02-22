@@ -12,7 +12,7 @@
     if(/^#/.test(target)) { // DOM id
       $(target).modal();
     } else { // AJAX
-      $.get(target, {}, function(html) {
+      $.get(target, function(html) {
         $('<div/>')
           .html(html)
           .appendTo('body')
@@ -34,7 +34,6 @@
   };
 
   $.modal = function(el, options){
-    var self = this;
     this.$elm = el;
     this.options = $.extend({},$.modal.defaults, options);
     
@@ -48,30 +47,30 @@
         top: 0, right: 0, bottom: 0, left: 0,
         width: "100%", height: "100%",
         position: "fixed",
-        zIndex: self.options.zIndex,
-        background: self.options.overlay,
-        opacity: self.options.opacity
+        zIndex: this.options.zIndex,
+        background: this.options.overlay,
+        opacity: this.options.opacity
       });
-      if(self.options.escapeClose) {
+      if(this.options.escapeClose) {
         $(document).on('keydown.modal', function(event) {
           if(event.which == 27) { $.modal.close(); }
         });
       }
-      if(self.options.clickClose) {
+      if(this.options.clickClose) {
         current_modal.blocker.click($.modal.close);
       }
       $('body').append(current_modal.blocker);
-      self.$elm.trigger($.modal.BLOCK, [current_modal]);
+      this.$elm.trigger($.modal.BLOCK, [current_modal]);
     };
 
     this.show = function() {
-      center_modal(current_modal);
-      if(self.options.showClose) {
-        current_modal.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + self.options.closeText + '</a>');
+      if(this.options.showClose) {
+        current_modal.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + this.options.closeText + '</a>');
         current_modal.elm.append(current_modal.closeButton);
       }
-      self.$elm.addClass(self.options.modalClass + ' current').show();
-      self.$elm.trigger($.modal.OPEN, [current_modal]);
+      this.$elm.addClass(this.options.modalClass + ' current');
+      center_modal(current_modal);
+      this.$elm.show().trigger($.modal.OPEN, [current_modal]);
     };
 
     current_modal = {elm: this.$elm, options: this.options};
@@ -100,7 +99,7 @@
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
 
-  $.modal.close = function() {
+  $.modal.close = function(event) {
     if(event) { event.preventDefault(); }
     if(!current_modal) { return; }
     current_modal.elm.trigger($.modal.BEFORE_CLOSE, [current_modal]);
@@ -114,6 +113,7 @@
   };
 
   $.modal.resize = function() {
+    if(!current_modal) { return; }
     center_modal(current_modal);
   };
 
