@@ -101,7 +101,7 @@ These are the supported options and their default values:
       escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
       clickClose: true,       // Allows the user to close the modal by clicking the overlay
       closeText: 'Close',     // Text content for the close <a> tag.
-      showClose: true         // Shows a (X) icon/link in the top-right corner
+      showClose: true,         // Shows a (X) icon/link in the top-right corner
       modalClass: "modal",    // CSS class added to the element being displayed in the modal.
     };
     
