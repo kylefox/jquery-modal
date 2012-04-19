@@ -20,12 +20,14 @@
       } else {
         this.$elm = $('<div>');
         remove = function(event, modal) { modal.elm.remove(); };
-        el.trigger($.modal.AJAX_BEFORE_SEND);
-        $.get(target, function(html) {
+        this.showSpinner();
+        $.get(target).done(function(html) {
           if (!current) return;
-          el.trigger($.modal.AJAX_SUCCESS, [html]);
-          current.$elm.html(html).appendTo('body').on($.modal.CLOSE, remove);
+          current.$elm.empty().append(html).appendTo('body').on($.modal.CLOSE, remove);
+          current.hideSpinner();
           current.open();
+        }).fail(function(error) {
+          current.hideSpinner();
         });
       }
     } else {
@@ -90,6 +92,18 @@
       this.$elm.trigger($.modal.CLOSE, [this._ctx()]);
     },
 
+    showSpinner: function() {
+      if (!this.options.showSpinner) return;
+      this.spinner = $('<div class="' + this.options.modalClass + '-spinner"></div>')
+        .append(this.options.spinnerHtml);
+      $('body').append(this.spinner);
+      this.spinner.show();
+    },
+
+    hideSpinner: function() {
+      if (this.spinner) this.spinner.fadeOut();
+    },
+
     center: function() {
       this.$elm.css({
         position: 'fixed',
@@ -130,6 +144,8 @@
     clickClose: true,
     closeText: 'Close',
     modalClass: "modal",
+    spinnerHtml: null,
+    showSpinner: true,
     showClose: true
   };
 
@@ -140,8 +156,6 @@
   $.modal.OPEN = 'modal:open';
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
-  $.modal.AJAX_BEFORE_SEND = 'modal:ajax:before-send';
-  $.modal.AJAX_SUCCESS = 'modal:ajax:success';
 
   $.fn.modal = function(options){
     if (this.length === 1) {

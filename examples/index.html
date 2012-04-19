@@ -145,45 +145,6 @@
 <h2>Example 4: AJAX</h2>
 <p>This <a href="ajax.html" rel="modal:open">example</a> loads HTML with AJAX.</p>
   
-<p>If you want to show a spinner for immediate feedback, just add it to your markup:</p>
-
-<pre><code>&lt;div class="modal-spinner"&gt;&lt;/div&gt;</div></pre></code>
-  
-<p>and use the AJAX events to show/hide it</p>
-
-<pre><code>$(document).on($.modal.AJAX_BEFORE_SEND, function() {
-  $('.modal-spinner').show();
-});
-
-$(document).on($.modal.AJAX_SUCCESS, function() {
-  $('.modal-spinner').hide();
-});
-</pre></code>
-
-<p>The <code>modal.css</code> file includes three basic styles. Apply the styles by adding the appropriate class names:</p>
-
-<table>
-  <tr>
-    <td><a href="#default-spinner" rel="spinner">Spinner #1</a></td>
-    <td><pre><code>&lt;div class="modal-spinner"&gt;&lt;/div&gt;</div></pre></code></td>  
-  </tr>
-  
-  <tr>
-    <td><a href="#alt-spinner-1" rel="spinner">Spinner #2</a></td>
-    <td><pre><code>&lt;div class="modal-spinner alt1"&gt;&lt;/div&gt;</div></pre></code></td>  
-  </tr>
-  
-  <tr>
-    <td><a href="#alt-spinner-2" rel="spinner">Spinner #3</a></td>
-    <td><pre><code>&lt;div class="modal-spinner alt2"&gt;&lt;/div&gt;</div></pre></code></td>  
-  </tr>
-  
-</table>
-  
-<div id="default-spinner" class="modal-spinner"></div>
-<div id="alt-spinner-1" class="modal-spinner alt1"></div>
-<div id="alt-spinner-2" class="modal-spinner alt2"></div>
-  
 <p>If you want more spinner styles, check out <a href="http://ajaxload.info/">ajaxload.info</a>.</p>  
 
 <hr />
@@ -207,15 +168,6 @@ $(document).on($.modal.AJAX_SUCCESS, function() {
 <script type="text/javascript" charset="utf-8">
   $(function() {
     
-    $('a[rel="spinner"]').on('click', function() {
-      var spinner = $($(this).attr('href'));
-      spinner.show();
-      setTimeout(function() {
-        spinner.fadeOut();
-      }, 1500);
-      return false;
-    });
-    
     function log_modal_event(event, modal) {
       if(typeof console != 'undefined' && console.log) console.log("[event] " + event.type);
     };
@@ -226,16 +178,6 @@ $(document).on($.modal.AJAX_SUCCESS, function() {
     $(document).on($.modal.OPEN, log_modal_event);
     $(document).on($.modal.BEFORE_CLOSE, log_modal_event);
     $(document).on($.modal.CLOSE, log_modal_event);
-    $(document).on($.modal.AJAX_BEFORE_SEND, log_modal_event);
-    $(document).on($.modal.AJAX_SUCCESS, log_modal_event);
-    
-    $(document).on($.modal.AJAX_BEFORE_SEND, function() {
-      $('#default-spinner').show();
-    });
-    
-    $(document).on($.modal.AJAX_SUCCESS, function() {
-      $('#default-spinner').hide();
-    });
     
     $('#more').click(function() {
       $(this).parent().after($(this).parent().next().clone());
