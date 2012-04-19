@@ -139,14 +139,20 @@ The following additional events are triggered for AJAX modals:
     
 The `AJAX_BEFORE_SEND` handler receives no arguments. The `AJAX_SUCCESS` handler receives a single argument, which is the HTML returned by the server. These handlers do not receive the modal object as a parameter because it does not exist until _after_ `AJAX_SUCCESS` is fired.
 
-You can use this functionality to show & hide visual feedback:
+You can use this functionality to show & hide visual feedback. jquery-modal comes with a couple basic spinner widgets.
+
+Add the spinner to your markup:
+
+    <div class="modal-spinner"></div>
+
+Bind to AJAX events to show/hide:
 
     $(document).on($.modal.AJAX_BEFORE_SEND, function() {
-      $('#ajax-spinner').show();
+      $('.modal-spinner').show();
     });
   
     $(document).on($.modal.AJAX_SUCCESS, function() {
-      $('#ajax-spinner').hide();
+      $('.modal-spinner').hide();
     });
     
 ## More advanced AJAX handling
