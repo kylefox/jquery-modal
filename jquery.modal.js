@@ -20,8 +20,10 @@
       } else {
         this.$elm = $('<div>');
         remove = function(event, modal) { modal.elm.remove(); };
+        el.trigger($.modal.AJAX_BEFORE_SEND);
         $.get(target, function(html) {
           if (!current) return;
+          el.trigger($.modal.AJAX_SUCCESS, [html]);
           current.$elm.html(html).appendTo('body').on($.modal.CLOSE, remove);
           current.open();
         });
@@ -138,6 +140,8 @@
   $.modal.OPEN = 'modal:open';
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
+  $.modal.AJAX_BEFORE_SEND = 'modal:ajax:before-send';
+  $.modal.AJAX_SUCCESS = 'modal:ajax:success';
 
   $.fn.modal = function(options){
     if (this.length === 1) {

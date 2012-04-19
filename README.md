@@ -107,7 +107,7 @@ These are the supported options and their default values:
     
 # Events
 
-The following events are triggered on the modal element at various points in the open/close cycle.  Hopefully the names are self-explanatory.
+The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).  Hopefully the names are self-explanatory.
 
     $.modal.BEFORE_BLOCK = 'modal:before-block';
     $.modal.BLOCK = 'modal:block';
@@ -128,6 +128,57 @@ So, you could do something like this:
       clear_shopping_cart();
     });
 
+# AJAX
+
+## Basic support
+
+The following additional events are triggered for AJAX modals:
+
+    $.modal.AJAX_BEFORE_SEND = 'modal:ajax:before-send';
+    $.modal.AJAX_SUCCESS = 'modal:ajax:success';
+    
+The `AJAX_BEFORE_SEND` handler receives no arguments. The `AJAX_SUCCESS` handler receives a single argument, which is the HTML returned by the server. These handlers do not receive the modal object as a parameter because it does not exist until _after_ `AJAX_SUCCESS` is fired.
+
+You can use this functionality to show & hide visual feedback:
+
+    $(document).on($.modal.AJAX_BEFORE_SEND, function() {
+      $('#ajax-spinner').show();
+    });
+  
+    $(document).on($.modal.AJAX_SUCCESS, function() {
+      $('#ajax-spinner').hide();
+    });
+    
+## More advanced AJAX handling
+
+It's a good idea to provide more robust AJAX handling -- error handling, in particular. Instead of accommodating the myriad [`$.ajax` options](http://api.jquery.com/jQuery.ajax/) jQuery provides, jquery-modal makes it possible to directly modify the AJAX request itself.
+
+Simply bypass the default AJAX handling (i.e.: don't use `rel="modal"`)
+
+    <a href="ajax.html" rel="ajax:modal">Click me!</a>
+
+and make your AJAX request in the link's click handler. Note that you need to manually append the new HTML/modal in the `success` callback:
+
+    $('a[rel="ajax:modal"]').click(function(event) {
+
+      $.ajax({
+        
+        url: $(this).attr('href'),
+        
+        success: function(newHTML, textStatus, jqXHR) {
+          $(newHTML).appendTo('body').modal();      
+        },
+        
+        error: function(jqXHR, textStatus, errorThrown) {
+          // Handle AJAX errors
+        }
+        
+        // More AJAX customization goes here.
+        
+      });
+  
+      return false;
+    });
 
 # Contributing
 
