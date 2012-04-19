@@ -22,13 +22,13 @@
         remove = function(event, modal) { modal.elm.remove(); };
         this.showSpinner();
         $.get(target).done(function(html) {
-            if (!current) return;
-            current.$elm.empty().append(html).appendTo('body').on($.modal.CLOSE, remove);
-            current.hideSpinner();
-            current.open();
-          }).fail(function(error) {
-            current.hideSpinner();
-          });
+          if (!current) return;
+          current.$elm.empty().append(html).appendTo('body').on($.modal.CLOSE, remove);
+          current.hideSpinner();
+          current.open();
+        }).fail(function(error) {
+          current.hideSpinner();
+        });
       }
     } else {
       this.$elm = el;
@@ -93,6 +93,7 @@
     },
 
     showSpinner: function() {
+      if (!this.options.showSpinner) return;
       this.spinner = $('<div class="' + this.options.modalClass + '-spinner"></div>')
         .append(this.options.spinnerHtml);
       $('body').append(this.spinner);
@@ -100,7 +101,7 @@
     },
 
     hideSpinner: function() {
-      this.spinner.fadeOut();
+      if (this.spinner) this.spinner.fadeOut();
     },
 
     center: function() {
@@ -144,6 +145,7 @@
     closeText: 'Close',
     modalClass: "modal",
     spinnerHtml: null,
+    showSpinner: true,
     showClose: true
   };
 
