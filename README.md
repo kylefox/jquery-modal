@@ -84,7 +84,7 @@ _(Note that modals loaded with AJAX are removed from the DOM when closed)._
     
 # Resizing
 
-There's really no need to modals, since the default styles don't specify a fixed height; modals will expand vertically (like a normal HTML element) to fit their contents.
+There's really no need to manually resize modals, since the default styles don't specify a fixed height; modals will expand vertically (like a normal HTML element) to fit their contents.
 
 However, when this occurs, you will probably want to at least re-center the modal in the viewport:
 
