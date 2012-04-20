@@ -96,14 +96,14 @@
 
     showSpinner: function() {
       if (!this.options.showSpinner) return;
-      this.spinner = $('<div class="' + this.options.modalClass + '-spinner"></div>')
+      this.spinner = this.spinner || $('<div class="' + this.options.modalClass + '-spinner"></div>')
         .append(this.options.spinnerHtml);
       this.$body.append(this.spinner);
       this.spinner.show();
     },
 
     hideSpinner: function() {
-      if (this.spinner) this.spinner.fadeOut();
+      if (this.spinner) this.spinner.remove();
     },
 
     center: function() {
