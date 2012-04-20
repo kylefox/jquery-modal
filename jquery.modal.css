@@ -42,11 +42,3 @@
   -ms-border-radius: 8px;
   border-radius: 8px;
 }
-
-.modal-spinner.alt1 {
-  background-image: url(spinner1.gif);
-}
-
-.modal-spinner.alt2 {
-  background-image: url(spinner2.gif);
-}
