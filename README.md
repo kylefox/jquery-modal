@@ -144,6 +144,7 @@ The following events are triggered when AJAX modals are requested.
 
     $.modal.AJAX_SEND = 'modal:ajax:send';
     $.modal.AJAX_SUCCESS = 'modal:ajax:success';
+    $.modal.AJAX_FAIL = 'modal:ajax:fail';
 
 The handlers receive no arguments. The events are triggered on the `<a>` element which initiated the AJAX modal.
 

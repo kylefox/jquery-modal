@@ -30,7 +30,10 @@
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
-        }).fail(function() { current.hideSpinner(); });
+        }).fail(function() {
+          el.trigger($.modal.AJAX_FAIL);
+          current.hideSpinner();
+        });
       }
     } else {
       this.$elm = el;
@@ -160,6 +163,7 @@
   $.modal.CLOSE = 'modal:close';
   $.modal.AJAX_SEND = 'modal:ajax:send';
   $.modal.AJAX_SUCCESS = 'modal:ajax:success';
+  $.modal.AJAX_FAIL = 'modal:ajax:fail';
 
   $.fn.modal = function(options){
     if (this.length === 1) {
