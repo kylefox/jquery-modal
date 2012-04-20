@@ -8,6 +8,7 @@
 
   $.modal = function(el, options) {
     var remove, target;
+    this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
     if (el.is('a')) {
       target = el.attr('href');
@@ -19,16 +20,15 @@
       //AJAX
       } else {
         this.$elm = $('<div>');
+        this.$body.append(this.$elm);
         remove = function(event, modal) { modal.elm.remove(); };
         this.showSpinner();
         $.get(target).done(function(html) {
           if (!current) return;
-          current.$elm.empty().append(html).appendTo('body').on($.modal.CLOSE, remove);
+          current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
-        }).fail(function(error) {
-          current.hideSpinner();
-        });
+        }).fail(function() { current.hideSpinner(); });
       }
     } else {
       this.$elm = el;
@@ -66,7 +66,7 @@
         background: this.options.overlay,
         opacity: this.options.opacity
       });
-      $('body').append(this.blocker);
+      this.$body.append(this.blocker);
       this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
 
@@ -93,14 +93,16 @@
     },
 
     showSpinner: function() {
+      this.$elm.trigger($.modal.SHOW_SPINNER, [this._ctx()]);
       if (!this.options.showSpinner) return;
       this.spinner = $('<div class="' + this.options.modalClass + '-spinner"></div>')
         .append(this.options.spinnerHtml);
-      $('body').append(this.spinner);
+      this.$body.append(this.spinner);
       this.spinner.show();
     },
 
     hideSpinner: function() {
+      this.$elm.trigger($.modal.HIDE_SPINNER, [this._ctx()]);
       if (this.spinner) this.spinner.fadeOut();
     },
 
@@ -156,6 +158,8 @@
   $.modal.OPEN = 'modal:open';
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
+  $.modal.SHOW_SPINNER = 'modal:show-spinner';
+  $.modal.HIDE_SPINNER = 'modal:hide-spinner';
 
   $.fn.modal = function(options){
     if (this.length === 1) {
