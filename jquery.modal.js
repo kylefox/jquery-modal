@@ -23,8 +23,10 @@
         this.$body.append(this.$elm);
         remove = function(event, modal) { modal.elm.remove(); };
         this.showSpinner();
+        el.trigger($.modal.AJAX_SEND);
         $.get(target).done(function(html) {
           if (!current) return;
+          el.trigger($.modal.AJAX_SUCCESS);
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
@@ -93,7 +95,6 @@
     },
 
     showSpinner: function() {
-      this.$elm.trigger($.modal.SHOW_SPINNER, [this._ctx()]);
       if (!this.options.showSpinner) return;
       this.spinner = $('<div class="' + this.options.modalClass + '-spinner"></div>')
         .append(this.options.spinnerHtml);
@@ -102,7 +103,6 @@
     },
 
     hideSpinner: function() {
-      this.$elm.trigger($.modal.HIDE_SPINNER, [this._ctx()]);
       if (this.spinner) this.spinner.fadeOut();
     },
 
@@ -158,8 +158,8 @@
   $.modal.OPEN = 'modal:open';
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
-  $.modal.SHOW_SPINNER = 'modal:show-spinner';
-  $.modal.HIDE_SPINNER = 'modal:hide-spinner';
+  $.modal.AJAX_SEND = 'modal:ajax:send';
+  $.modal.AJAX_SUCCESS = 'modal:ajax:success';
 
   $.fn.modal = function(options){
     if (this.length === 1) {

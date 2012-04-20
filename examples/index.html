@@ -178,8 +178,8 @@
     $(document).on($.modal.OPEN, log_modal_event);
     $(document).on($.modal.BEFORE_CLOSE, log_modal_event);
     $(document).on($.modal.CLOSE, log_modal_event);
-    $(document).on($.modal.SHOW_SPINNER, log_modal_event);
-    $(document).on($.modal.HIDE_SPINNER, log_modal_event);
+    $(document).on($.modal.AJAX_SEND, log_modal_event);
+    $(document).on($.modal.AJAX_SUCCESS, log_modal_event);
     
     $('#more').click(function() {
       $(this).parent().after($(this).parent().next().clone());

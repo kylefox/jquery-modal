@@ -101,8 +101,10 @@ These are the supported options and their default values:
       escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
       clickClose: true,       // Allows the user to close the modal by clicking the overlay
       closeText: 'Close',     // Text content for the close <a> tag.
-      showClose: true,         // Shows a (X) icon/link in the top-right corner
+      showClose: true,        // Shows a (X) icon/link in the top-right corner
       modalClass: "modal",    // CSS class added to the element being displayed in the modal.
+      spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
+      showSpinner: true       // Enable/disable the default spinner during AJAX requests.
     };
     
 # Events
@@ -132,7 +134,18 @@ So, you could do something like this:
 
 ## Basic support
 
-jQuery Modal uses $.get for basic AJAX support.
+jQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you've included modal.css) and will have the class `modal-spinner`. If you've set the `modalClass` option, the spinner will be prefixed with that class name instead.
+
+You can add text or additional HTML to the spinner with the `spinnerHtml` option, or disable the spinner entirely by setting `showSpinner: false`.
+
+## Events
+
+The following events are triggered when AJAX modals are requested.
+
+    $.modal.AJAX_SEND = 'modal:ajax:send';
+    $.modal.AJAX_SUCCESS = 'modal:ajax:success';
+
+The handlers receive no arguments. The events are triggered on the `<a>` element which initiated the AJAX modal.
 
 ## More advanced AJAX handling
 
