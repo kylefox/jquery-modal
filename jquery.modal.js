@@ -30,6 +30,7 @@
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
+          el.trigger($.modal.AJAX_SUCCESS_DONE);
         }).fail(function() {
           el.trigger($.modal.AJAX_FAIL);
           current.hideSpinner();
@@ -163,6 +164,7 @@
   $.modal.CLOSE = 'modal:close';
   $.modal.AJAX_SEND = 'modal:ajax:send';
   $.modal.AJAX_SUCCESS = 'modal:ajax:success';
+  $.modal.AJAX_SUCCESS_DONE = 'modal:ajax:success-done';
   $.modal.AJAX_FAIL = 'modal:ajax:fail';
 
   $.fn.modal = function(options){
