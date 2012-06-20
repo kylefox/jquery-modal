@@ -30,9 +30,11 @@
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
+          el.trigger($.modal.AJAX_COMPLETE);
         }).fail(function() {
           el.trigger($.modal.AJAX_FAIL);
           current.hideSpinner();
+          el.trigger($.modal.AJAX_COMPLETE);
         });
       }
     } else {
@@ -164,6 +166,7 @@
   $.modal.AJAX_SEND = 'modal:ajax:send';
   $.modal.AJAX_SUCCESS = 'modal:ajax:success';
   $.modal.AJAX_FAIL = 'modal:ajax:fail';
+  $.modal.AJAX_COMPLETE = 'modal:ajax:complete';
 
   $.fn.modal = function(options){
     if (this.length === 1) {
