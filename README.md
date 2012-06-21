@@ -61,6 +61,10 @@ Open an existing DOM element:
 Load a remote URL with AJAX:
 
     <a href="login.html" rel="modal:open">Login</a>
+
+Load a remote URL and post forms in the modal via AJAX
+
+    <a href="login.html" rel="modal:open:ajaxpost">Login</a>
     
 You should apply a width to all your modal elements using normal CSS.
 
