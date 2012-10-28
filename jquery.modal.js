@@ -84,7 +84,7 @@
     show: function() {
       this.$elm.trigger($.modal.BEFORE_OPEN, [this._ctx()]);
       if (this.options.showClose) {
-        this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal">' + this.options.closeText + '</a>');
+        this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
         this.$elm.append(this.closeButton);
       }
       this.$elm.addClass(this.options.modalClass + ' current');
@@ -150,6 +150,7 @@
     escapeClose: true,
     clickClose: true,
     closeText: 'Close',
+    closeClass: '',
     modalClass: "modal",
     spinnerHtml: null,
     showSpinner: true,
