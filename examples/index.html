@@ -143,7 +143,24 @@
 <hr />
 
 <h2>Example 4: AJAX</h2>
-<p>This <a href="ajax.html" rel="modal:open">example</a> loads HTML with AJAX.</p>
+
+<p>This <a href="ajax.html" rel="modal:open">first example</a> uses <code>rel="modal:open"</code> to automatically load the page contents into a modal via AJAX:</p>
+
+<pre><code>&lt;a href=&quot;ajax.html&quot; rel=&quot;modal:open&quot;&gt;example&lt;/a&gt;</code></pre>
+
+<p>This <a href="ajax2.html" id="manual-ajax">second example</a> shows how you can manually load AJAX pages into a modal. Note that the AJAX response must be wrapped in a div with class <code>modal</code>:</p>
+
+<pre><code>&lt;!-- Normal link --&gt;<br/>&lt;a href=&quot;ajax.html&quot; id=&quot;manual-ajax&quot;&gt;second example&lt;/a&gt;</code></pre>
+
+<pre><code>// Open modal in AJAX callback
+$('#manual-ajax').click(function(event) {
+  event.preventDefault();
+  $.get(this.href, function(html) {
+    $(html).appendTo('body').modal();
+  });
+});</code></pre>
+  
+<pre><code>&lt;!-- AJAX response must be wrapped in the modal's root class. --&gt;<br/>&lt;div class=&quot;modal&quot;&gt;<br/>  &lt;p&gt;Second AJAX Example!&lt;/p&gt;<br/>&lt;/div&gt;</pre></code>
   
 <p>If you want more spinner styles, check out <a href="http://ajaxload.info/">ajaxload.info</a>.</p>  
 
@@ -186,6 +203,13 @@
       $(this).parent().after($(this).parent().next().clone());
       $.modal.resize();
       return false;
+    });
+    
+    $('#manual-ajax').click(function(event) {
+      event.preventDefault();
+      $.get(this.href, function(html) {
+        $(html).appendTo('body').modal();
+      });
     });
     
     $('a[href="#ex5"]').click(function(event) {

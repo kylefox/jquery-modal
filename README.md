@@ -180,6 +180,8 @@ and make your AJAX request in the link's click handler. Note that you need to ma
       return false;
     });
 
+Note that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.
+
 # Contributing
 
 I would love help improving this plugin, particularly with:
