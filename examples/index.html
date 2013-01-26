@@ -181,7 +181,28 @@ $('#manual-ajax').click(function(event) {
 <div id="ex5" class="modal">
   <p>If you do this, be sure to provide the user with an alternate method of <a href="#" rel="modal:close">closing the window.</a></p>
 </div>
-  
+
+<hr />
+
+<h2>Example 6: Multiple Modals</h2>
+
+<p>There can only be one modal open at a time. If you open a new modal while an existing modal is open, the existing modal is closed first. If you need to manage state (ie: for step by step wizards) you'll need to do that yourself.</p>
+
+<h3><a href="#ex6-1" rel="modal:open">Open First Modal</a></h3>
+
+<div class="modal" id="ex6-1" style="display:none;">
+  <p>I'm the first modal. <a href="#ex6-2" rel="modal:open">Open second modal...</a></p>
+</div>
+
+<div class="modal" id="ex6-2" style="display:none;">
+  <p>I'm the second modal. <a href="#ex6-3" rel="modal:open">Open third modal...</a></p>
+</div>
+
+<div class="modal" id="ex6-3" style="display:none;">
+  <p>I'm the third modal. You get the idea.</p>
+</div>
+
+
 <script type="text/javascript" charset="utf-8">
   $(function() {
     

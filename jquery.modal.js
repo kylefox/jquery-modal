@@ -1,12 +1,13 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.5.1
+    Version 0.5.2
 */
 (function($) {
 
   var current = null;
 
   $.modal = function(el, options) {
+    $.modal.close(); // Close any open modals.
     var remove, target;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
