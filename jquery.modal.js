@@ -177,8 +177,8 @@
   };
 
   // Automatically bind links with rel="modal:close" to, well, close the modal.
-  $(document).on('click', 'a[rel="modal:close"]', $.modal.close);
-  $(document).on('click', 'a[rel="modal:open"]', function(event) {
+  $(document).on('click.modal', 'a[rel="modal:close"]', $.modal.close);
+  $(document).on('click.modal', 'a[rel="modal:open"]', function(event) {
     event.preventDefault();
     $(this).modal();
   });
