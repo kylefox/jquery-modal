@@ -74,7 +74,6 @@ Because there can be only one modal active at a single time, there's no need to 
 
     $.modal.close();
     
-_TODO: this should be changed so that when called on a specific element, the element is returned (normal jQuery fashion)._
 
 Similar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="modal:close"`:
 
