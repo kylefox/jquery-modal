@@ -74,7 +74,6 @@ Because there can be only one modal active at a single time, there's no need to 
 
     $.modal.close();
     
-
 Similar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="modal:close"`:
 
     <a href="#close" rel="modal:close">Close window</a>
@@ -188,6 +187,7 @@ I would love help improving this plugin, particularly with:
 * Performance improvements
 * Making the code as concise/efficient as possible
 * Bug fixes & browser compatibility
+* Minify JavaScript with [Closure Compiler](http://closure-compiler.appspot.com/home) (default options)
 
 Please fork and send pull requests, or create an [issue](https://github.com/kylefox/jquery-modal/issues).
 
