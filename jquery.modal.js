@@ -136,7 +136,7 @@
     if (!current) return;
     if (event) event.preventDefault();
     current.close();
-    that = current.$elm;
+    var that = current.$elm;
     current = null;
     return that;
   };
