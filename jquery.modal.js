@@ -1,6 +1,6 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.5.2
+    Version 0.5.3
 */
 (function($) {
 
@@ -136,7 +136,9 @@
     if (!current) return;
     if (event) event.preventDefault();
     current.close();
+    var that = current.$elm;
     current = null;
+    return that;
   };
 
   $.modal.resize = function() {
@@ -177,8 +179,8 @@
   };
 
   // Automatically bind links with rel="modal:close" to, well, close the modal.
-  $(document).on('click', 'a[rel="modal:close"]', $.modal.close);
-  $(document).on('click', 'a[rel="modal:open"]', function(event) {
+  $(document).on('click.modal', 'a[rel="modal:close"]', $.modal.close);
+  $(document).on('click.modal', 'a[rel="modal:open"]', function(event) {
     event.preventDefault();
     $(this).modal();
   });
