@@ -1,6 +1,6 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.5.2
+    Version 0.5.3
 */
 (function($) {
 
@@ -136,7 +136,9 @@
     if (!current) return;
     if (event) event.preventDefault();
     current.close();
+    that = current.$elm;
     current = null;
+    return that;
   };
 
   $.modal.resize = function() {
