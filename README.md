@@ -17,8 +17,10 @@ and does so with as little HTML & CSS as possible.
 
 Include [jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) and `jquery.modal.min.js` scripts:
 
-    <script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+```html
+<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+```
     
 Include the `jquery.modal.css` stylesheet:
 
@@ -32,23 +34,31 @@ As of version 0.3.0, jQuery 1.7 is required. If you're using an earlier version 
 
 Basic usage is to embed your modal's HTML (with the 'modal' class) directly into the document.
 
-    <form id="login-form" class="modal">
-      ...
-    </form>
+```html
+<form id="login-form" class="modal">
+  ...
+</form>
+```
 
 and then invoke `modal()` on the element.
 
-    $('#login-form').modal();
+```js
+$('#login-form').modal();
+```
 
 You can also invoke `modal()` on links.
 
+```html
     <a href="#ex5"> Open modal by getting the dom id from href</a>
     <a href="ajax.html"> Open modal by making an AJAX call</a>
+```
 
-    $(a).click(function(event) {
+```js
+    $('a').click(function(event) {
       event.preventDefault();
       $(this).modal();
     });
+```
 
 **Method 2: Automatically attaching to links**
 
@@ -56,15 +66,21 @@ An even simpler way is to add `rel="modal:open"` to links.  When the link is cli
 
 Open an existing DOM element:
 
-    <a href="#login-form" rel="modal:open">Login</a>
+```html
+<a href="#login-form" rel="modal:open">Login</a>
+```
     
 Load a remote URL with AJAX:
 
-    <a href="login.html" rel="modal:open">Login</a>
+```html
+<a href="login.html" rel="modal:open">Login</a>
+```
     
 You should apply a width to all your modal elements using normal CSS.
 
-    #login-form.modal { width: 400px; }
+```html
+#login-form.modal { width: 400px; }
+```
 
 The modal doesn't have a fixed height, and thus will expand & contract vertically to fit the content.
 
@@ -72,11 +88,15 @@ The modal doesn't have a fixed height, and thus will expand & contract verticall
 
 Because there can be only one modal active at a single time, there's no need to select which modal to close:
 
-    $.modal.close();
+```js
+$.modal.close();
+```
     
 Similar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="modal:close"`:
 
-    <a href="#close" rel="modal:close">Close window</a>
+```html
+<a href="#close" rel="modal:close">Close window</a>
+```
     
 _(Note that modals loaded with AJAX are removed from the DOM when closed)._
     
@@ -86,47 +106,57 @@ There's really no need to manually resize modals, since the default styles don't
 
 However, when this occurs, you will probably want to at least re-center the modal in the viewport:
 
-    $.modal.resize()
+```js
+$.modal.resize()
+```
     
 # Options
 
 These are the supported options and their default values:
 
-    $.modal.defaults = {
-      overlay: "#000",        // Overlay color
-      opacity: 0.75,          // Overlay opacity
-      zIndex: 1,              // Overlay z-index.
-      escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
-      clickClose: true,       // Allows the user to close the modal by clicking the overlay
-      closeText: 'Close',     // Text content for the close <a> tag.
-      showClose: true,        // Shows a (X) icon/link in the top-right corner
-      modalClass: "modal",    // CSS class added to the element being displayed in the modal.
-      spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
-      showSpinner: true       // Enable/disable the default spinner during AJAX requests.
-    };
+```js
+$.modal.defaults = {
+  overlay: "#000",        // Overlay color
+  opacity: 0.75,          // Overlay opacity
+  zIndex: 1,              // Overlay z-index.
+  escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
+  clickClose: true,       // Allows the user to close the modal by clicking the overlay
+  closeText: 'Close',     // Text content for the close <a> tag.
+  showClose: true,        // Shows a (X) icon/link in the top-right corner
+  modalClass: "modal",    // CSS class added to the element being displayed in the modal.
+  spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
+  showSpinner: true       // Enable/disable the default spinner during AJAX requests.
+};
+```
     
 # Events
 
 The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).  Hopefully the names are self-explanatory.
 
-    $.modal.BEFORE_BLOCK = 'modal:before-block';
-    $.modal.BLOCK = 'modal:block';
-    $.modal.BEFORE_OPEN = 'modal:before-open';
-    $.modal.OPEN = 'modal:open';
-    $.modal.BEFORE_CLOSE = 'modal:before-close';
-    $.modal.CLOSE = 'modal:close';
+```js
+$.modal.BEFORE_BLOCK = 'modal:before-block';
+$.modal.BLOCK = 'modal:block';
+$.modal.BEFORE_OPEN = 'modal:before-open';
+$.modal.OPEN = 'modal:open';
+$.modal.BEFORE_CLOSE = 'modal:before-close';
+$.modal.CLOSE = 'modal:close';
+```
     
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
-    modal.elm;        // Original jQuery object upon which modal() was invoked.
-    modal.options;    // Options passed to the modal.
-    modal.blocker;    // The overlay element.
+```js
+modal.elm;        // Original jQuery object upon which modal() was invoked.
+modal.options;    // Options passed to the modal.
+modal.blocker;    // The overlay element.
+```
 
 So, you could do something like this:
 
-    $('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
-      clear_shopping_cart();
-    });
+```js
+$('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
+  clear_shopping_cart();
+});
+```
 
 # AJAX
 
@@ -140,10 +170,12 @@ You can add text or additional HTML to the spinner with the `spinnerHtml` option
 
 The following events are triggered when AJAX modals are requested.
 
-    $.modal.AJAX_SEND = 'modal:ajax:send';
-    $.modal.AJAX_SUCCESS = 'modal:ajax:success';
-    $.modal.AJAX_FAIL = 'modal:ajax:fail';
-    $.modal.AJAX_COMPLETE = 'modal:ajax:complete';
+```js
+$.modal.AJAX_SEND = 'modal:ajax:send';
+$.modal.AJAX_SUCCESS = 'modal:ajax:success';
+$.modal.AJAX_FAIL = 'modal:ajax:fail';
+$.modal.AJAX_COMPLETE = 'modal:ajax:complete';
+```
 
 The handlers receive no arguments. The events are triggered on the `<a>` element which initiated the AJAX modal.
 
@@ -153,30 +185,34 @@ It's a good idea to provide more robust AJAX handling -- error handling, in part
 
 Simply bypass the default AJAX handling (i.e.: don't use `rel="modal"`)
 
-    <a href="ajax.html" rel="ajax:modal">Click me!</a>
+```html
+<a href="ajax.html" rel="ajax:modal">Click me!</a>
+```
 
 and make your AJAX request in the link's click handler. Note that you need to manually append the new HTML/modal in the `success` callback:
 
-    $('a[rel="ajax:modal"]').click(function(event) {
+```js
+$('a[rel="ajax:modal"]').click(function(event) {
 
-      $.ajax({
-        
-        url: $(this).attr('href'),
-        
-        success: function(newHTML, textStatus, jqXHR) {
-          $(newHTML).appendTo('body').modal();      
-        },
-        
-        error: function(jqXHR, textStatus, errorThrown) {
-          // Handle AJAX errors
-        }
-        
-        // More AJAX customization goes here.
-        
-      });
-  
-      return false;
-    });
+  $.ajax({
+    
+    url: $(this).attr('href'),
+    
+    success: function(newHTML, textStatus, jqXHR) {
+      $(newHTML).appendTo('body').modal();      
+    },
+    
+    error: function(jqXHR, textStatus, errorThrown) {
+      // Handle AJAX errors
+    }
+    
+    // More AJAX customization goes here.
+    
+  });
+
+  return false;
+});
+```
 
 Note that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.
 
