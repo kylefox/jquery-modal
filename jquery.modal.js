@@ -11,6 +11,7 @@
     var remove, target;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
+    this.options.doFade = !isNaN(parseInt(this.options.fadeDuration, 10));
     if (el.is('a')) {
       target = el.attr('href');
       //Select element by id from href
@@ -65,6 +66,7 @@
     },
 
     block: function() {
+      var initialOpacity = this.options.doFade ? 0 : this.options.opacity;
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
       this.blocker = $('<div class="jquery-modal blocker"></div>').css({
         top: 0, right: 0, bottom: 0, left: 0,
@@ -72,14 +74,24 @@
         position: "fixed",
         zIndex: this.options.zIndex,
         background: this.options.overlay,
-        opacity: this.options.opacity
+        opacity: initialOpacity
       });
+      console.log(initialOpacity);
       this.$body.append(this.blocker);
+      if(this.options.doFade) {
+        this.blocker.animate({opacity: this.options.opacity}, this.options.doFade);
+      }
       this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
 
     unblock: function() {
-      this.blocker.remove();
+      if(this.options.doFade) {
+        this.blocker.fadeOut(this.options.fadeDuration, function() {
+          this.remove();
+        });
+      } else {
+        this.blocker.remove();
+      }
     },
 
     show: function() {
@@ -90,13 +102,24 @@
       }
       this.$elm.addClass(this.options.modalClass + ' current');
       this.center();
-      this.$elm.show().trigger($.modal.OPEN, [this._ctx()]);
+      if(this.options.doFade) {
+        this.$elm.fadeIn(this.options.fadeDuration);
+      } else {
+        this.$elm.show();
+      }
+      this.$elm.trigger($.modal.OPEN, [this._ctx()]);
     },
 
     hide: function() {
       this.$elm.trigger($.modal.BEFORE_CLOSE, [this._ctx()]);
       if (this.closeButton) this.closeButton.remove();
-      this.$elm.removeClass('current').hide();
+      this.$elm.removeClass('current')
+
+      if(this.options.doFade) {
+        this.$elm.fadeOut(this.options.fadeDuration);
+      } else {
+        this.$elm.hide();
+      }
       this.$elm.trigger($.modal.CLOSE, [this._ctx()]);
     },
 
@@ -156,7 +179,8 @@
     modalClass: "modal",
     spinnerHtml: null,
     showSpinner: true,
-    showClose: true
+    showClose: true,
+    fadeDuration: null
   };
 
   // Event constants
