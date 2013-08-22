@@ -203,13 +203,31 @@ $('#manual-ajax').click(function(event) {
 
 <hr />
 
-<h2>Example 7: Fading</h2>
+<h2>Example 7: Fade Transitions</h2>
 
 <p>This <a href="#ex7">example</a> shows how you can do a simple fade by specifying the <code>fadeDuration</code> option.</p>
 
 <pre><code> $("#fade").modal({
   fadeDuration: 100
 });</code></pre>
+
+<p>You can also use <code>fadeDelay</code> to control the point during the overlay's fade in at which the modal fades in. For <a href="#ex8">example</a>, to fade in the modal when the overlay transition is 50% complete:</p>
+
+<pre><code> $("#fade").modal({
+  fadeDuration: 1000,
+  fadeDelay: 0.50
+});</code></pre>
+
+<p>The default value is <code>1.0</code>, meaning the window transition begins once the overlay transition has finished. Values greater than <code>1.0</code> mean there is a delay between the completed overlay transition and the start of the window transition, <a href="#ex9">example</a>:</p>
+
+<pre><code> $("#fade").modal({
+  fadeDuration: 1000,
+  fadeDelay: 1.75 // Will fade in 750ms after the overlay finishes.
+});</code></pre>
+
+<p><small>Tip: set <code>fadeDelay: 0</code> to have the overlay and window fade in simultaneously.</small></p>
+
+<p>In the spirit of keeping this library small, fading is the only supported transition. When the modal is closed, both the overal and window transition out simultaneously.</p>
 
 <div id="ex7" class="modal">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -218,6 +236,14 @@ $('#manual-ajax').click(function(event) {
   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<div id="ex8" class="modal">
+  <p>This modal starts fading in once the overlay is 50% faded in.</p>
+</div>
+
+<div id="ex9" class="modal">
+  <p>This modal starts fading in well after the overlay has finished transitioning.</p>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -262,7 +288,23 @@ $('#manual-ajax').click(function(event) {
     $('a[href="#ex7"]').click(function(event) {
       event.preventDefault();
       $(this).modal({
-        fadeDuration: 100
+        fadeDuration: 250
+      });
+    });
+
+    $('a[href="#ex8"]').click(function(event) {
+      event.preventDefault();
+      $(this).modal({
+        fadeDuration: 1000,
+        fadeDelay: 0.50
+      });
+    });
+
+    $('a[href="#ex9"]').click(function(event) {
+      event.preventDefault();
+      $(this).modal({
+        fadeDuration: 1000,
+        fadeDelay: 1.75
       });
     });
 

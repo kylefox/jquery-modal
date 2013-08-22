@@ -49,8 +49,16 @@
     constructor: $.modal,
 
     open: function() {
-      this.block();
-      this.show();
+      var m = this;
+      if(this.options.doFade) {
+        this.block();
+        setTimeout(function() {
+          m.show();
+        }, this.options.fadeDuration * this.options.fadeDelay);
+      } else {
+        this.block();
+        this.show();
+      }
       if (this.options.escapeClose) {
         $(document).on('keydown.modal', function(event) {
           if (event.which == 27) $.modal.close();
@@ -76,10 +84,9 @@
         background: this.options.overlay,
         opacity: initialOpacity
       });
-      console.log(initialOpacity);
       this.$body.append(this.blocker);
       if(this.options.doFade) {
-        this.blocker.animate({opacity: this.options.opacity}, this.options.doFade);
+        this.blocker.animate({opacity: this.options.opacity}, this.options.fadeDuration);
       }
       this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
@@ -113,7 +120,7 @@
     hide: function() {
       this.$elm.trigger($.modal.BEFORE_CLOSE, [this._ctx()]);
       if (this.closeButton) this.closeButton.remove();
-      this.$elm.removeClass('current')
+      this.$elm.removeClass('current');
 
       if(this.options.doFade) {
         this.$elm.fadeOut(this.options.fadeDuration);
@@ -180,7 +187,8 @@
     spinnerHtml: null,
     showSpinner: true,
     showClose: true,
-    fadeDuration: null
+    fadeDuration: null,   // Number of milliseconds the fade animation takes.
+    fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
   };
 
   // Event constants
