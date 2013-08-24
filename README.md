@@ -19,11 +19,11 @@ Include [jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) an
 
     <script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-    
+
 Include the `jquery.modal.css` stylesheet:
 
     <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
-    
+
 As of version 0.3.0, jQuery 1.7 is required. If you're using an earlier version of jQuery you can use the [v.0.2.5 tag.](https://github.com/kylefox/jquery-modal/tags)
 
 # Opening
@@ -57,29 +57,58 @@ An even simpler way is to add `rel="modal:open"` to links.  When the link is cli
 Open an existing DOM element:
 
     <a href="#login-form" rel="modal:open">Login</a>
-    
+
 Load a remote URL with AJAX:
 
     <a href="login.html" rel="modal:open">Login</a>
-    
+
 You should apply a width to all your modal elements using normal CSS.
 
     #login-form.modal { width: 400px; }
 
 The modal doesn't have a fixed height, and thus will expand & contract vertically to fit the content.
 
+## Fade Transitions
+
+By default the overlay & window appear instantaneously, but you can enable a fade effect by specifying the `fadeDuration` option.
+
+    $('a.open-modal').click(function(event) {
+      $(this).modal({
+        fadeDuration: 250
+      });
+      return false;
+    });
+
+This will fade in the overlay and modal over 250 milliseconds _simultaneously._ If you want the effect of the overlay appearing _before_ the window, you can specify the `fadeDelay` option. This indicates at what point during the overlay transition the window transition should begin.
+
+So if you wanted the window to fade in when the overlay's was 80% finished:
+
+      $(elm).modal({
+        fadeDuration: 250,
+        fadeDelay: 0.80
+      });
+
+Or, if you wanted the window to fade in a few moments after the overlay transition has completely finished:
+
+      $(elm).modal({
+        fadeDuration: 250,
+        fadeDelay: 1.5
+      });
+
+Fading is the only supported transition. Also, there are no transitions when closing the modal.
+
 # Closing
 
 Because there can be only one modal active at a single time, there's no need to select which modal to close:
 
     $.modal.close();
-    
+
 Similar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="modal:close"`:
 
     <a href="#close" rel="modal:close">Close window</a>
-    
+
 _(Note that modals loaded with AJAX are removed from the DOM when closed)._
-    
+
 # Resizing
 
 There's really no need to manually resize modals, since the default styles don't specify a fixed height; modals will expand vertically (like a normal HTML element) to fit their contents.
@@ -87,7 +116,7 @@ There's really no need to manually resize modals, since the default styles don't
 However, when this occurs, you will probably want to at least re-center the modal in the viewport:
 
     $.modal.resize()
-    
+
 # Options
 
 These are the supported options and their default values:
@@ -102,9 +131,11 @@ These are the supported options and their default values:
       showClose: true,        // Shows a (X) icon/link in the top-right corner
       modalClass: "modal",    // CSS class added to the element being displayed in the modal.
       spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
-      showSpinner: true       // Enable/disable the default spinner during AJAX requests.
+      showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
+      fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)
+      fadeDelay: 1.0          // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
     };
-    
+
 # Events
 
 The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).  Hopefully the names are self-explanatory.
@@ -115,7 +146,7 @@ The following events are triggered on the modal element at various points in the
     $.modal.OPEN = 'modal:open';
     $.modal.BEFORE_CLOSE = 'modal:before-close';
     $.modal.CLOSE = 'modal:close';
-    
+
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
     modal.elm;        // Original jQuery object upon which modal() was invoked.
@@ -160,21 +191,21 @@ and make your AJAX request in the link's click handler. Note that you need to ma
     $('a[rel="ajax:modal"]').click(function(event) {
 
       $.ajax({
-        
+
         url: $(this).attr('href'),
-        
+
         success: function(newHTML, textStatus, jqXHR) {
-          $(newHTML).appendTo('body').modal();      
+          $(newHTML).appendTo('body').modal();
         },
-        
+
         error: function(jqXHR, textStatus, errorThrown) {
           // Handle AJAX errors
         }
-        
+
         // More AJAX customization goes here.
-        
+
       });
-  
+
       return false;
     });
 
