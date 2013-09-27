@@ -45,7 +45,7 @@ You can also invoke `modal()` on links.
     <a href="#ex5"> Open modal by getting the dom id from href</a>
     <a href="ajax.html"> Open modal by making an AJAX call</a>
 
-    $(a).click(function(event) {
+    $('a').click(function(event) {
       event.preventDefault();
       $(this).modal();
     });
