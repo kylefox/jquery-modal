@@ -13,7 +13,7 @@ By contrast, this plugin handles the two most common scenarios I run into
 
 and does so with as little HTML & CSS as possible.
 
-# Found a bug or have an idea for improvement?
+## Found a bug or have an idea for improvement?
 
 Awesome! Please submit a fix & pull request when submitting an issue. I don't use this plugin as frequently as I used to and thus cannot justify spending time fixing bugs or implementing enhancements for other people. Sorry :( — please see "Contributing" below.
 
