@@ -175,11 +175,11 @@
     if (!current) return;
     current.resize();
   };
-  
+
   // Returns if there currently is an active modal
   $.modal.isActive = function () {
     return current ? true : false;
-  }  
+  }
 
   $.modal.defaults = {
     overlay: "#000",
