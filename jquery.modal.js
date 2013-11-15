@@ -37,6 +37,7 @@
           el.trigger($.modal.AJAX_FAIL);
           current.hideSpinner();
           el.trigger($.modal.AJAX_COMPLETE);
+          current = null;
         });
       }
     } else {
