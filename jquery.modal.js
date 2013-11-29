@@ -6,7 +6,7 @@
   'use strict';
   
   var defaults = {
-	overlay: "#000",
+    overlay: "#000",
     opacity: 0.75,
     zIndex: 1,
     escapeClose: true,
@@ -23,7 +23,7 @@
   //Wrapper function that allows us to pass it to define later
   var wrap = function($) {
 
-  	var current = null;
+    var current = null;
 
     $.modal = function(el, options) {
       $.modal.close(); // Close any open modals.
@@ -86,11 +86,11 @@
         if (this.options.clickClose) this.blocker.click($.modal.close);
       },
 
-	    close: function() {
-	      this.unblock();
-	      this.hide();
-	      $(document).off('keydown.modal');
-	    },
+      close: function() {
+        this.unblock();
+        this.hide();
+        $(document).off('keydown.modal');
+      },
 
 	    block: function() {
 	      var initialOpacity = this.options.doFade ? 0 : this.options.opacity;
