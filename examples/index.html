@@ -246,6 +246,66 @@ $('#manual-ajax').click(function(event) {
   <p>This modal starts fading in well after the overlay has finished transitioning.</p>
 </div>
 
+<hr/>
+
+<h2>Example 10: Custom Class for Close Button</h2>
+<p>
+  This <a href="#ex10">example</a> demonstrates how to add extra classes to the close button (for custom styles for the close button):
+</p>
+
+<pre><code> $("#custom-close").modal({
+  closeClass: 'icon-remove',
+  closeText: '!'
+});</code></pre>
+<p>And then of course your custom CSS</p>
+<pre><code>.modal a.close-modal[class*="icon-"] {
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0;
+  background: #900;
+  border: 2px solid #fff;
+  -webkit-border-radius:  26px;
+  -moz-border-radius:     26px;
+  -o-border-radius:       26px;
+  -ms-border-radius:      26px;
+  -moz-box-shadow:    1px 1px 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  box-shadow:         1px 1px 5px rgba(0,0,0,0.5);
+}</code></pre>
+
+<div id="ex10" class="modal">
+  <p>This modal has a fancy-shmancy close button.</p>
+</div>
+
+<style type="text/css">
+  .modal a.close-modal[class*="icon-"] {
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    background: #900;
+    border: 2px solid #fff;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -o-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -moz-box-shadow:    1px 1px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    box-shadow:         1px 1px 5px rgba(0,0,0,0.5);
+  }
+</style>
+
 <script type="text/javascript" charset="utf-8">
   $(function() {
 
@@ -305,6 +365,14 @@ $('#manual-ajax').click(function(event) {
       $(this).modal({
         fadeDuration: 1000,
         fadeDelay: 1.75
+      });
+    });
+
+    $('a[href="#ex10"]').click(function(event){
+      event.preventDefault();
+      $(this).modal({
+        closeClass: 'icon-remove',
+        closeText: '!'
       });
     });
 
