@@ -1,5 +1,6 @@
 .modal {
   display: none;
+  position: fixed;
   width: 400px;
   background: #fff;
   padding: 15px 30px;
