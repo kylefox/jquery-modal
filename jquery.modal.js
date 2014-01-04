@@ -65,12 +65,16 @@
         });
       }
       if (this.options.clickClose) this.blocker.click($.modal.close);
+      if (this.options.maxHeight) {
+        $(window).on('resize.modal', $.modal.resize);
+      }
     },
 
     close: function() {
       this.unblock();
       this.hide();
       $(document).off('keydown.modal');
+      $(window).off('resize.modal');
     },
 
     block: function() {
@@ -108,6 +112,13 @@
         this.$elm.append(this.closeButton);
       }
       this.$elm.addClass(this.options.modalClass + ' current');
+      if (this.options.maxHeight) {
+        this.$elm.css({
+          maxHeight: (this.options.maxHeight * 100).toFixed(2) + '%',
+          overflowY: 'auto',
+          overflowX: 'hidden'
+        });
+      }
       this.center();
       if(this.options.doFade) {
         this.$elm.fadeIn(this.options.fadeDuration);
@@ -179,12 +190,13 @@
   // Returns if there currently is an active modal
   $.modal.isActive = function () {
     return current ? true : false;
-  }
+  };
 
   $.modal.defaults = {
     overlay: "#000",
     opacity: 0.75,
     zIndex: 1,
+    maxHeight: null,
     escapeClose: true,
     clickClose: true,
     closeText: 'Close',
