@@ -2,6 +2,8 @@ A simple & lightweight method of displaying modal windows with jQuery.
 
 You probably want [a demo](http://kylefox.ca/jquery-modal/examples/index.html), don't you?
 
+_Using Rails? Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!_
+
 # Why another modal plugin?
 
 Most plugins I've found try to do too much, and have specialized ways of handling photo galleries, iframes and video.  The resulting HTML & CSS is often bloated and difficult to customize.
