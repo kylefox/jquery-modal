@@ -2,7 +2,7 @@ A simple & lightweight method of displaying modal windows with jQuery.
 
 You probably want [a demo](http://kylefox.ca/jquery-modal/examples/index.html), don't you?
 
-_Using Rails? Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!_
+**Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!
 
 # Why another modal plugin?
 
