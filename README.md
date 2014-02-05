@@ -123,6 +123,14 @@ However, when this occurs, you will probably want to at least re-center the moda
 
     $.modal.resize()
 
+To prevent your modal from extending beyond the browser window, you can provide a 'maxHeight' option as a percentage of the browser window, and your modal will add a scrollbar if necessary.
+
+If you wanted to set your modal to not take up more than 80% of the viewport height:
+
+    $(elm).modal({
+        maxHeight: 0.80
+    });
+
 # Options
 
 These are the supported options and their default values:
@@ -131,6 +139,7 @@ These are the supported options and their default values:
       overlay: "#000",        // Overlay color
       opacity: 0.75,          // Overlay opacity
       zIndex: 1,              // Overlay z-index.
+      maxHeight: null,        // Limit the height of the modal as a percentage of window height
       escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
       clickClose: true,       // Allows the user to close the modal by clicking the overlay
       closeText: 'Close',     // Text content for the close <a> tag.
