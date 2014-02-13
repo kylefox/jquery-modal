@@ -94,7 +94,7 @@
     unblock: function() {
       if(this.options.doFade) {
         this.blocker.fadeOut(this.options.fadeDuration, function() {
-          this.remove();
+          $(this).remove();
         });
       } else {
         this.blocker.remove();
