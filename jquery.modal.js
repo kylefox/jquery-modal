@@ -143,14 +143,30 @@
     },
 
     center: function() {
-      this.$elm.css({
-        position: 'fixed',
-        top: "50%",
-        left: "50%",
-        marginTop: - (this.$elm.outerHeight() / 2),
-        marginLeft: - (this.$elm.outerWidth() / 2),
-        zIndex: this.options.zIndex + 1
-      });
+      var windowHeight = $(window).height();
+      var windowWidth = $(window).width();
+      var modalHeight = this.$elm.outerHeight();
+      var modalWidth = this.$elm.outerWidth();
+
+      if (windowWidth > modalWidth && windowHeight > modalHeight) {
+        this.$elm.css({
+            position: 'fixed',
+            top: "50%",
+            left: "50%",
+            marginTop: - (modalHeight / 2),
+            marginLeft: - (modalWidth / 2),
+            zIndex: this.options.zIndex + 1
+        });
+      } else {
+        this.$elm.css({
+            position: 'absolute',
+            top: $(document).scrollTop(),
+            left: Math.max(0, ((windowWidth - modalWidth) / 2)),
+            marginTop: 0,
+            marginLeft: 0,
+            zIndex: this.options.zIndex + 1
+        });
+      }
     },
 
     //Return context for custom events
