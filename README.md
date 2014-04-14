@@ -15,9 +15,13 @@ By contrast, this plugin handles the two most common scenarios I run into
 
 and does so with as little HTML & CSS as possible.
 
-## Found a bug or have an idea for improvement?
+## Bug Reports & Improvements
 
-Awesome! **Please submit a fix & pull request** when reporting an issue. I don't use this plugin as frequently as I used to and thus cannot justify spending time fixing bugs or implementing enhancements for other people. Sorry :( — please see "Contributing" below.
+**Found a bug?** Please [create an issue](https://github.com/kylefox/jquery-modal/issues/new) and **include a publicly-accessible demonstration of the bug.** [Dropbox](https://www.dropbox.com) or [JSFiddle](http://jsfiddle.net/) work well for demonstrating reproducable bugs, but you can use anything as long as it's publicly accessible. Your issue is much more likely to be resolved/merged if it includes a fix & pull request.
+
+**Have an idea that improves jquery-modal?** Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.
+
+I don't use this library as frequently as I used to, so if you want to see a fix/improvement you're best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!
 
 # Installation
 
