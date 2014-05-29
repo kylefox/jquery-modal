@@ -8,10 +8,11 @@
 
   $.modal = function(el, options) {
     $.modal.close(); // Close any open modals.
-    var remove, target;
+    var remove, target, selector;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
     this.options.doFade = !isNaN(parseInt(this.options.fadeDuration, 10));
+    selector = this.options.selector;
     if (el.is('a')) {
       target = el.attr('href');
       //Select element by id from href
@@ -29,6 +30,7 @@
         $.get(target).done(function(html) {
           if (!current) return;
           el.trigger($.modal.AJAX_SUCCESS);
+          html = (selector !== '') ? $("<div>").append($.parseHTML(html)).find(selector) : html;
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
@@ -194,7 +196,8 @@
     showSpinner: true,
     showClose: true,
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
-    fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    fadeDelay: 1.0,       // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    selector: ''
   };
 
   // Event constants
