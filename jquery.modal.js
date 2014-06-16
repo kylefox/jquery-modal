@@ -108,7 +108,7 @@
         this.$elm.append(this.closeButton);
       }
       this.$elm.addClass(this.options.modalClass + ' current');
-      this.center();
+      this.positioning();
       if(this.options.doFade) {
         this.$elm.fadeIn(this.options.fadeDuration);
       } else {
@@ -142,11 +142,11 @@
       if (this.spinner) this.spinner.remove();
     },
 
-    center: function() {
+    positioning: function() {
       this.$elm.css({
         position: 'fixed',
-        top: "50%",
-        left: "50%",
+        top: this.options.top,
+        left: this.options.left,
         marginTop: - (this.$elm.outerHeight() / 2),
         marginLeft: - (this.$elm.outerWidth() / 2),
         zIndex: this.options.zIndex + 1
@@ -160,7 +160,7 @@
   };
 
   //resize is alias for center for now
-  $.modal.prototype.resize = $.modal.prototype.center;
+  $.modal.prototype.resize = $.modal.prototype.positioning;
 
   $.modal.close = function(event) {
     if (!current) return;
@@ -182,6 +182,8 @@
   }
 
   $.modal.defaults = {
+    top : "50%",
+    left: "50%",
     overlay: "#000",
     opacity: 0.75,
     zIndex: 1,
