@@ -41,6 +41,7 @@
       }
     } else {
       this.$elm = el;
+      this.$body.append(this.$elm);
       this.open();
     }
   };
