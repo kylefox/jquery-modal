@@ -36,6 +36,8 @@ Include the `jquery.modal.css` stylesheet:
 
 As of version 0.3.0, jQuery 1.7 is required. If you're using an earlier version of jQuery you can use the [v.0.2.5 tag.](https://github.com/kylefox/jquery-modal/tags)
 
+**Naming conflict with Bootstrap:** Bootstrap's [modal](http://getbootstrap.com/javascript/#modals) uses the same `$.modal` namespace. If you want to use jquery-modal with Bootstrap, the simplest solution is to manually modify the name of this plugin.
+
 # Opening
 
 **Method 1: Manually**
