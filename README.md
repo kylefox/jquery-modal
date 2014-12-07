@@ -127,6 +127,10 @@ However, when this occurs, you will probably want to at least re-center the moda
 
     $.modal.resize()
 
+# Checking current state
+
+Use `$.model.isActive()` to check if a modal is currently being displayed.
+
 # Options
 
 These are the supported options and their default values:
