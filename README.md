@@ -21,6 +21,8 @@ and does so with as little HTML & CSS as possible.
 
 **Have an idea that improves jquery-modal?** Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.
 
+**Need help implementing the modal?** Please post a question on [StackOverflow](http://stackoverflow.com/). Commercial support is also available — please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.
+
 I don't use this library as frequently as I used to, so if you want to see a fix/improvement you're best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!
 
 # Installation
