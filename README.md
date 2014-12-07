@@ -29,8 +29,10 @@ I don't use this library as frequently as I used to, so if you want to see a fix
 
 Include [jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) and `jquery.modal.min.js` scripts:
 
-    <script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+```html
+<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+```
 
 Include the `jquery.modal.css` stylesheet:
 
