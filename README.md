@@ -140,7 +140,7 @@ However, when this occurs, you will probably want to at least re-center the moda
 
 # Checking current state
 
-Use `$.model.isActive()` to check if a modal is currently being displayed.
+Use `$.modal.isActive()` to check if a modal is currently being displayed.
 
 # Options
 
