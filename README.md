@@ -2,8 +2,6 @@ A simple & lightweight method of displaying modal windows with jQuery.
 
 You probably want [a demo](http://kylefox.ca/jquery-modal/examples/index.html), don't you?
 
-**Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!
-
 # Why another modal plugin?
 
 Most plugins I've found try to do too much, and have specialized ways of handling photo galleries, iframes and video.  The resulting HTML & CSS is often bloated and difficult to customize.
@@ -15,21 +13,6 @@ By contrast, this plugin handles the two most common scenarios I run into
 
 and does so with as little HTML & CSS as possible.
 
-## Bug Reports & Improvements
-
-### Found a bug? MEH!
-
-![](http://drops.kylefox.ca/1cqGP+)
-
-
-**Just kidding.** Please [create an issue](https://github.com/kylefox/jquery-modal/issues/new) and **include a publicly-accessible demonstration of the bug.** [Dropbox](https://www.dropbox.com) or [JSFiddle](http://jsfiddle.net/) work well for demonstrating reproducable bugs, but you can use anything as long as it's publicly accessible. Your issue is much more likely to be resolved/merged if it includes a fix & pull request.
-
-**Have an idea that improves jquery-modal?** Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.
-
-**Need help implementing the modal?** Please post a question on [StackOverflow](http://stackoverflow.com/). Commercial support is also available — please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.
-
-I don't use this library as frequently as I used to, so if you want to see a fix/improvement you're best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!
-
 # Installation
 
 Include [jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) and `jquery.modal.min.js` scripts:
@@ -39,57 +22,93 @@ Include [jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) an
 <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
 ```
 
-Include the `jquery.modal.css` stylesheet:
+Include the `jquery.modal.css` default styles:
 
-    <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
+```html
+<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
+```
 
-As of version 0.3.0, jQuery 1.7 is required. If you're using an earlier version of jQuery you can use the [v.0.2.5 tag.](https://github.com/kylefox/jquery-modal/tags)
+**Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!
+
+**jQuery Requirements:** As of version 0.3.0, jQuery 1.7 is required. If you're using an earlier version of jQuery you can use the [v.0.2.5 tag.](https://github.com/kylefox/jquery-modal/tags)
 
 **Naming conflict with Bootstrap:** Bootstrap's [modal](http://getbootstrap.com/javascript/#modals) uses the same `$.modal` namespace. If you want to use jquery-modal with Bootstrap, the simplest solution is to manually modify the name of this plugin.
 
 # Opening
 
-**Method 1: Manually**
+#### Method 1: Automatically attaching to links
 
-Basic usage is to embed your modal's HTML (with the 'modal' class) directly into the document.
+The simplest approach is to add `rel="modal:open"` to your links and use the `href` attribute to specify what to open in the modal.
 
-    <form id="login-form" class="modal">
-      ...
-    </form>
+Open an existing DOM element by ID:
 
-and then invoke `modal()` on the element.
+```html
+<form id="login-form" class="modal">
+  ...
+</form>
 
-    $('#login-form').modal();
-
-You can also invoke `modal()` on links.
-
-    <a href="#ex5"> Open modal by getting the dom id from href</a>
-    <a href="ajax.html"> Open modal by making an AJAX call</a>
-
-    $('a').click(function(event) {
-      event.preventDefault();
-      $(this).modal();
-    });
-
-**Method 2: Automatically attaching to links**
-
-An even simpler way is to add `rel="modal:open"` to links.  When the link is clicked, the link's `href` is loaded into a modal.
-
-Open an existing DOM element:
-
-    <a href="#login-form" rel="modal:open">Login</a>
+<a href="#login-form" rel="modal:open">Login</a>
+```
 
 Load a remote URL with AJAX:
 
-    <a href="login.html" rel="modal:open">Login</a>
+```html
+<a href="login.html" rel="modal:open">Login</a>
+```
 
-You should apply a width to all your modal elements using normal CSS.
+#### Method 2: Manually
 
-    #login-form.modal { width: 400px; }
+You can manually open a modal by calling the `.modal()` method on the element:
 
-The modal doesn't have a fixed height, and thus will expand & contract vertically to fit the content.
+```html
+<form id="login-form" class="modal">
+  ...
+</form>
+```
 
-## Fade Transitions
+```js
+$('#login-form').modal();
+```
+
+You can also invoke `.modal()` directly on links:
+
+```html
+<a href="#ex5" data-modal>Open a DOM element</a>
+<a href="ajax.html" data-modal>Open an AJAX modal</a>
+```
+
+```js
+$('a[data-modal]').click(function(event) {
+  $(this).modal();
+  return false;
+});
+```
+
+### Compatibility Fallback
+
+You can provide a clean fallback for users who have JavaScript disabled by manually attaching the modal via the `data-modal` attribute. This allows you to write your links pointing to the `href` as normal (fallback) while enabling modals where JavaScript is enabled.
+
+```html
+<!-- By default link takes user to /login.html -->
+<a href="/login.html" data-modal="#login-modal">Login</a>
+
+<!-- Login modal embedded in page -->
+<div id="login-modal" class="modal">
+  ...
+</div>
+
+<!-- For browsers with JavaScript, open the modal. -->
+<script>
+  $(function() {
+    $('a[data-modal]').on('click', function() {
+      $($(this).data('modal')).modal();
+      return false;
+    });
+  });
+</script>
+```
+
+#### Fade Transitions
 
 By default the overlay & window appear instantaneously, but you can enable a fade effect by specifying the `fadeDuration` option.
 
@@ -236,6 +255,21 @@ and make your AJAX request in the link's click handler. Note that you need to ma
     });
 
 Note that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.
+
+## Bug Reports & Improvements
+
+### Found a bug? MEH!
+
+![](http://drops.kylefox.ca/1cqGP+)
+
+
+**Just kidding.** Please [create an issue](https://github.com/kylefox/jquery-modal/issues/new) and **include a publicly-accessible demonstration of the bug.** [Dropbox](https://www.dropbox.com) or [JSFiddle](http://jsfiddle.net/) work well for demonstrating reproducable bugs, but you can use anything as long as it's publicly accessible. Your issue is much more likely to be resolved/merged if it includes a fix & pull request.
+
+**Have an idea that improves jquery-modal?** Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.
+
+**Need help implementing the modal?** Please post a question on [StackOverflow](http://stackoverflow.com/). Commercial support is also available — please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.
+
+I don't use this library as frequently as I used to, so if you want to see a fix/improvement you're best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!
 
 # Contributing
 
