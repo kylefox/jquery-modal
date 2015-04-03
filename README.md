@@ -256,12 +256,11 @@ and make your AJAX request in the link's click handler. Note that you need to ma
 
 Note that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.
 
-## Bug Reports & Improvements
+# Bugs & Feature Requests
 
 ### Found a bug? MEH!
 
 ![](http://drops.kylefox.ca/1cqGP+)
-
 
 **Just kidding.** Please [create an issue](https://github.com/kylefox/jquery-modal/issues/new) and **include a publicly-accessible demonstration of the bug.** [Dropbox](https://www.dropbox.com) or [JSFiddle](http://jsfiddle.net/) work well for demonstrating reproducable bugs, but you can use anything as long as it's publicly accessible. Your issue is much more likely to be resolved/merged if it includes a fix & pull request.
 
@@ -271,14 +270,15 @@ I don't use this library as frequently as I used to, so if you want to see a fix
 
 # Contributing
 
-I would love help improving this plugin, particularly with:
+I welcome improvements to this plugin, particularly with:
 
 * Performance improvements
 * Making the code as concise/efficient as possible
 * Bug fixes & browser compatibility
-* Minify JavaScript with [Closure Compiler](http://closure-compiler.appspot.com/home) (default options)
 
 Please fork and send pull requests, or create an [issue](https://github.com/kylefox/jquery-modal/issues).
+
+Keep in mind the spirit of this plugin is **minimalism** so I'm very picky about adding _new_ features.
 
 # Support
 
