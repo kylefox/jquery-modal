@@ -267,8 +267,6 @@ Note that the AJAX response must be wrapped in a div with class <code>modal</cod
 
 **Have an idea that improves jquery-modal?** Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.
 
-**Need help implementing the modal?** Please post a question on [StackOverflow](http://stackoverflow.com/). Commercial support is also available — please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.
-
 I don't use this library as frequently as I used to, so if you want to see a fix/improvement you're best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!
 
 # Contributing
@@ -281,6 +279,10 @@ I would love help improving this plugin, particularly with:
 * Minify JavaScript with [Closure Compiler](http://closure-compiler.appspot.com/home) (default options)
 
 Please fork and send pull requests, or create an [issue](https://github.com/kylefox/jquery-modal/issues).
+
+# Support
+
+Please post a question on [StackOverflow](http://stackoverflow.com/). Commercial support by email is also available — please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.
 
 # License (MIT)
 
