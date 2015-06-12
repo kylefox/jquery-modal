@@ -18,6 +18,7 @@
       if (/^#/.test(target)) {
         this.$elm = $(target);
         if (this.$elm.length !== 1) return null;
+        this.$body.append(this.$elm);
         this.open();
       //AJAX
       } else {
@@ -65,7 +66,10 @@
           if (event.which == 27) $.modal.close();
         });
       }
-      if (this.options.clickClose) this.blocker.click($.modal.close);
+      if (this.options.clickClose) this.blocker.click(function(e){
+        if (e.target==this)
+          $.modal.close();
+      });
     },
 
     close: function() {
@@ -75,30 +79,35 @@
     },
 
     block: function() {
-      var initialOpacity = this.options.doFade ? 0 : this.options.opacity;
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
       this.blocker = $('<div class="jquery-modal blocker"></div>').css({
         top: 0, right: 0, bottom: 0, left: 0,
         width: "100%", height: "100%",
         position: "fixed",
+        overflow: "auto",
         zIndex: this.options.zIndex,
-        background: this.options.overlay,
-        opacity: initialOpacity
+        "text-align": "center"
       });
+      this.$body.css('overflow','hidden');
       this.$body.append(this.blocker);
       if(this.options.doFade) {
-        this.blocker.animate({opacity: this.options.opacity}, this.options.fadeDuration);
+        this.blocker.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
       }
       this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
 
     unblock: function() {
       if(this.options.doFade) {
+        var self=this;
         this.blocker.fadeOut(this.options.fadeDuration, function() {
-          $(this).remove();
+          self.blocker.children().appendTo(self.$body);
+          self.blocker.remove();
+          self.$body.css('overflow','');
         });
       } else {
+        this.blocker.children().appendTo(this.$body);
         this.blocker.remove();
+        this.$body.css('overflow','');
       }
     },
 
@@ -109,9 +118,10 @@
         this.$elm.append(this.closeButton);
       }
       this.$elm.addClass(this.options.modalClass + ' current');
+      this.$elm.appendTo(this.blocker);
       this.center();
       if(this.options.doFade) {
-        this.$elm.fadeIn(this.options.fadeDuration);
+        this.$elm.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
       } else {
         this.$elm.show();
       }
@@ -150,11 +160,9 @@
 
     center: function() {
       this.$elm.css({
-        position: 'fixed',
-        top: "50%",
-        left: "50%",
-        marginTop: - (this.$elm.outerHeight() / 2),
-        marginLeft: - (this.$elm.outerWidth() / 2),
+        display: "inline-block",
+        "vertical-align": "middle",
+        position: "relative",
         zIndex: this.options.zIndex + 1
       });
     },
