@@ -1,0 +1,36 @@
+{
+  "name": "jquery-modal",
+  "version": "0.5.5",
+  "description": "A lightweight and easy to use modal plugin for jQuery.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kylefox/jquery-modal"
+  },
+  "keywords": [
+    "jquery",
+    "modal"
+  ],
+  "author": "Kyle Fox <kyle.fox@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "sandboxed-module": "^2.0.2"
+  },
+  "peerDependencies": {
+    "jquery": "1.8.0 - 2.1.x"
+  },
+  "browser": {
+    "./index.js": "./browser.js"
+  },
+  "browserify": {
+    "transform": [
+      "brfs"
+    ]
+  }
+}
