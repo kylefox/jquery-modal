@@ -1,6 +1,6 @@
 {
   "name": "jquery-modal",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "main": [
     "jquery.modal.js",
     "jquery.modal.css",
