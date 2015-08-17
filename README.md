@@ -15,18 +15,22 @@ and does so with as little HTML & CSS as possible.
 
 # Installation
 
-Include [jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) and `jquery.modal.min.js` scripts:
+You can install [jquery-modal](https://www.npmjs.com/package/jquery-modal) with npm:
+
+`npm install jquery-modal`
+
+or with [Bower](http://bower.io/):
+
+`bower install jquery-modal`
+
+or the good old fashioned way of including the scripts & styles manually:
 
 ```html
-<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-```
-
-Include the `jquery.modal.css` default styles:
-
-```html
 <link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
 ```
+
+_(You'll obviously need to include jQuery as well)._
 
 **Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!
 
