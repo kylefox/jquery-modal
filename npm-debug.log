@@ -1,0 +1,94 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish', '.' ]
+2 info using npm@2.12.1
+3 info using node@v0.12.7
+4 verbose node symlink /usr/local/bin/node
+5 verbose publish [ '.' ]
+6 silly cache add args [ '.', null ]
+7 verbose cache add spec .
+8 silly cache add parsed spec { raw: '.',
+8 silly cache add   scope: null,
+8 silly cache add   name: null,
+8 silly cache add   rawSpec: '.',
+8 silly cache add   spec: '/Users/kyle/Code/jquery-modal',
+8 silly cache add   type: 'directory' }
+9 verbose addLocalDirectory /Users/kyle/.npm/jquery-modal/0.5.5/package.tgz not in flight; packing
+10 verbose tar pack [ '/Users/kyle/.npm/jquery-modal/0.5.5/package.tgz',
+10 verbose tar pack   '/Users/kyle/Code/jquery-modal' ]
+11 verbose tarball /Users/kyle/.npm/jquery-modal/0.5.5/package.tgz
+12 verbose folder /Users/kyle/Code/jquery-modal
+13 info prepublish jquery-modal@0.5.5
+14 verbose addLocalTarball adding from inside cache /Users/kyle/.npm/jquery-modal/0.5.5/package.tgz
+15 silly cache afterAdd jquery-modal@0.5.5
+16 verbose afterAdd /Users/kyle/.npm/jquery-modal/0.5.5/package/package.json not in flight; writing
+17 verbose afterAdd /Users/kyle/.npm/jquery-modal/0.5.5/package/package.json written
+18 silly publish { name: 'jquery-modal',
+18 silly publish   version: '0.5.5',
+18 silly publish   description: 'The simplest possible modal for jQuery',
+18 silly publish   homepage: 'https://github.com/kylefox/jquery-modal',
+18 silly publish   repository:
+18 silly publish    { type: 'git',
+18 silly publish      url: 'git+https://github.com/kylefox/jquery-modal.git' },
+18 silly publish   bugs: { url: 'https://github.com/kylefox/jquery-modal/issues' },
+18 silly publish   license: 'MIT',
+18 silly publish   author:
+18 silly publish    { name: 'Kyle Fox',
+18 silly publish      email: 'kylefox@gmail.com',
+18 silly publish      url: 'http://kylefox.ca/' },
+18 silly publish   readme: 'A simple & lightweight method of displaying modal windows with jQuery.\n\nYou probably want [a demo](http://kylefox.ca/jquery-modal/examples/index.html), don\'t you?\n\n# Why another modal plugin?\n\nMost plugins I\'ve found try to do too much, and have specialized ways of handling photo galleries, iframes and video.  The resulting HTML & CSS is often bloated and difficult to customize.\n\nBy contrast, this plugin handles the two most common scenarios I run into\n\n* displaying an existing DOM element\n* loading a page with AJAX\n\nand does so with as little HTML & CSS as possible.\n\n# Installation\n\nInclude [jQuery](http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js) and `jquery.modal.min.js` scripts:\n\n```html\n<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>\n<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>\n```\n\nInclude the `jquery.modal.css` default styles:\n\n```html\n<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />\n```\n\n**Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!\n\n**jQuery Requirements:** As of version 0.3.0, jQuery 1.7 is required. If you\'re using an earlier version of jQuery you can use the [v.0.2.5 tag.](https://github.com/kylefox/jquery-modal/tags)\n\n**Naming conflict with Bootstrap:** Bootstrap\'s [modal](http://getbootstrap.com/javascript/#modals) uses the same `$.modal` namespace. If you want to use jquery-modal with Bootstrap, the simplest solution is to manually modify the name of this plugin.\n\n# Opening\n\n#### Method 1: Automatically attaching to links\n\nThe simplest approach is to add `rel="modal:open"` to your links and use the `href` attribute to specify what to open in the modal.\n\nOpen an existing DOM element by ID:\n\n```html\n<form id="login-form" class="modal">\n  ...\n</form>\n\n<a href="#login-form" rel="modal:open">Login</a>\n```\n\nLoad a remote URL with AJAX:\n\n```html\n<a href="login.html" rel="modal:open">Login</a>\n```\n\n#### Method 2: Manually\n\nYou can manually open a modal by calling the `.modal()` method on the element:\n\n```html\n<form id="login-form" class="modal">\n  ...\n</form>\n```\n\n```js\n$(\'#login-form\').modal();\n```\n\nYou can also invoke `.modal()` directly on links:\n\n```html\n<a href="#ex5" data-modal>Open a DOM element</a>\n<a href="ajax.html" data-modal>Open an AJAX modal</a>\n```\n\n```js\n$(\'a[data-modal]\').click(function(event) {\n  $(this).modal();\n  return false;\n});\n```\n\n### Compatibility Fallback\n\nYou can provide a clean fallback for users who have JavaScript disabled by manually attaching the modal via the `data-modal` attribute. This allows you to write your links pointing to the `href` as normal (fallback) while enabling modals where JavaScript is enabled.\n\n```html\n<!-- By default link takes user to /login.html -->\n<a href="/login.html" data-modal="#login-modal">Login</a>\n\n<!-- Login modal embedded in page -->\n<div id="login-modal" class="modal">\n  ...\n</div>\n\n<!-- For browsers with JavaScript, open the modal. -->\n<script>\n  $(function() {\n    $(\'a[data-modal]\').on(\'click\', function() {\n      $($(this).data(\'modal\')).modal();\n      return false;\n    });\n  });\n</script>\n```\n\n#### Fade Transitions\n\nBy default the overlay & window appear instantaneously, but you can enable a fade effect by specifying the `fadeDuration` option.\n\n    $(\'a.open-modal\').click(function(event) {\n      $(this).modal({\n        fadeDuration: 250\n      });\n      return false;\n    });\n\nThis will fade in the overlay and modal over 250 milliseconds _simultaneously._ If you want the effect of the overlay appearing _before_ the window, you can specify the `fadeDelay` option. This indicates at what point during the overlay transition the window transition should begin.\n\nSo if you wanted the window to fade in when the overlay\'s was 80% finished:\n\n      $(elm).modal({\n        fadeDuration: 250,\n        fadeDelay: 0.80\n      });\n\nOr, if you wanted the window to fade in a few moments after the overlay transition has completely finished:\n\n      $(elm).modal({\n        fadeDuration: 250,\n        fadeDelay: 1.5\n      });\n\nFading is the only supported transition. Also, there are no transitions when closing the modal.\n\n# Closing\n\nBecause there can be only one modal active at a single time, there\'s no need to select which modal to close:\n\n    $.modal.close();\n\nSimilar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="modal:close"`:\n\n    <a href="#close" rel="modal:close">Close window</a>\n\n_(Note that modals loaded with AJAX are removed from the DOM when closed)._\n\n# Resizing\n\nThere\'s really no need to manually resize modals, since the default styles don\'t specify a fixed height; modals will expand vertically (like a normal HTML element) to fit their contents.\n\nHowever, when this occurs, you will probably want to at least re-center the modal in the viewport:\n\n    $.modal.resize()\n\n# Checking current state\n\nUse `$.modal.isActive()` to check if a modal is currently being displayed.\n\n# Options\n\nThese are the supported options and their default values:\n\n    $.modal.defaults = {\n      overlay: "#000",        // Overlay color\n      opacity: 0.75,          // Overlay opacity\n      zIndex: 1,              // Overlay z-index.\n      escapeClose: true,      // Allows the user to close the modal by pressing `ESC`\n      clickClose: true,       // Allows the user to close the modal by clicking the overlay\n      closeText: \'Close\',     // Text content for the close <a> tag.\n      closeClass: \'\',         // Add additional class(es) to the close <a> tag.\n      showClose: true,        // Shows a (X) icon/link in the top-right corner\n      modalClass: "modal",    // CSS class added to the element being displayed in the modal.\n      spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.\n      showSpinner: true,      // Enable/disable the default spinner during AJAX requests.\n      fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)\n      fadeDelay: 1.0          // Point during the overlay\'s fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)\n    };\n\n# Events\n\nThe following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).  Hopefully the names are self-explanatory.\n\n    $.modal.BEFORE_BLOCK = \'modal:before-block\';\n    $.modal.BLOCK = \'modal:block\';\n    $.modal.BEFORE_OPEN = \'modal:before-open\';\n    $.modal.OPEN = \'modal:open\';\n    $.modal.BEFORE_CLOSE = \'modal:before-close\';\n    $.modal.CLOSE = \'modal:close\';\n\nThe first and only argument passed to these event handlers is the `modal` object, which has three properties:\n\n    modal.elm;        // Original jQuery object upon which modal() was invoked.\n    modal.options;    // Options passed to the modal.\n    modal.blocker;    // The overlay element.\n\nSo, you could do something like this:\n\n    $(\'#purchase-form\').on($.modal.BEFORE_CLOSE, function(event, modal) {\n      clear_shopping_cart();\n    });\n\n# AJAX\n\n## Basic support\n\njQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you\'ve included modal.css) and will have the class `modal-spinner`. If you\'ve set the `modalClass` option, the spinner will be prefixed with that class name instead.\n\nYou can add text or additional HTML to the spinner with the `spinnerHtml` option, or disable the spinner entirely by setting `showSpinner: false`.\n\n## Events\n\nThe following events are triggered when AJAX modals are requested.\n\n    $.modal.AJAX_SEND = \'modal:ajax:send\';\n    $.modal.AJAX_SUCCESS = \'modal:ajax:success\';\n    $.modal.AJAX_FAIL = \'modal:ajax:fail\';\n    $.modal.AJAX_COMPLETE = \'modal:ajax:complete\';\n\nThe handlers receive no arguments. The events are triggered on the `<a>` element which initiated the AJAX modal.\n\n## More advanced AJAX handling\n\nIt\'s a good idea to provide more robust AJAX handling -- error handling, in particular. Instead of accommodating the myriad [`$.ajax` options](http://api.jquery.com/jQuery.ajax/) jQuery provides, jquery-modal makes it possible to directly modify the AJAX request itself.\n\nSimply bypass the default AJAX handling (i.e.: don\'t use `rel="modal"`)\n\n    <a href="ajax.html" rel="ajax:modal">Click me!</a>\n\nand make your AJAX request in the link\'s click handler. Note that you need to manually append the new HTML/modal in the `success` callback:\n\n    $(\'a[rel="ajax:modal"]\').click(function(event) {\n\n      $.ajax({\n\n        url: $(this).attr(\'href\'),\n\n        success: function(newHTML, textStatus, jqXHR) {\n          $(newHTML).appendTo(\'body\').modal();\n        },\n\n        error: function(jqXHR, textStatus, errorThrown) {\n          // Handle AJAX errors\n        }\n\n        // More AJAX customization goes here.\n\n      });\n\n      return false;\n    });\n\nNote that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.\n\n# Bugs & Feature Requests\n\n### Found a bug? MEH!\n\n![](http://drops.kylefox.ca/1cqGP+)\n\n**Just kidding.** Please [create an issue](https://github.com/kylefox/jquery-modal/issues/new) and **include a publicly-accessible demonstration of the bug.** [Dropbox](https://www.dropbox.com) or [JSFiddle](http://jsfiddle.net/) work well for demonstrating reproducable bugs, but you can use anything as long as it\'s publicly accessible. Your issue is much more likely to be resolved/merged if it includes a fix & pull request.\n\n**Have an idea that improves jquery-modal?** Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.\n\nI don\'t use this library as frequently as I used to, so if you want to see a fix/improvement you\'re best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!\n\n# Contributing\n\nI welcome improvements to this plugin, particularly with:\n\n* Performance improvements\n* Making the code as concise/efficient as possible\n* Bug fixes & browser compatibility\n\nPlease fork and send pull requests, or create an [issue](https://github.com/kylefox/jquery-modal/issues).\n\nKeep in mind the spirit of this plugin is **minimalism** so I\'m very picky about adding _new_ features.\n\n# Support\n\nPlease post a question on [StackOverflow](http://stackoverflow.com/). Commercial support by email is also available — please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.\n\n# License (MIT)\n\njQuery Modal is distributed under the [MIT License](Learn more at http://opensource.org/licenses/mit-license.php):\n\n    Copyright (c) 2012 Kyle Fox\n\n    Permission is hereby granted, free of charge, to any person obtaining\n    a copy of this software and associated documentation files (the\n    "Software"), to deal in the Software without restriction, including\n    without limitation the rights to use, copy, modify, merge, publish,\n    distribute, sublicense, and/or sell copies of the Software, and to\n    permit persons to whom the Software is furnished to do so, subject to\n    the following conditions:\n\n    The above copyright notice and this permission notice shall be\n    included in all copies or substantial portions of the Software.\n\n    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,\n    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\n    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\n    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\n    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: 'f167be990fcfebb8811adec4506f9dd1b83ecf8f',
+18 silly publish   _id: 'jquery-modal@0.5.5',
+18 silly publish   scripts: {},
+18 silly publish   _shasum: 'e95353643d10d6dc2521a8a7f7ec79b75400c423',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name jquery-modal
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/jquery-modal
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading /Users/kyle/.npm/jquery-modal/0.5.5/package.tgz
+26 verbose request uri https://registry.npmjs.org/jquery-modal
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 09:45:11
+29 verbose request using bearer token for auth
+30 verbose request id 42ee79dfebac4caf
+31 http request PUT https://registry.npmjs.org/jquery-modal
+32 http 403 https://registry.npmjs.org/jquery-modal
+33 verbose headers { 'content-type': 'application/json',
+33 verbose headers   'cache-control': 'max-age=60',
+33 verbose headers   'content-length': '95',
+33 verbose headers   'accept-ranges': 'bytes',
+33 verbose headers   date: 'Mon, 17 Aug 2015 15:44:55 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-dfw1827-DFW',
+33 verbose headers   'x-cache': 'MISS',
+33 verbose headers   'x-cache-hits': '0',
+33 verbose headers   'x-timer': 'S1439826293.457005,VS0,VE1609' }
+34 verbose request invalidating /Users/kyle/.npm/registry.npmjs.org/jquery-modal on PUT
+35 error publish Failed PUT 403
+36 verbose stack Error: "You cannot publish over the previously published version 0.5.5." : jquery-modal
+36 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
+36 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+36 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:197:22)
+36 verbose stack     at Request.emit (events.js:110:17)
+36 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1050:14)
+36 verbose stack     at Request.emit (events.js:129:20)
+36 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:996:12)
+36 verbose stack     at IncomingMessage.emit (events.js:129:20)
+36 verbose stack     at _stream_readable.js:908:16
+36 verbose stack     at process._tickCallback (node.js:355:11)
+37 verbose statusCode 403
+38 verbose pkgid jquery-modal
+39 verbose cwd /Users/kyle/Code/jquery-modal
+40 error Darwin 14.4.0
+41 error argv "node" "/usr/local/bin/npm" "publish" "."
+42 error node v0.12.7
+43 error npm  v2.12.1
+44 error code E403
+45 error "You cannot publish over the previously published version 0.5.5." : jquery-modal
+46 error If you need help, you may report this error at:
+46 error     <https://github.com/npm/npm/issues>
+47 verbose exit [ 1, true ]
