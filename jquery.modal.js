@@ -144,6 +144,9 @@
     },
 
     center: function() {
+      if(this.$elm.outerHeight() >= $(window).height() ) this.$elm.outerHeight($(window).height() - 40 )
+	  else this.$elm.outerHeight('auto');
+	  
       this.$elm.css({
         position: 'fixed',
         top: "50%",
