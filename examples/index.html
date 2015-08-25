@@ -283,6 +283,15 @@ $('#manual-ajax').click(function(event) {
   <p>This modal has a fancy-shmancy close button.</p>
 </div>
 
+<h2>Example 11: CSS Selector</h2>
+<p>
+  This <a href="ajax3.html" id="ex11-ajax">example</a> demonstrates how to add a CSS selector for only showing part of the AJAX'ed in content:
+</p>
+
+<pre><code> $("#target").modal({
+  selector: '#target-content'
+});</code></pre>
+
 <style type="text/css">
   .modal a.close-modal[class*="icon-"] {
     top: -10px;
@@ -373,6 +382,13 @@ $('#manual-ajax').click(function(event) {
       $(this).modal({
         closeClass: 'icon-remove',
         closeText: '!'
+      });
+    });
+
+    $('#ex11-ajax').click(function(event){
+      event.preventDefault();
+      $(this).modal({
+        selector: '#target-content'
       });
     });
 
