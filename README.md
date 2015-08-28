@@ -225,7 +225,7 @@ The following events are triggered when AJAX modals are requested.
     $.modal.AJAX_FAIL = 'modal:ajax:fail';
     $.modal.AJAX_COMPLETE = 'modal:ajax:complete';
 
-The handlers receive no arguments. The events are triggered on the `<a>` element which initiated the AJAX modal.
+The handlers receive the same arguments as the jQuery `jqXHR.done()` and `jqXHR.fail()` promise methods. The events are triggered on the `<a>` element which initiated the AJAX modal.
 
 ## More advanced AJAX handling
 
