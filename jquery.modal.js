@@ -37,6 +37,7 @@
           el.trigger($.modal.AJAX_FAIL);
           current.hideSpinner();
           el.trigger($.modal.AJAX_COMPLETE);
+          current = null;
         });
       }
     } else {
@@ -51,7 +52,7 @@
 
     open: function() {
       var m = this;
-      if(this.options.doFade) {
+      if (this.options.doFade) {
         this.block();
         setTimeout(function() {
           m.show();
@@ -86,14 +87,14 @@
         opacity: initialOpacity
       });
       this.$body.append(this.blocker);
-      if(this.options.doFade) {
+      if (this.options.doFade) {
         this.blocker.animate({opacity: this.options.opacity}, this.options.fadeDuration);
       }
       this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
 
     unblock: function() {
-      if(this.options.doFade) {
+      if (this.options.doFade) {
         this.blocker.fadeOut(this.options.fadeDuration, function() {
           $(this).remove();
         });
@@ -110,7 +111,7 @@
       }
       this.$elm.addClass(this.options.modalClass + ' current');
       this.center();
-      if(this.options.doFade) {
+      if (this.options.doFade) {
         this.$elm.fadeIn(this.options.fadeDuration);
       } else {
         this.$elm.show();
@@ -123,7 +124,7 @@
       if (this.closeButton) this.closeButton.remove();
       this.$elm.removeClass('current');
 
-      if(this.options.doFade) {
+      if (this.options.doFade) {
         this.$elm.fadeOut(this.options.fadeDuration);
       } else {
         this.$elm.hide();
