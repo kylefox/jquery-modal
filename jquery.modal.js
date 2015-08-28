@@ -69,9 +69,9 @@
     },
 
     close: function() {
+      $(document).off('keydown.modal');
       this.unblock();
       this.hide();
-      $(document).off('keydown.modal');
     },
 
     block: function() {
@@ -166,9 +166,10 @@
   $.modal.close = function(event) {
     if (!current) return;
     if (event) event.preventDefault();
-    current.close();
     var that = current.$elm;
-    current = null;
+    current.close();
+    if (that.is(current.$elm))
+        current = null;
     return that;
   };
 
