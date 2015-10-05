@@ -54,7 +54,9 @@
       if(this.options.doFade) {
         this.block();
         setTimeout(function() {
-          m.show();
+          if ($.modal.isActive()) {
+            m.show();                
+          }
         }, this.options.fadeDuration * this.options.fadeDelay);
       } else {
         this.block();
