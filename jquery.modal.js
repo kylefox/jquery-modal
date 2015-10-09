@@ -123,10 +123,15 @@
       if (this.closeButton) this.closeButton.remove();
       this.$elm.removeClass('current');
 
+      var _this = this;
       if(this.options.doFade) {
-        this.$elm.fadeOut(this.options.fadeDuration);
+        this.$elm.fadeOut(this.options.fadeDuration, function () {
+          _this.$elm.trigger($.modal.AFTER_CLOSE, [_this._ctx()]);
+        });
       } else {
-        this.$elm.hide();
+        this.$elm.hide(function () {
+          _this.$elm.trigger($.modal.AFTER_CLOSE, [_this._ctx()]);
+        });
       }
       this.$elm.trigger($.modal.CLOSE, [this._ctx()]);
     },
@@ -205,6 +210,7 @@
   $.modal.OPEN = 'modal:open';
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
+  $.modal.AFTER_CLOSE = 'modal:after-close';
   $.modal.AJAX_SEND = 'modal:ajax:send';
   $.modal.AJAX_SUCCESS = 'modal:ajax:success';
   $.modal.AJAX_FAIL = 'modal:ajax:fail';

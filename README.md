@@ -195,6 +195,7 @@ The following events are triggered on the modal element at various points in the
     $.modal.OPEN = 'modal:open';
     $.modal.BEFORE_CLOSE = 'modal:before-close';
     $.modal.CLOSE = 'modal:close';
+    $.modal.AFTER_CLOSE = 'modal:after-close';
 
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
