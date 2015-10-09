@@ -1,6 +1,6 @@
 {
   "name": "jquery-modal",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "main": "jquery.modal.js",
   "description": "The simplest possible modal for jQuery",
   "homepage": "https://github.com/kylefox/jquery-modal",
