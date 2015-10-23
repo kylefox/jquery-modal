@@ -129,7 +129,7 @@
           _this.$elm.trigger($.modal.AFTER_CLOSE, [_this._ctx()]);
         });
       } else {
-        this.$elm.hide(function () {
+        this.$elm.hide(0, function () {
           _this.$elm.trigger($.modal.AFTER_CLOSE, [_this._ctx()]);
         });
       }
