@@ -14,6 +14,9 @@
   -ms-box-shadow: 0 0 10px #000;
   box-shadow: 0 0 10px #000;
 }
+.modal.behind {
+  opacity: 0.2;
+}
 
 .modal a.close-modal {
   position: absolute;
