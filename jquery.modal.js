@@ -111,9 +111,9 @@
       this.$elm.addClass(this.options.modalClass + ' current');
       this.center();
       if(this.options.doFade) {
-        this.$elm.fadeIn(this.options.fadeDuration);
-      } else {
-        this.$elm.show();
+        this.$elm.fadeIn(this.options.fadeDuration, this.options.showCallback);
+      } else {		  
+        this.$elm.show(0, this.options.showCallback);
       }
       this.$elm.trigger($.modal.OPEN, [this._ctx()]);
     },
@@ -199,6 +199,7 @@
     spinnerHtml: null,
     showSpinner: true,
     showClose: true,
+	showCallback: function(){},
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
     fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
   };
