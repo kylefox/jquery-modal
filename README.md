@@ -149,14 +149,6 @@ Similar to how links can be automatically bound to open modals, they can be boun
 
 _(Note that modals loaded with AJAX are removed from the DOM when closed)._
 
-# Resizing
-
-There's really no need to manually resize modals, since the default styles don't specify a fixed height; modals will expand vertically (like a normal HTML element) to fit their contents.
-
-However, when this occurs, you will probably want to at least re-center the modal in the viewport:
-
-    $.modal.resize()
-
 # Checking current state
 
 Use `$.modal.isActive()` to check if a modal is currently being displayed.
@@ -166,9 +158,6 @@ Use `$.modal.isActive()` to check if a modal is currently being displayed.
 These are the supported options and their default values:
 
     $.modal.defaults = {
-      overlay: "#000",        // Overlay color
-      opacity: 0.75,          // Overlay opacity
-      zIndex: 1,              // Overlay z-index.
       escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
       clickClose: true,       // Allows the user to close the modal by clicking the overlay
       closeText: 'Close',     // Text content for the close <a> tag.
