@@ -25,6 +25,10 @@
     td { border: 1px solid #eee; padding: 15px; }
     td pre { margin: 0; }
 
+    body > .modal {
+      display: none;
+    }
+
     /* Example 2 (login form) */
     .login_form.modal {
       border-radius: 0;
@@ -134,8 +138,8 @@
 
 <hr />
 
-<h2>Example 3: resizing</h2>
-<p>This <a href="#ex3" rel="modal:open">example</a> shows how <code>resize()</code> can be invoked on a modal.</p>
+<h2>Example 3: adjusting to content</h2>
+<p>This <a href="#ex3" rel="modal:open">example</a> shows how modals are centered automatically. It also demonstrates how a vertical scrollbar appears whenever the modal content overflows.</p>
 <div id="ex3" class="modal">
   <p><a id="more" href="#more">More!</a></p>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -325,7 +329,6 @@ $('#manual-ajax').click(function(event) {
 
     $('#more').click(function() {
       $(this).parent().after($(this).parent().next().clone());
-      $.modal.resize();
       return false;
     });
 
