@@ -80,14 +80,7 @@
 
     block: function() {
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
-      this.blocker = $('<div class="jquery-modal blocker"></div>').css({
-        top: 0, right: 0, bottom: 0, left: 0,
-        width: "100%", height: "100%",
-        position: "fixed",
-        overflow: "auto",
-        zIndex: this.options.zIndex,
-        "text-align": "center"
-      });
+      this.blocker = $('<div class="jquery-modal blocker"></div>');
       this.$body.css('overflow','hidden');
       this.$body.append(this.blocker);
       if(this.options.doFade) {
@@ -119,7 +112,6 @@
       }
       this.$elm.addClass(this.options.modalClass + ' current');
       this.$elm.appendTo(this.blocker);
-      this.center();
       if(this.options.doFade) {
         this.$elm.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
       } else {
@@ -158,23 +150,11 @@
       if (this.spinner) this.spinner.remove();
     },
 
-    center: function() {
-      this.$elm.css({
-        display: "inline-block",
-        "vertical-align": "middle",
-        position: "relative",
-        zIndex: this.options.zIndex + 1
-      });
-    },
-
     //Return context for custom events
     _ctx: function() {
       return { elm: this.$elm, blocker: this.blocker, options: this.options };
     }
   };
-
-  //resize is alias for center for now
-  $.modal.prototype.resize = $.modal.prototype.center;
 
   $.modal.close = function(event) {
     if (!current) return;
@@ -196,9 +176,6 @@
   }
 
   $.modal.defaults = {
-    overlay: "#000",
-    opacity: 0.75,
-    zIndex: 1,
     escapeClose: true,
     clickClose: true,
     closeText: 'Close',
