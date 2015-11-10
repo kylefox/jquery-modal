@@ -306,6 +306,23 @@ $('#manual-ajax').click(function(event) {
   }
 </style>
 
+<h2>Example 11: Custom modal's position</h2>
+<p>
+  This <a href="#ex11">example</a> shows how you can adjust the position by specifying the top, left option.
+</p>
+
+<pre><code>$('#custom-position').click(function(event){
+    event.preventDefault();
+    $(this).modal({
+      top:"10%",
+      left:"50%"
+    });
+  });</code></pre>
+
+<div id="ex11" class="modal">
+  <p>These options accept "px" or "%" unit.</p>
+</div>
+
 <script type="text/javascript" charset="utf-8">
   $(function() {
 
@@ -373,6 +390,13 @@ $('#manual-ajax').click(function(event) {
       $(this).modal({
         closeClass: 'icon-remove',
         closeText: '!'
+      });
+    });
+
+    $('a[href="#ex11"]').click(function(event){
+      event.preventDefault();
+      $(this).modal({
+        top:"10%"
       });
     });
 
