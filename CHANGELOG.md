@@ -1,3 +1,23 @@
+<a name="0.6.0"></a>
+# 0.6.0 (2015-11-17)
+
+
+### Feature
+
+* Feature: CHANGELOG.md auto-updating ([10920d7](https://github.com/kylefox/jquery-modal/commit/10920d7))
+
+### Refactor
+
+* Refactor: wrap .modal in .blocker (fix #69) ([38e4a99](https://github.com/kylefox/jquery-modal/commit/38e4a99)), closes [#69](https://github.com/kylefox/jquery-modal/issues/69)
+
+* Add CHANGELOG.md generated with conventional-changelog ([2529249](https://github.com/kylefox/jquery-modal/commit/2529249))
+* Examples update ([d04a375](https://github.com/kylefox/jquery-modal/commit/d04a375))
+* Remove deprecated version field from bower.json ([c280742](https://github.com/kylefox/jquery-modal/commit/c280742))
+* Removed resize() remnant ([dc42d4e](https://github.com/kylefox/jquery-modal/commit/dc42d4e))
+* Styling moved to CSS + center/resize() removed ([0ac5f7b](https://github.com/kylefox/jquery-modal/commit/0ac5f7b))
+
+
+
 <a name="0.5.11"></a>
 ## 0.5.11 (2015-11-15)
 
