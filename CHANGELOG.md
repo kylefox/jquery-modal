@@ -1,3 +1,13 @@
+<a name="0.6.1"></a>
+## 0.6.1 (2016-01-20)
+
+
+### Fix
+
+* Fix: modals with fade not displaying again after initial open/close (Closes #138) ([7dbe45f](https://github.com/kylefox/jquery-modal/commit/7dbe45f)), closes [#138](https://github.com/kylefox/jquery-modal/issues/138)
+
+
+
 <a name="0.6.0"></a>
 # 0.6.0 (2015-11-17)
 
