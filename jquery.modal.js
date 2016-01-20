@@ -1,6 +1,6 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.6.0
+    Version 0.6.1
 */
 (function($) {
 
@@ -113,7 +113,7 @@
       this.$elm.addClass(this.options.modalClass + ' current');
       this.$elm.appendTo(this.blocker);
       if(this.options.doFade) {
-        this.$elm.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
+        this.$elm.css('opacity',0).show().animate({opacity: 1}, this.options.fadeDuration);
       } else {
         this.$elm.show();
       }
