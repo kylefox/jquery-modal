@@ -1,6 +1,6 @@
 A simple & lightweight method of displaying modal windows with jQuery.
 
-You probably want [a demo](http://kylefox.ca/jquery-modal/examples/index.html), don't you?
+For quick examples and demos, head to [jquerymodal.com](http://jquerymodal.com/).
 
 # Why another modal plugin?
 
