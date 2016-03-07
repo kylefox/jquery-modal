@@ -29,13 +29,13 @@
         el.trigger($.modal.AJAX_SEND);
         $.get(target).done(function(html) {
           if (!current) return;
-          el.trigger($.modal.AJAX_SUCCESS);
+          el.trigger($.modal.AJAX_SUCCESS,arguments);
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
           el.trigger($.modal.AJAX_COMPLETE);
         }).fail(function() {
-          el.trigger($.modal.AJAX_FAIL);
+          el.trigger($.modal.AJAX_FAIL,arguments);
           current.hideSpinner();
           el.trigger($.modal.AJAX_COMPLETE);
         });
