@@ -37,6 +37,12 @@
   box-shadow: 0 0 10px #000;
   text-align: left;
 }
+.blocker.behind {
+  background-color: transparent;
+}
+.blocker.behind > .modal {
+  opacity: 0.2;
+}
 
 .modal a.close-modal {
   position: absolute;

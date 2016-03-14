@@ -4,14 +4,31 @@
 */
 (function($) {
 
-  var current = null;
+  var modals = [],
+      getCurrent = function() {
+        return modals.length ? modals[modals.length - 1] : null;
+      },
+      selectCurrent = function() {
+        var i,
+            selected = false;
+        for (i=modals.length-1; i>=0; i--) {
+          if (modals[i].$blocker) {
+            modals[i].$blocker.toggleClass('current',!selected).toggleClass('behind',selected);
+            selected = true;
+          }
+        }
+      };
 
   $.modal = function(el, options) {
-    $.modal.close(); // Close any open modals.
     var remove, target;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
     this.options.doFade = !isNaN(parseInt(this.options.fadeDuration, 10));
+    this.$blocker = null;
+    if (this.options.closeExisting)
+      while ($.modal.isActive())
+        $.modal.close(); // Close any open modals.
+    modals.push(this);
     if (el.is('a')) {
       target = el.attr('href');
       //Select element by id from href
@@ -28,15 +45,18 @@
         this.showSpinner();
         el.trigger($.modal.AJAX_SEND);
         $.get(target).done(function(html) {
-          if (!current) return;
+          if (!$.modal.isActive()) return;
           el.trigger($.modal.AJAX_SUCCESS);
+          var current = getCurrent();
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
           current.hideSpinner();
           current.open();
           el.trigger($.modal.AJAX_COMPLETE);
         }).fail(function() {
           el.trigger($.modal.AJAX_FAIL);
+          var current = getCurrent();
           current.hideSpinner();
+          modals.pop(); // remove expected modal from the list
           el.trigger($.modal.AJAX_COMPLETE);
         });
       }
@@ -52,55 +72,54 @@
 
     open: function() {
       var m = this;
+      this.block();
       if(this.options.doFade) {
-        this.block();
         setTimeout(function() {
           m.show();
         }, this.options.fadeDuration * this.options.fadeDelay);
       } else {
-        this.block();
         this.show();
       }
-      if (this.options.escapeClose) {
-        $(document).on('keydown.modal', function(event) {
-          if (event.which == 27) $.modal.close();
-        });
-      }
-      if (this.options.clickClose) this.blocker.click(function(e){
-        if (e.target==this)
-          $.modal.close();
+      $(document).off('keydown.modal').on('keydown.modal', function(event) {
+        var current = getCurrent();
+        if (event.which == 27 && current.options.escapeClose) current.close();
       });
+      if (this.options.clickClose)
+        this.$blocker.click(function(e) {
+          if (e.target==this)
+            $.modal.close();
+        });
     },
 
     close: function() {
+      modals.pop();
       this.unblock();
       this.hide();
-      $(document).off('keydown.modal');
+      if (!$.modal.isActive())
+        $(document).off('keydown.modal');
     },
 
     block: function() {
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
-      this.blocker = $('<div class="jquery-modal blocker"></div>');
       this.$body.css('overflow','hidden');
-      this.$body.append(this.blocker);
+      this.$blocker = $('<div class="jquery-modal blocker current"></div>').appendTo(this.$body);
+      selectCurrent();
       if(this.options.doFade) {
-        this.blocker.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
+        this.$blocker.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
       }
       this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
 
-    unblock: function() {
-      if(this.options.doFade) {
-        var self=this;
-        this.blocker.fadeOut(this.options.fadeDuration, function() {
-          self.blocker.children().appendTo(self.$body);
-          self.blocker.remove();
-          self.$body.css('overflow','');
-        });
-      } else {
-        this.blocker.children().appendTo(this.$body);
-        this.blocker.remove();
-        this.$body.css('overflow','');
+    unblock: function(now) {
+      if (!now && this.options.doFade)
+        this.$blocker.fadeOut(this.options.fadeDuration, this.unblock.bind(this,true));
+      else {
+        this.$blocker.children().appendTo(this.$body);
+        this.$blocker.remove();
+        this.$blocker = null;
+        selectCurrent();
+        if (!$.modal.isActive())
+          this.$body.css('overflow','');
       }
     },
 
@@ -110,8 +129,7 @@
         this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
         this.$elm.append(this.closeButton);
       }
-      this.$elm.addClass(this.options.modalClass + ' current');
-      this.$elm.appendTo(this.blocker);
+      this.$elm.addClass(this.options.modalClass).appendTo(this.$blocker);
       if(this.options.doFade) {
         this.$elm.css('opacity',0).show().animate({opacity: 1}, this.options.fadeDuration);
       } else {
@@ -123,8 +141,6 @@
     hide: function() {
       this.$elm.trigger($.modal.BEFORE_CLOSE, [this._ctx()]);
       if (this.closeButton) this.closeButton.remove();
-      this.$elm.removeClass('current');
-
       var _this = this;
       if(this.options.doFade) {
         this.$elm.fadeOut(this.options.fadeDuration, function () {
@@ -152,25 +168,25 @@
 
     //Return context for custom events
     _ctx: function() {
-      return { elm: this.$elm, blocker: this.blocker, options: this.options };
+      return { elm: this.$elm, $blocker: this.$blocker, options: this.options };
     }
   };
 
   $.modal.close = function(event) {
-    if (!current) return;
+    if (!$.modal.isActive()) return;
     if (event) event.preventDefault();
+    var current = getCurrent();
     current.close();
-    var that = current.$elm;
-    current = null;
-    return that;
+    return current.$elm;
   };
 
   // Returns if there currently is an active modal
   $.modal.isActive = function () {
-    return current ? true : false;
+    return modals.length > 0;
   }
 
   $.modal.defaults = {
+    closeExisting: true,
     escapeClose: true,
     clickClose: true,
     closeText: 'Close',
@@ -198,7 +214,7 @@
 
   $.fn.modal = function(options){
     if (this.length === 1) {
-      current = new $.modal(this, options);
+      new $.modal(this, options);
     }
     return this;
   };
