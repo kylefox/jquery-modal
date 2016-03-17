@@ -17,6 +17,9 @@
   vertical-align: middle;
   margin-right: -0.05em;
 }
+.blocker.behind {
+  background-color: transparent;
+}
 .modal {
   display: inline-block;
   vertical-align: middle;
@@ -36,12 +39,6 @@
   -ms-box-shadow: 0 0 10px #000;
   box-shadow: 0 0 10px #000;
   text-align: left;
-}
-.blocker.behind {
-  background-color: transparent;
-}
-.blocker.behind > .modal {
-  opacity: 0.2;
 }
 
 .modal a.close-modal {
