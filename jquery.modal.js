@@ -1,6 +1,6 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.6.1
+    Version 0.7.0
 */
 (function($) {
 

@@ -1,3 +1,19 @@
+<a name="0.7.0"></a>
+# 0.7.0 (2016-03-17)
+
+
+### NEW
+
+* Added a demo for closeExisting ([b311bb5](https://github.com/kylefox/jquery-modal/commit/b311bb5))
+* CSS tweak: removed opacity on .behind > .modal ([35db0c4](https://github.com/kylefox/jquery-modal/commit/35db0c4))
+* Updated README.md ([c87c3e4](https://github.com/kylefox/jquery-modal/commit/c87c3e4))
+* NEW: closeExisting property ([c6c767e](https://github.com/kylefox/jquery-modal/commit/c6c767e))
+
+* Update index.html ([f5dbf0e](https://github.com/kylefox/jquery-modal/commit/f5dbf0e))
+* important lynx ([c7af630](https://github.com/kylefox/jquery-modal/commit/c7af630))
+* Update README.md ([a57aee4](https://github.com/kylefox/jquery-modal/commit/a57aee4))
+
+
 <a name="0.6.1"></a>
 ## 0.6.1 (2016-01-20)
 
