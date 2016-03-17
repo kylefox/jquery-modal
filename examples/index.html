@@ -192,7 +192,17 @@ $('#manual-ajax').click(function(event) {
 
 <h2>Example 6: Multiple Modals</h2>
 
-<p>This <a href="#ex6-1" rel="modal:open">example</a> shows how only one modal can be open at a time. If you open a new modal while an existing modal is open, the existing modal is closed first. If you need to manage state (ie: for step by step wizards) you'll need to do that yourself.</p>
+<p>
+  This <a href="#ex6-1" rel="modal:open">example</a> shows how only one modal can be open at a time. If you open a new modal while an existing modal is open, the existing modal is closed first.
+  If you need to stack multiple modals at the same time, just set the <code>closeExisting</code> option to <code>false</code>.
+  See an example <a href="#ex6-1b" rel="modal:open">here</a>.
+</p>
+
+<pre><code>
+$('#sub-modal').modal({
+  closeExisting: false
+});
+</pre></code>
 
 <div class="modal" id="ex6-1" style="display:none;">
   <p>I'm the first modal. <a href="#ex6-2" rel="modal:open">Open second modal...</a></p>
@@ -203,6 +213,27 @@ $('#manual-ajax').click(function(event) {
 </div>
 
 <div class="modal" id="ex6-3" style="display:none;">
+  <p>I'm the third modal. You get the idea.</p>
+</div>
+
+<div class="modal" id="ex6-1b" style="display:none;">
+  <p>I'm the first modal. <a href="#ex6-2b">Open second modal...</a></p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<div class="modal" id="ex6-2b" style="display:none;">
+  <p>I'm the second modal. <a href="#ex6-3b">Open third modal...</a></p>
+  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<div class="modal" id="ex6-3b" style="display:none;">
   <p>I'm the third modal. You get the idea.</p>
 </div>
 
@@ -346,6 +377,13 @@ $('#manual-ajax').click(function(event) {
         escapeClose: false,
         clickClose: false,
         showClose: false
+      });
+    });
+
+    $('a[href="#ex6-2b"],a[href="#ex6-3b"]').click(function(event) {
+      event.preventDefault();
+      $(this).modal({
+        closeExisting: false
       });
     });
 
