@@ -162,6 +162,7 @@ Use `$.modal.isActive()` to check if a modal is currently being displayed.
 These are the supported options and their default values:
 
     $.modal.defaults = {
+      closeExisting: true,    // Close existing modals. Set this to false if you need to stack multiple modal instances.
       escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
       clickClose: true,       // Allows the user to close the modal by clicking the overlay
       closeText: 'Close',     // Text content for the close <a> tag.
@@ -188,9 +189,9 @@ The following events are triggered on the modal element at various points in the
 
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
-    modal.elm;        // Original jQuery object upon which modal() was invoked.
+    modal.$elm;        // Original jQuery object upon which modal() was invoked.
     modal.options;    // Options passed to the modal.
-    modal.blocker;    // The overlay element.
+    modal.$blocker;    // The overlay element.
 
 So, you could do something like this:
 

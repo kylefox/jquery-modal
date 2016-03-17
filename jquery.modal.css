@@ -17,6 +17,9 @@
   vertical-align: middle;
   margin-right: -0.05em;
 }
+.blocker.behind {
+  background-color: transparent;
+}
 .modal {
   display: inline-block;
   vertical-align: middle;
