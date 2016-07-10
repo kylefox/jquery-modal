@@ -177,15 +177,17 @@ These are the supported options and their default values:
 
 # Events
 
-The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).  Hopefully the names are self-explanatory.
+The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).
 
-    $.modal.BEFORE_BLOCK = 'modal:before-block';
-    $.modal.BLOCK = 'modal:block';
-    $.modal.BEFORE_OPEN = 'modal:before-open';
-    $.modal.OPEN = 'modal:open';
-    $.modal.BEFORE_CLOSE = 'modal:before-close';
-    $.modal.CLOSE = 'modal:close';
-    $.modal.AFTER_CLOSE = 'modal:after-close';
+```javascript
+$.modal.BEFORE_BLOCK = 'modal:before-block';    // Fires just before the overlay (blocker) appears.
+$.modal.BLOCK = 'modal:block';                  // Fires after the overlay (block) is visible.
+$.modal.BEFORE_OPEN = 'modal:before-open';      // Fires just before the modal opens.
+$.modal.OPEN = 'modal:open';                    // Fires after the modal has finished opening.
+$.modal.BEFORE_CLOSE = 'modal:before-close';    // Fires when the modal has been requested to close.
+$.modal.CLOSE = 'modal:close';                  // Fires when the modal begins closing (including animations).
+$.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
+```
 
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
