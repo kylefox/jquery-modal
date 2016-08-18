@@ -2,7 +2,15 @@
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
     Version 0.7.0
 */
-(function($) {
+
+(function (factory) {
+  if(typeof module === "object" && typeof module.exports === "object") {
+    factory(require("jquery"), window, document);
+  }
+  else {
+    factory(jQuery, window, document);
+  }
+}(function($, window, document, undefined) {
 
   var modals = [],
       getCurrent = function() {
@@ -225,4 +233,4 @@
     event.preventDefault();
     $(this).modal();
   });
-})(jQuery);
+}));
