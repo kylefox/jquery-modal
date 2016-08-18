@@ -1,3 +1,16 @@
+<a name="0.7.1"></a>
+## 0.7.1 (2016-08-18)
+
+
+* add minified css ([4f43415](https://github.com/kylefox/jquery-modal/commit/4f43415))
+* add snippet to be able to load jquery as a module ([a3f1508](https://github.com/kylefox/jquery-modal/commit/a3f1508))
+* add the minified javascript source ([27c88ac](https://github.com/kylefox/jquery-modal/commit/27c88ac))
+* Explain events. ([99034ae](https://github.com/kylefox/jquery-modal/commit/99034ae))
+* Merge pull request #154 from YuriBrunetto/min-css ([8a45590](https://github.com/kylefox/jquery-modal/commit/8a45590))
+* Merge pull request #166 from Cryde/master ([85267db](https://github.com/kylefox/jquery-modal/commit/85267db))
+
+
+
 <a name="0.7.0"></a>
 # 0.7.0 (2016-03-17)
 

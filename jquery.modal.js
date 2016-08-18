@@ -1,9 +1,11 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
-    Version 0.7.0
+    Version 0.7.1
 */
 
 (function (factory) {
+  // Making your jQuery plugin work better with npm tools
+  // http://blog.npmjs.org/post/112712169830/making-your-jquery-plugin-work-better-with-npm
   if(typeof module === "object" && typeof module.exports === "object") {
     factory(require("jquery"), window, document);
   }
