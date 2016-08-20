@@ -7,11 +7,9 @@ Maintainers Wanted!
 
 This library became more popular and active than I ever expected — unfortunately I don't have time to maintain it myself.
 
-I would love your help!
+If you are interested in helping me maintain this library, please let me know — I would love your help! [**Read more here &raquo;**](https://github.com/kylefox/jquery-modal/issues/170)
 
-If you are interested in helping me maintain this library, please let me know! [**Read more here &raquo;**](https://github.com/kylefox/jquery-modal/issues/170)
-
-Your help would be greatly appreciated!
+_PS: I'd especially like people who would be excited about working towards a brand new **jQuery Modal 2.0**. See my [Proposal for jQuery Modal 2.0](https://github.com/kylefox/jquery-modal/issues/169) for more details & discussion._
 
 # Why another modal plugin?
 
