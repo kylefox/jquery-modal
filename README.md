@@ -273,9 +273,14 @@ I welcome improvements to this plugin, particularly with:
 * Making the code as concise/efficient as possible
 * Bug fixes & browser compatibility
 
-Please fork and send pull requests, or create an [issue](https://github.com/kylefox/jquery-modal/issues).
+Please fork and send pull requests, or create an [issue](https://github.com/kylefox/jquery-modal/issues). Keep in mind the spirit of this plugin is **minimalism** so I'm very picky about adding _new_ features.
 
-Keep in mind the spirit of this plugin is **minimalism** so I'm very picky about adding _new_ features.
+## Tips for development/contributing
+
+* Make sure dependencies are installed: `npm install`
+* After modifying `jquery.modal.js` and/or `jquery.modal.css`, you can optionally regenerate the minified files with `gulp min` and `gulp css` respectively.
+* Make sure you have updated documentation (`README.md` and/or `examples/index.html`) if necessary. **Pull requests without documentation updates will be rejected.**
+* Maintainers should increment version numbers and run `gulp changelog` when cutting a new release.
 
 # Support
 
