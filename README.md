@@ -2,6 +2,17 @@ A simple & lightweight method of displaying modal windows with jQuery.
 
 For quick examples and demos, head to [jquerymodal.com](http://jquerymodal.com/).
 
+Maintainers Wanted!
+---
+
+This library became more popular and active than I ever expected — unfortunately I don't have time to maintain it myself.
+
+I would love your help!
+
+If you are interested in helping me maintain this library, please let me know! [**Read more here &raquo;**](https://github.com/kylefox/jquery-modal/issues/170)
+
+Your help would be greatly appreciated!
+
 # Why another modal plugin?
 
 Most plugins I've found try to do too much, and have specialized ways of handling photo galleries, iframes and video.  The resulting HTML & CSS is often bloated and difficult to customize.
