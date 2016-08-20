@@ -2,8 +2,10 @@ A simple & lightweight method of displaying modal windows with jQuery.
 
 For quick examples and demos, head to [jquerymodal.com](http://jquerymodal.com/).
 
-Maintainers Wanted!
+Maintainers Wanted
 ---
+
+![](https://img.shields.io/badge/maintainers-wanted-red.svg)
 
 This library became more popular and active than I ever expected, and unfortunately I don't have time to maintain it myself.
 
