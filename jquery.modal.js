@@ -43,7 +43,7 @@
       while ($.modal.isActive())
         $.modal.close(); // Close any open modals.
     modals.push(this);
-    if (el.is('a')) {
+    if ((el instanceof $) && el.is('a')) {
       target = el.attr('href');
       //Select element by id from href
       if (/^#/.test(target)) {
