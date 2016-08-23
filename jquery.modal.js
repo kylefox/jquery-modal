@@ -30,6 +30,10 @@
       };
 
   $.modal = function(el, options) {
+     
+    if(!(this instanceof $.modal))
+      return new $.modal(el,options);
+      
     var remove, target;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
@@ -71,6 +75,8 @@
         });
       }
     } else {
+        if(!(el instanceof $))
+            el = $(document.createElement('div')).html(el); 
       this.$elm = el;
       this.$body.append(this.$elm);
       this.open();
