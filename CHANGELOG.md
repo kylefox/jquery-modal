@@ -1,3 +1,13 @@
+<a name="0.8.0"></a>
+# 0.8.0 (2016-09-11)
+
+
+* Bump to 0.8.0 ([1bc2a6b](https://github.com/kylefox/jquery-modal/commit/1bc2a6b))
+* document $.modal.getCurrent() ([1310ef1](https://github.com/kylefox/jquery-modal/commit/1310ef1))
+* Make modal more responsive-friendly ([b721dda](https://github.com/kylefox/jquery-modal/commit/b721dda))
+
+
+
 <a name="0.7.3"></a>
 ## 0.7.3 (2016-09-11)
 
