@@ -152,7 +152,9 @@ Or, if you wanted the window to fade in a few moments after the overlay transiti
         fadeDelay: 1.5
       });
 
-Fading is the only supported transition. Also, there are no transitions when closing the modal.
+The `fadeDelay` option only applies when opening the modal. When closing the modal, both the modal and the overlay fade out simultaneously according to the `fadeDuration` setting.
+
+Fading is the only supported transition.
 
 # Closing
 
