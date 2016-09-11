@@ -195,6 +195,8 @@
     return modals.length > 0;
   }
 
+  $.modal.getCurrent = getCurrent;
+
   $.modal.defaults = {
     closeExisting: true,
     escapeClose: true,
