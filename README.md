@@ -168,7 +168,8 @@ _(Note that modals loaded with AJAX are removed from the DOM when closed)._
 
 # Checking current state
 
-Use `$.modal.isActive()` to check if a modal is currently being displayed.
+* Use `$.modal.isActive()` to check if a modal is currently being displayed.
+* Use `$.modal.getCurrent()` to retrieve a reference to the currently active modal instance, if any.
 
 # Options
 
