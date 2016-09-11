@@ -1,3 +1,20 @@
+<a name="0.7.2"></a>
+## 0.7.2 (2016-09-11)
+
+
+* Bump to 0.7.2 ([51575f3](https://github.com/kylefox/jquery-modal/commit/51575f3))
+* contributing notes (resolves #164) ([b07d3ba](https://github.com/kylefox/jquery-modal/commit/b07d3ba)), closes [#164](https://github.com/kylefox/jquery-modal/issues/164)
+* log AFTER_CLOSE event in examples ([019f03e](https://github.com/kylefox/jquery-modal/commit/019f03e))
+* Merge pull request #177 from shane-tomlinson/jquery-3.1 ([b49206b](https://github.com/kylefox/jquery-modal/commit/b49206b))
+* Support for jQuery 3.x ([0576775](https://github.com/kylefox/jquery-modal/commit/0576775))
+* Update README.md ([9448759](https://github.com/kylefox/jquery-modal/commit/9448759))
+* Update README.md ([9e5491b](https://github.com/kylefox/jquery-modal/commit/9e5491b))
+* Update README.md ([e345ddb](https://github.com/kylefox/jquery-modal/commit/e345ddb))
+* Update README.md ([6e50636](https://github.com/kylefox/jquery-modal/commit/6e50636))
+* Update to jQuery 3.1.0 in examples ([181b31f](https://github.com/kylefox/jquery-modal/commit/181b31f))
+
+
+
 <a name="0.7.1"></a>
 ## 0.7.1 (2016-08-18)
 
