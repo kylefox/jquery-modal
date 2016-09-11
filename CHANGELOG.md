@@ -1,3 +1,11 @@
+<a name="0.7.3"></a>
+## 0.7.3 (2016-09-11)
+
+
+* Add $.modal.getCurrent() to retrieve current instance (if any) ([aee8564](https://github.com/kylefox/jquery-modal/commit/aee8564)), closes [#178](https://github.com/kylefox/jquery-modal/issues/178)
+
+
+
 <a name="0.7.2"></a>
 ## 0.7.2 (2016-09-11)
 
