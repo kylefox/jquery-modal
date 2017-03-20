@@ -1,0 +1,147 @@
+{
+  "name": "kylefox/jquery-modal",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "jQuery Modal",
+  "branch": "",
+  "style": {
+    "name": "Default",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BannerHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "-apple-system, BlinkMacSystemFont, sans-serif",
+    "fontWeight": 400,
+    "bold": 600,
+    "lineHeight": 1.5,
+    "typeScale": [
+      72,
+      48,
+      24,
+      20,
+      16,
+      14,
+      12
+    ],
+    "monospace": "Menlo, monospace",
+    "heading": {
+      "fontFamily": null,
+      "fontStyle": null,
+      "fontWeight": 600,
+      "lineHeight": 1.25,
+      "textTransform": null,
+      "letterSpacing": null
+    },
+    "h0": {},
+    "h1": {},
+    "h2": {},
+    "h3": {},
+    "h4": {},
+    "h5": {},
+    "h6": {},
+    "alternativeText": {},
+    "space": [
+      0,
+      8,
+      16,
+      32,
+      48,
+      64,
+      96
+    ],
+    "layout": {
+      "maxWidth": 1024,
+      "centered": false
+    },
+    "colors": {
+      "text": "#111",
+      "background": "#fff",
+      "primary": "#08e",
+      "secondary": "#059",
+      "highlight": "#e08",
+      "border": "#ddd",
+      "muted": "#eee"
+    },
+    "border": {
+      "width": 1,
+      "radius": 2
+    },
+    "link": {},
+    "button": {
+      "hover": {
+        "boxShadow": "inset 0 0 0 999px rgba(0, 0, 0, .125)"
+      }
+    },
+    "input": {},
+    "body": {
+      "margin": 0
+    },
+    "breakpoints": {
+      "xs": "@media screen and (max-width:40em)",
+      "sm": "@media screen and (min-width:40em)",
+      "md": "@media screen and (min-width:52em)",
+      "lg": "@media screen and (min-width:64em)"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "http://jquerymodal.com/",
+          "text": "Home"
+        },
+        {
+          "href": "https://github.com/kylefox/jquery-modal",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/jquery-modal",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "jquery-modal",
+      "subhead": "The simplest possible modal for jQuery",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "jquery-modal: The simplest possible modal for jQuery",
+          "url": "http://jquerymodal.com/"
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "kylefox",
+          "repo": "jquery-modal"
+        }
+      ],
+      "text": "v0.8.0"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "<p>A simple &amp; lightweight method of displaying modal windows with jQuery.</p>\n<p>For quick examples and demos, head to <a href=\"http://jquerymodal.com/\">jquerymodal.com</a>.</p>\n<h1>Why another modal plugin?</h1>\n<p>Most plugins I&apos;ve found try to do too much, and have specialized ways of handling photo galleries, iframes and video.  The resulting HTML &amp; CSS is often bloated and difficult to customize.</p>\n<p>By contrast, this plugin handles the two most common scenarios I run into</p>\n<ul>\n<li>displaying an existing DOM element</li>\n<li>loading a page with AJAX</li>\n</ul>\n<p>and does so with as little HTML &amp; CSS as possible.</p>\n<h1>Installation</h1>\n<p>You can install <a href=\"https://www.npmjs.com/package/jquery-modal\">jquery-modal</a> with npm:</p>\n<p><code>npm install jquery-modal</code></p>\n<p>or with <a href=\"http://bower.io/\">Bower</a>:</p>\n<p><code>bower install jquery-modal</code></p>\n<p>or the good old fashioned way of including the scripts &amp; styles manually:</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">&quot;jquery.modal.min.js&quot;</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">&quot;text/javascript&quot;</span> <span class=\"hljs-attr\">charset</span>=<span class=\"hljs-string\">&quot;utf-8&quot;</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">link</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">&quot;stylesheet&quot;</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;jquery.modal.css&quot;</span> <span class=\"hljs-attr\">type</span>=<span class=\"hljs-string\">&quot;text/css&quot;</span> <span class=\"hljs-attr\">media</span>=<span class=\"hljs-string\">&quot;screen&quot;</span> /&gt;</span></pre><p><em>(You&apos;ll obviously need to include jQuery as well).</em></p>\n<p><strong>Using Rails?</strong> Check out the <a href=\"https://github.com/dei79/jquery-modal-rails\">jquery-modal-rails plugin</a>!</p>\n<p><strong>jQuery Requirements:</strong> As of version 0.3.0, jQuery 1.7 is required. If you&apos;re using an earlier version of jQuery you can use the <a href=\"https://github.com/kylefox/jquery-modal/tags\">v.0.2.5 tag.</a></p>\n<p><strong>Naming conflict with Bootstrap:</strong> Bootstrap&apos;s <a href=\"http://getbootstrap.com/javascript/#modals\">modal</a> uses the same <code>$.modal</code> namespace. If you want to use jquery-modal with Bootstrap, the simplest solution is to manually modify the name of this plugin.</p>\n<h1>Opening</h1>\n<h4>Method 1: Automatically attaching to links</h4>\n<p>The simplest approach is to add <code>rel=&quot;modal:open&quot;</code> to your links and use the <code>href</code> attribute to specify what to open in the modal.</p>\n<p>Open an existing DOM element by ID:</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">form</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">&quot;login-form&quot;</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">&quot;modal&quot;</span>&gt;</span>\n  ...\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">form</span>&gt;</span>\n\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;#login-form&quot;</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">&quot;modal:open&quot;</span>&gt;</span>Login<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></pre><p>Load a remote URL with AJAX:</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;login.html&quot;</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">&quot;modal:open&quot;</span>&gt;</span>Login<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></pre><h4>Method 2: Manually</h4>\n<p>You can manually open a modal by calling the <code>.modal()</code> method on the element:</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">form</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">&quot;login-form&quot;</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">&quot;modal&quot;</span>&gt;</span>\n  ...\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">form</span>&gt;</span></pre><pre>$(<span class=\"hljs-string\">&apos;#login-form&apos;</span>).modal();</pre><p>You can also invoke <code>.modal()</code> directly on links:</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;#ex5&quot;</span> <span class=\"hljs-attr\">data-modal</span>&gt;</span>Open a DOM element<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;ajax.html&quot;</span> <span class=\"hljs-attr\">data-modal</span>&gt;</span>Open an AJAX modal<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></pre><pre>$(<span class=\"hljs-string\">&apos;a[data-modal]&apos;</span>).click(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">event</span>) </span>{\n  $(<span class=\"hljs-keyword\">this</span>).modal();\n  <span class=\"hljs-keyword\">return</span> <span class=\"hljs-literal\">false</span>;\n});</pre><h3>Compatibility Fallback</h3>\n<p>You can provide a clean fallback for users who have JavaScript disabled by manually attaching the modal via the <code>data-modal</code> attribute. This allows you to write your links pointing to the <code>href</code> as normal (fallback) while enabling modals where JavaScript is enabled.</p>\n<pre><span class=\"hljs-comment\">&lt;!-- By default link takes user to /login.html --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;/login.html&quot;</span> <span class=\"hljs-attr\">data-modal</span>=<span class=\"hljs-string\">&quot;#login-modal&quot;</span>&gt;</span>Login<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n\n<span class=\"hljs-comment\">&lt;!-- Login modal embedded in page --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">&quot;login-modal&quot;</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">&quot;modal&quot;</span>&gt;</span>\n  ...\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n\n<span class=\"hljs-comment\">&lt;!-- For browsers with JavaScript, open the modal. --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span>&gt;</span><span class=\"javascript\">\n  $(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\"></span>) </span>{\n    $(<span class=\"hljs-string\">&apos;a[data-modal]&apos;</span>).on(<span class=\"hljs-string\">&apos;click&apos;</span>, <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\"></span>) </span>{\n      $($(<span class=\"hljs-keyword\">this</span>).data(<span class=\"hljs-string\">&apos;modal&apos;</span>)).modal();\n      <span class=\"hljs-keyword\">return</span> <span class=\"hljs-literal\">false</span>;\n    });\n  });\n</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span></pre><h4>Fade Transitions</h4>\n<p>By default the overlay &amp; window appear instantaneously, but you can enable a fade effect by specifying the <code>fadeDuration</code> option.</p>\n<pre>$(<span class=\"hljs-string\">&apos;a.open-modal&apos;</span>).click(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">event</span>) </span>{\n  $(<span class=\"hljs-keyword\">this</span>).modal({\n    <span class=\"hljs-attr\">fadeDuration</span>: <span class=\"hljs-number\">250</span>\n  });\n  <span class=\"hljs-keyword\">return</span> <span class=\"hljs-literal\">false</span>;\n});</pre><p>This will fade in the overlay and modal over 250 milliseconds <em>simultaneously.</em> If you want the effect of the overlay appearing <em>before</em> the window, you can specify the <code>fadeDelay</code> option. This indicates at what point during the overlay transition the window transition should begin.</p>\n<p>So if you wanted the window to fade in when the overlay&apos;s was 80% finished:</p>\n<pre>$(elm).modal({\n  <span class=\"hljs-attr\">fadeDuration</span>: <span class=\"hljs-number\">250</span>,\n  <span class=\"hljs-attr\">fadeDelay</span>: <span class=\"hljs-number\">0.80</span>\n});</pre><p>Or, if you wanted the window to fade in a few moments after the overlay transition has completely finished:</p>\n<pre>$(elm).modal({\n  <span class=\"hljs-attr\">fadeDuration</span>: <span class=\"hljs-number\">250</span>,\n  <span class=\"hljs-attr\">fadeDelay</span>: <span class=\"hljs-number\">1.5</span>\n});</pre><p>The <code>fadeDelay</code> option only applies when opening the modal. When closing the modal, both the modal and the overlay fade out simultaneously according to the <code>fadeDuration</code> setting.</p>\n<p>Fading is the only supported transition.</p>\n<h1>Closing</h1>\n<p>Because there can be only one modal active at a single time, there&apos;s no need to select which modal to close:</p>\n<pre>$.modal.close();</pre><p>Similar to how links can be automatically bound to open modals, they can be bound to close modals using <code>rel=&quot;modal:close&quot;</code>:</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;#close&quot;</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">&quot;modal:close&quot;</span>&gt;</span>Close window<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></pre><p><em>(Note that modals loaded with AJAX are removed from the DOM when closed).</em></p>\n<h1>Checking current state</h1>\n<ul>\n<li>Use <code>$.modal.isActive()</code> to check if a modal is currently being displayed.</li>\n<li>Use <code>$.modal.getCurrent()</code> to retrieve a reference to the currently active modal instance, if any.</li>\n</ul>\n<h1>Options</h1>\n<p>These are the supported options and their default values:</p>\n<pre>$.modal.defaults = {\n  <span class=\"hljs-attr\">closeExisting</span>: <span class=\"hljs-literal\">true</span>,    <span class=\"hljs-comment\">// Close existing modals. Set this to false if you need to stack multiple modal instances.</span>\n  escapeClose: <span class=\"hljs-literal\">true</span>,      <span class=\"hljs-comment\">// Allows the user to close the modal by pressing `ESC`</span>\n  clickClose: <span class=\"hljs-literal\">true</span>,       <span class=\"hljs-comment\">// Allows the user to close the modal by clicking the overlay</span>\n  closeText: <span class=\"hljs-string\">&apos;Close&apos;</span>,     <span class=\"hljs-comment\">// Text content for the close &lt;a&gt; tag.</span>\n  closeClass: <span class=\"hljs-string\">&apos;&apos;</span>,         <span class=\"hljs-comment\">// Add additional class(es) to the close &lt;a&gt; tag.</span>\n  showClose: <span class=\"hljs-literal\">true</span>,        <span class=\"hljs-comment\">// Shows a (X) icon/link in the top-right corner</span>\n  modalClass: <span class=\"hljs-string\">&quot;modal&quot;</span>,    <span class=\"hljs-comment\">// CSS class added to the element being displayed in the modal.</span>\n  spinnerHtml: <span class=\"hljs-literal\">null</span>,      <span class=\"hljs-comment\">// HTML appended to the default spinner during AJAX requests.</span>\n  showSpinner: <span class=\"hljs-literal\">true</span>,      <span class=\"hljs-comment\">// Enable/disable the default spinner during AJAX requests.</span>\n  fadeDuration: <span class=\"hljs-literal\">null</span>,     <span class=\"hljs-comment\">// Number of milliseconds the fade transition takes (null means no transition)</span>\n  fadeDelay: <span class=\"hljs-number\">1.0</span>          <span class=\"hljs-comment\">// Point during the overlay&apos;s fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)</span>\n};</pre><h1>Events</h1>\n<p>The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).</p>\n<pre>$.modal.BEFORE_BLOCK = <span class=\"hljs-string\">&apos;modal:before-block&apos;</span>;    <span class=\"hljs-comment\">// Fires just before the overlay (blocker) appears.</span>\n$.modal.BLOCK = <span class=\"hljs-string\">&apos;modal:block&apos;</span>;                  <span class=\"hljs-comment\">// Fires after the overlay (block) is visible.</span>\n$.modal.BEFORE_OPEN = <span class=\"hljs-string\">&apos;modal:before-open&apos;</span>;      <span class=\"hljs-comment\">// Fires just before the modal opens.</span>\n$.modal.OPEN = <span class=\"hljs-string\">&apos;modal:open&apos;</span>;                    <span class=\"hljs-comment\">// Fires after the modal has finished opening.</span>\n$.modal.BEFORE_CLOSE = <span class=\"hljs-string\">&apos;modal:before-close&apos;</span>;    <span class=\"hljs-comment\">// Fires when the modal has been requested to close.</span>\n$.modal.CLOSE = <span class=\"hljs-string\">&apos;modal:close&apos;</span>;                  <span class=\"hljs-comment\">// Fires when the modal begins closing (including animations).</span>\n$.modal.AFTER_CLOSE = <span class=\"hljs-string\">&apos;modal:after-close&apos;</span>;      <span class=\"hljs-comment\">// Fires after the modal has fully closed (including animations).</span></pre><p>The first and only argument passed to these event handlers is the <code>modal</code> object, which has three properties:</p>\n<pre>modal.$elm;       <span class=\"hljs-comment\">// Original jQuery object upon which modal() was invoked.</span>\nmodal.options;    <span class=\"hljs-comment\">// Options passed to the modal.</span>\nmodal.$blocker;   <span class=\"hljs-comment\">// The overlay element.</span></pre><p>So, you could do something like this:</p>\n<pre>$(<span class=\"hljs-string\">&apos;#purchase-form&apos;</span>).on($.modal.BEFORE_CLOSE, <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">event, modal</span>) </span>{\n  clear_shopping_cart();\n});</pre><h1>AJAX</h1>\n<h2>Basic support</h2>\n<p>jQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you&apos;ve included modal.css) and will have the class <code>modal-spinner</code>. If you&apos;ve set the <code>modalClass</code> option, the spinner will be prefixed with that class name instead.</p>\n<p>You can add text or additional HTML to the spinner with the <code>spinnerHtml</code> option, or disable the spinner entirely by setting <code>showSpinner: false</code>.</p>\n<h2>Events</h2>\n<p>The following events are triggered when AJAX modals are requested.</p>\n<pre>$.modal.AJAX_SEND = <span class=\"hljs-string\">&apos;modal:ajax:send&apos;</span>;\n$.modal.AJAX_SUCCESS = <span class=\"hljs-string\">&apos;modal:ajax:success&apos;</span>;\n$.modal.AJAX_FAIL = <span class=\"hljs-string\">&apos;modal:ajax:fail&apos;</span>;\n$.modal.AJAX_COMPLETE = <span class=\"hljs-string\">&apos;modal:ajax:complete&apos;</span>;</pre><p>The handlers receive no arguments. The events are triggered on the <code>&lt;a&gt;</code> element which initiated the AJAX modal.</p>\n<h2>More advanced AJAX handling</h2>\n<p>It&apos;s a good idea to provide more robust AJAX handling -- error handling, in particular. Instead of accommodating the myriad <a href=\"http://api.jquery.com/jQuery.ajax/\"><code>$.ajax</code> options</a> jQuery provides, jquery-modal makes it possible to directly modify the AJAX request itself.</p>\n<p>Simply bypass the default AJAX handling (i.e.: don&apos;t use <code>rel=&quot;modal&quot;</code>)</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">&quot;ajax.html&quot;</span> <span class=\"hljs-attr\">rel</span>=<span class=\"hljs-string\">&quot;ajax:modal&quot;</span>&gt;</span>Click me!<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></pre><p>and make your AJAX request in the link&apos;s click handler. Note that you need to manually append the new HTML/modal in the <code>success</code> callback:</p>\n<pre>$(<span class=\"hljs-string\">&apos;a[rel=&quot;ajax:modal&quot;]&apos;</span>).click(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">event</span>) </span>{\n\n  $.ajax({\n\n    <span class=\"hljs-attr\">url</span>: $(<span class=\"hljs-keyword\">this</span>).attr(<span class=\"hljs-string\">&apos;href&apos;</span>),\n\n    <span class=\"hljs-attr\">success</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">newHTML, textStatus, jqXHR</span>) </span>{\n      $(newHTML).appendTo(<span class=\"hljs-string\">&apos;body&apos;</span>).modal();\n    },\n\n    <span class=\"hljs-attr\">error</span>: <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">jqXHR, textStatus, errorThrown</span>) </span>{\n      <span class=\"hljs-comment\">// Handle AJAX errors</span>\n    }\n\n    <span class=\"hljs-comment\">// More AJAX customization goes here.</span>\n\n  });\n\n  <span class=\"hljs-keyword\">return</span> <span class=\"hljs-literal\">false</span>;\n});</pre><p>Note that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.</p>\n<h1>Bugs &amp; Feature Requests</h1>\n<h3>Found a bug? MEH!</h3>\n<p><img src=\"http://drops.kylefox.ca/1cqGP+\"></p>\n<p><strong>Just kidding.</strong> Please <a href=\"https://github.com/kylefox/jquery-modal/issues/new\">create an issue</a> and <strong>include a publicly-accessible demonstration of the bug.</strong> <a href=\"https://www.dropbox.com\">Dropbox</a> or <a href=\"http://jsfiddle.net/\">JSFiddle</a> work well for demonstrating reproducable bugs, but you can use anything as long as it&apos;s publicly accessible. Your issue is much more likely to be resolved/merged if it includes a fix &amp; pull request.</p>\n<p><strong>Have an idea that improves jquery-modal?</strong> Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.</p>\n<p>I don&apos;t use this library as frequently as I used to, so if you want to see a fix/improvement you&apos;re best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!</p>\n<h1>Contributing</h1>\n<h2>Maintainers Wanted</h2>\n<p><img src=\"https://img.shields.io/badge/maintainers-wanted-red.svg\"></p>\n<p>This library became more popular and active than I ever expected, and unfortunately I don&apos;t have time to maintain it myself.</p>\n<p>If you are interested in helping me maintain this library, please let me know &#x2014; <strong>I would love your help!</strong></p>\n<p><a href=\"https://github.com/kylefox/jquery-modal/issues/170\"><strong>Read more about becoming a maintainer &#xBB;</strong></a></p>\n<p><em>I&apos;d especially like people who would be excited about working towards a brand new <strong>jQuery Modal 2.0</strong>. See my <a href=\"https://github.com/kylefox/jquery-modal/issues/169\">Proposal for jQuery Modal 2.0</a> for more details &amp; discussion.</em></p>\n<h2>How to contribute</h2>\n<p>I welcome improvements to this plugin, particularly with:</p>\n<ul>\n<li>Performance improvements</li>\n<li>Making the code as concise/efficient as possible</li>\n<li>Bug fixes &amp; browser compatibility</li>\n</ul>\n<p>Please fork and send pull requests, or create an <a href=\"https://github.com/kylefox/jquery-modal/issues\">issue</a>. Keep in mind the spirit of this plugin is <strong>minimalism</strong> so I&apos;m very picky about adding <em>new</em> features.</p>\n<h2>Tips for development/contributing</h2>\n<ul>\n<li>Make sure dependencies are installed: <code>npm install</code></li>\n<li>After modifying <code>jquery.modal.js</code> and/or <code>jquery.modal.css</code>, you can optionally regenerate the minified files with <code>gulp min</code> and <code>gulp css</code> respectively.</li>\n<li>Make sure you have updated documentation (<code>README.md</code> and/or <code>examples/index.html</code>) if necessary. <strong>Pull requests without documentation updates will be rejected.</strong></li>\n<li>Maintainers should increment version numbers and run <code>gulp changelog</code> when cutting a new release.</li>\n</ul>\n<h1>Support</h1>\n<p>Please post a question on <a href=\"http://stackoverflow.com/\">StackOverflow</a>. Commercial support by email is also available &#x2014; please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.</p>\n<h1>License (MIT)</h1>\n<p>jQuery Modal is distributed under the <a>MIT License</a>:</p>\n<pre>Copyright (c) 2012 Kyle Fox\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n&quot;Software&quot;), to deal in the Software without restriction, including\nwithout limitation the rights to <span class=\"hljs-keyword\">use</span>, copy, <span class=\"hljs-keyword\">modify</span>, <span class=\"hljs-keyword\">merge</span>, publish,\n<span class=\"hljs-keyword\">distribute</span>, sublicense, <span class=\"hljs-keyword\">and</span>/<span class=\"hljs-keyword\">or</span> sell copies <span class=\"hljs-keyword\">of</span> the Software, <span class=\"hljs-keyword\">and</span> <span class=\"hljs-keyword\">to</span>\npermit persons <span class=\"hljs-keyword\">to</span> whom the Software <span class=\"hljs-keyword\">is</span> furnished <span class=\"hljs-keyword\">to</span> <span class=\"hljs-keyword\">do</span> so, subject <span class=\"hljs-keyword\">to</span>\nthe <span class=\"hljs-keyword\">following</span> conditions:\n\nThe above copyright <span class=\"hljs-keyword\">notice</span> <span class=\"hljs-keyword\">and</span> this permission <span class=\"hljs-keyword\">notice</span> shall be\nincluded <span class=\"hljs-keyword\">in</span> all copies <span class=\"hljs-keyword\">or</span> substantial portions <span class=\"hljs-keyword\">of</span> the Software.\n\nTHE SOFTWARE <span class=\"hljs-keyword\">IS</span> PROVIDED <span class=\"hljs-string\">&quot;AS IS&quot;</span>, <span class=\"hljs-keyword\">WITHOUT</span> WARRANTY <span class=\"hljs-keyword\">OF</span> <span class=\"hljs-keyword\">ANY</span> KIND,\nEXPRESS <span class=\"hljs-keyword\">OR</span> IMPLIED, <span class=\"hljs-keyword\">INCLUDING</span> BUT <span class=\"hljs-keyword\">NOT</span> LIMITED <span class=\"hljs-keyword\">TO</span> THE WARRANTIES <span class=\"hljs-keyword\">OF</span>\nMERCHANTABILITY, FITNESS <span class=\"hljs-keyword\">FOR</span> A PARTICULAR PURPOSE <span class=\"hljs-keyword\">AND</span>\nNONINFRINGEMENT. <span class=\"hljs-keyword\">IN</span> <span class=\"hljs-keyword\">NO</span> <span class=\"hljs-keyword\">EVENT</span> SHALL THE <span class=\"hljs-keyword\">AUTHORS</span> <span class=\"hljs-keyword\">OR</span> COPYRIGHT HOLDERS BE\nLIABLE <span class=\"hljs-keyword\">FOR</span> <span class=\"hljs-keyword\">ANY</span> CLAIM, DAMAGES <span class=\"hljs-keyword\">OR</span> OTHER LIABILITY, WHETHER <span class=\"hljs-keyword\">IN</span> AN <span class=\"hljs-keyword\">ACTION</span>\n<span class=\"hljs-keyword\">OF</span> CONTRACT, TORT <span class=\"hljs-keyword\">OR</span> OTHERWISE, ARISING <span class=\"hljs-keyword\">FROM</span>, <span class=\"hljs-keyword\">OUT</span> <span class=\"hljs-keyword\">OF</span> <span class=\"hljs-keyword\">OR</span> <span class=\"hljs-keyword\">IN</span> <span class=\"hljs-keyword\">CONNECTION</span>\n<span class=\"hljs-keyword\">WITH</span> THE SOFTWARE <span class=\"hljs-keyword\">OR</span> THE <span class=\"hljs-keyword\">USE</span> <span class=\"hljs-keyword\">OR</span> OTHER DEALINGS <span class=\"hljs-keyword\">IN</span> THE SOFTWARE.</pre>"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/kylefox/jquery-modal",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/kylefox",
+          "text": "kylefox"
+        }
+      ]
+    }
+  ]
+}
