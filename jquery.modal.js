@@ -30,6 +30,10 @@
       };
 
   $.modal = function(el, options) {
+     
+    if(!(this instanceof $.modal))
+      return new $.modal(el,options);
+      
     var remove, target;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
@@ -39,7 +43,7 @@
       while ($.modal.isActive())
         $.modal.close(); // Close any open modals.
     modals.push(this);
-    if (el.is('a')) {
+    if ((el instanceof $) && el.is('a')) {
       target = el.attr('href');
       //Select element by id from href
       if (/^#/.test(target)) {
@@ -71,6 +75,8 @@
         });
       }
     } else {
+        if(!(el instanceof $))
+            el = $(document.createElement('div')).html(el); 
       this.$elm = el;
       this.$body.append(this.$elm);
       this.open();
