@@ -207,7 +207,7 @@ $.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has ful
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
 ```js
-modal.$elm;       // Original jQuery object upon which modal() was invoked.
+modal.elm;       // Original jQuery object upon which modal() was invoked.
 modal.options;    // Options passed to the modal.
 modal.$blocker;   // The overlay element.
 ```
