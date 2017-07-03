@@ -112,7 +112,7 @@
     block: function() {
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
       this.$body.css('overflow','hidden');
-      this.$blocker = $('<div class="jquery-modal blocker current"></div>').appendTo(this.$body);
+      this.$blocker = $('<div class="' + this.options.blockerClass + ' blocker current"></div>').appendTo(this.$body);
       selectCurrent();
       if(this.options.doFade) {
         this.$blocker.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
@@ -204,6 +204,7 @@
     closeText: 'Close',
     closeClass: '',
     modalClass: "modal",
+    blockerClass: "jquery-modal",
     spinnerHtml: null,
     showSpinner: true,
     showClose: true,
