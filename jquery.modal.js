@@ -178,7 +178,7 @@
 
     //Return context for custom events
     _ctx: function() {
-      return { elm: this.$elm, $blocker: this.$blocker, options: this.options };
+      return { elm: this.$elm, $elm: this.$elm, $blocker: this.$blocker, options: this.options };
     }
   };
 
