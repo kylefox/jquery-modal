@@ -1,3 +1,19 @@
+<a name="0.8.1"></a>
+## 0.8.1 (2017-07-03)
+
+
+* add anchors to examples ([bb623e3](https://github.com/kylefox/jquery-modal/commit/bb623e3))
+* Added syntax modes to code samples (closes #47) ([97c043a](https://github.com/kylefox/jquery-modal/commit/97c043a)), closes [#47](https://github.com/kylefox/jquery-modal/issues/47)
+* alias elm as $elm (fixes #205) ([c074130](https://github.com/kylefox/jquery-modal/commit/c074130)), closes [#205](https://github.com/kylefox/jquery-modal/issues/205)
+* Bind to links with multiple `rel` values ([c6fc99c](https://github.com/kylefox/jquery-modal/commit/c6fc99c)), closes [#135](https://github.com/kylefox/jquery-modal/issues/135)
+* Bump to 0.8.1 ([35b84c4](https://github.com/kylefox/jquery-modal/commit/35b84c4))
+* Merge branch 'master' of github.com:kylefox/jquery-modal ([beb02fa](https://github.com/kylefox/jquery-modal/commit/beb02fa))
+* Update compositor.json ([511dd72](https://github.com/kylefox/jquery-modal/commit/511dd72))
+* Update compositor.json ([6f9ebcb](https://github.com/kylefox/jquery-modal/commit/6f9ebcb))
+* Update README.md ([334b18a](https://github.com/kylefox/jquery-modal/commit/334b18a))
+
+
+
 <a name="0.8.0"></a>
 # 0.8.0 (2016-09-11)
 
