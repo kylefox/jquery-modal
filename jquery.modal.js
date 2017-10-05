@@ -73,6 +73,7 @@
       }
     } else {
       this.$elm = el;
+      this.anchor = el;
       this.$body.append(this.$elm);
       this.open();
     }
