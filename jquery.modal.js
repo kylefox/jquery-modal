@@ -207,7 +207,7 @@
     closeClass: '',
     modalClass: "modal",
     blockerClass: "jquery-modal",
-    spinnerHtml: null,
+    spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
     showSpinner: true,
     showClose: true,
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
