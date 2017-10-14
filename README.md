@@ -186,7 +186,10 @@ $.modal.defaults = {
   showClose: true,        // Shows a (X) icon/link in the top-right corner
   modalClass: "modal",    // CSS class added to the element being displayed in the modal.
   blockerClass: "modal",  // CSS class added to the overlay (blocker).
-  spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
+
+  // HTML appended to the default spinner during AJAX requests.
+  spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
+
   showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
   fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)
   fadeDelay: 1.0          // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
@@ -230,6 +233,8 @@ $('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
 jQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you've included modal.css) and will have the class `modal-spinner`. If you've set the `modalClass` option, the spinner will be prefixed with that class name instead.
 
 You can add text or additional HTML to the spinner with the `spinnerHtml` option, or disable the spinner entirely by setting `showSpinner: false`.
+
+The default spinner is from the excellent [SpinKit](http://tobiasahlin.com/spinkit/) by [Tobias Ahlin](https://twitter.com/tobiasahlin) 👍
 
 ## Events
 
