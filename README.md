@@ -23,14 +23,16 @@ or with [Bower](http://bower.io/):
 
 `bower install jquery-modal`
 
-or the good old fashioned way of including the scripts & styles manually:
+or use the hosted version from [cdnjs](https://cdnjs.com/libraries/jquery-modal):
 
 ```html
-<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
-```
+<!-- Remember to include jQuery :) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
-_(You'll obviously need to include jQuery as well)._
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.8.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.8.2/jquery.modal.min.css" />
+```
 
 **Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!
 
