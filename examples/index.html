@@ -211,35 +211,21 @@
 
 <h2 id="example-1"><a href="#example-1">#</a> Example 1: Open &amp; Close with links</h2>
 <ol>
-  <li>Embed modal HTML in document <small>(and hide it)</small></li>
+  <li>Embed modal HTML in document</li>
   <li>Create a link with <code>rel="modal:open"</code> and set the <code>href</code> attribute to the modal's DOM id.</li>
 </ol>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;/style&gt;
-  &lt;!-- Don't forget to include jQuery ;) --&gt;
-  &lt;script src=&quot;jquery.modal.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<pre><code>&lt;!-- Modal HTML embedded directly into document --&gt;
+&lt;div id=&quot;ex1&quot; class=&quot;modal&quot;&gt;
+  &lt;p&gt;Thanks for clicking. That felt good.&lt;/p&gt;
+  &lt;a href=&quot;#&quot; rel=&quot;modal:close&quot;&gt;Close&lt;/a&gt;
+&lt;/div&gt;
 
-  &lt;!-- Modal HTML embedded directly into document --&gt;
-  &lt;div id=&quot;ex1&quot; style=&quot;display:none;&quot;&gt;
-    &lt;p&gt;Thanks for clicking.  That felt good.  &lt;a href=&quot;#&quot; rel=&quot;modal:close&quot;&gt;Close&lt;/a&gt; or press ESC&lt;/p&gt;
-  &lt;/div&gt;
+&lt;!-- Link to open the modal --&gt;
+&lt;p&gt;&lt;a href=&quot;#ex1&quot; rel=&quot;modal:open&quot;&gt;Open Modal&lt;/a&gt;&lt;/p&gt;</code></pre>
 
-  &lt;!-- Link to open the modal --&gt;
-  &lt;p&gt;&lt;a href=&quot;#ex1&quot; rel=&quot;modal:open&quot;&gt;Open Modal&lt;/a&gt;&lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<!-- Link to open the modal -->
 <a class="btn" href="#ex1" rel="modal:open">Open Modal</a>
 
-<!-- Modal HTML embedded directly into document -->
-<div class="modal" id="ex1" style="display:none;">
+<div class="modal" id="ex1">
   <p>Thanks for clicking.  That felt good.  <br />Click <a href="#" rel="modal:close">close</a>, click the overlay, or press ESC</p>
 </div>
 
