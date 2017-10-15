@@ -8,25 +8,79 @@
 
   <script src="highlight/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8"> hljs.initHighlightingOnLoad(); </script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
   <link rel="stylesheet" href="highlight/github.css" type="text/css" media="screen" />
-  <link href='http://fonts.googleapis.com/css?family=Roboto:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,400i,700,800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400" rel="stylesheet">
   <style type="text/css" media="screen">
-    html { background: #ddd; }
-    body { font: normal 18px/1.6 'Open Sans', "Helvetica Neue", Arial, sans-serif; font-weight: 300; color: #777; padding: 2em 5%; width: 80%; max-width: 900px; margin: 0 auto; background: #fff; }
+    html {
+      font-size: 18px;
+    }
+    body {
+      font-weight: 400;
+      font-family: "Nunito", "Helvetica Neue", arial, sans-serif;
+      line-height: 1.666;
+      -webkit-font-smoothing: antialiased;
+      color: #5e6c76;
+      margin: 0;
+      padding: 0;
+    }
+
+    .band {
+      background-image: linear-gradient(to right, #2a27a8 0%,#8c50bc 50%,#fc6e6c 100%);
+      height: 10px;
+    }
+
+    .wrapper {
+      padding: 2em 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
     small { color: #aaa; }
-    h1,h2,h3,h4 { color: #444; font-weight: 700; font-size: 1.6em; letter-spacing: -1px; }
-    h2 a { color: #bbb; text-decoration: none; font-weight: normal; font-size: .75em; margin-left: -1em; }
-    a { color: #0086B3; font-weight: 700; }
-    a:hover { color: #000; }
-    p code, li code {background:#ffffcc; color: #444; }
-    pre { font-size: 12px; line-height: 18px; }
-    pre code { overflow: scroll; padding: 1em; border-radius: 10px; }
-    hr { height: 10px; background: #eee; border: none; }
+    h1,h2,h3,h4 { color: #404a50; font-weight: 800; font-size: 1.75em; line-height: 1.1; margin: 0 0 1.5rem 0; }
+    h2 a { color: #bbb; text-decoration: none; font-weight: normal; font-size: .75em; margin-left: -1em; border: none; }
+    h2 a:hover { color: #fa0065; }
+    a { color: #fa0065; font-weight: 700; transition-duration: .2s; text-decoration: none; border-bottom: 2px solid transparent; }
+    a:hover { color: #22272a; border-color: #22272a; }
+    p, ul, ol, pre { margin: 0 auto 1.5rem auto; }
+    p code, li code {color: #000080; font-size: .9em; }
+    pre { font-size: 14px; line-height: 2; }
+    pre code { overflow: scroll; padding: 1em; border-radius: 4px; background: #f9fafb; color: #475359; }
+    hr { height: 3px; background: #f0f2f3; border: none; margin: 3rem 0; border-radius: 3px; }
     table {width:100%;border-collapse:collapse;}
     td { border: 1px solid #eee; padding: 15px; }
     td pre { margin: 0; }
+    code { font-family: 'fira mono', monospace; }
 
-    body > .modal {
+    .header h1 {
+      margin: 1rem 0 .5rem 0;
+    }
+
+    .header iframe {
+      margin-bottom: 2rem;
+    }
+
+    .header p {
+      margin: 0 0 .5rem 0;
+      font-size: 1.25rem;
+    }
+
+    .header ul {
+      list-style-type: none;
+      margin-right: 0;
+      padding: 0;
+      line-height: 2;
+    }
+
+    .header ul li:before {
+      content: '\2714';
+      margin-right: .5em;
+      color: #94be47;
+      font-size: .75em;
+    }
+
+    .wrapper > .modal {
       display: none;
     }
 
@@ -61,7 +115,6 @@
       width: 200px;
     }
 
-
     .part {
       display: none;
     }
@@ -70,18 +123,24 @@
   <title>jQuery Modal</title>
 </head>
 <body>
+  <div class="band"></div>
+  <div class="wrapper">
 
-<h1>jQuery Modal</h1>
-<p><em>the simplest modal you ever did see.</em> &ndash; <a href="http://github.com/kylefox/jquery-modal">Code on GitHub &raquo;</a></p>
-<ul>
-  <li>Automatic binding using HTML semantics</li>
-  <li>No images &amp; light-weight <small>(about 1k minified)</small></li>
-  <li>Simple markup makes it easy to style</li>
-  <li>Attach custom behaviour using <a href="http://api.jquery.com/category/events/">jQuery events</a></li>
-  <li>Close with click or ESC key</li>
-  <li>Works in every single browser known to man (including <a href="http://lynx.invisible-island.net/current/">Lynx</a>)</li>
-  <li>Built by <a href="http://kylefox.ca/">Kyle Fox</a>, the nicest guy you've never met.</li>
-</ul>
+<div class="header">
+  <h1>jQuery Modal</h1>
+  <p class="sub">The simplest modal you ever did see.</p>
+  <a class="github-button" href="https://github.com/kylefox/jquery-modal" data-size="large" data-show-count="true" aria-label="Star kylefox/jquery-modal on GitHub">Star</a>
+
+  <ul>
+    <li>Automatic binding using HTML semantics</li>
+    <li>No images &amp; light-weight <small>(about 1k minified)</small></li>
+    <li>Simple markup makes it easy to style</li>
+    <li>Attach custom behaviour using <a href="http://api.jquery.com/category/events/">jQuery events</a></li>
+    <li>Close with click or ESC key</li>
+    <li>Works in every single browser known to man (including <a href="http://lynx.invisible-island.net/current/">Lynx</a>)</li>
+    <li>Built by <a href="http://kylefox.ca/">Kyle Fox</a>, the nicest guy you've never met.</li>
+  </ul>
+</div>
 
 <hr>
 
@@ -445,5 +504,6 @@ $('#sub-modal').modal({
 
 </script>
 
+</div>
 </body>
 </html>
