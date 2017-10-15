@@ -1,6 +1,6 @@
 {
   "name": "jquery-modal",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "main": "jquery.modal.js",
   "style": "jquery.modal.css",
   "description": "The simplest possible modal for jQuery",
