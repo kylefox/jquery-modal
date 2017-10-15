@@ -96,8 +96,11 @@
   showClose: <span class="hljs-literal">true</span>,        <span class="hljs-comment">// Shows a (X) icon/link in the top-right corner</span>
   modalClass: <span class="hljs-string">&quot;modal&quot;</span>,    <span class="hljs-comment">// CSS class added to the element being displayed in the modal.</span>
   blockerClass: <span class="hljs-string">&quot;modal&quot;</span>,  <span class="hljs-comment">// CSS class added to the overlay (blocker).</span>
-  spinnerHtml: <span class="hljs-literal">null</span>,      <span class="hljs-comment">// HTML appended to the default spinner during AJAX requests.</span>
-  showSpinner: <span class="hljs-literal">true</span>,      <span class="hljs-comment">// Enable/disable the default spinner during AJAX requests.</span>
+
+  <span class="hljs-comment">// HTML appended to the default spinner during AJAX requests.</span>
+  spinnerHtml: <span class="hljs-string">'&lt;div class=&quot;rect1&quot;&gt;&lt;/div&gt;&lt;div class=&quot;rect2&quot;&gt;&lt;/div&gt;&lt;div class=&quot;rect3&quot;&gt;&lt;/div&gt;&lt;div class=&quot;rect4&quot;&gt;&lt;/div&gt;'</span>,
+
+  <span class="hljs-attr">showSpinner</span>: <span class="hljs-literal">true</span>,      <span class="hljs-comment">// Enable/disable the default spinner during AJAX requests.</span>
   fadeDuration: <span class="hljs-literal">null</span>,     <span class="hljs-comment">// Number of milliseconds the fade transition takes (null means no transition)</span>
   fadeDelay: <span class="hljs-number">1.0</span>          <span class="hljs-comment">// Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)</span>
 };</pre><h1>Events</h1>
@@ -118,6 +121,7 @@ modal.$blocker;   <span class="hljs-comment">// The overlay element.</span></pre
 <h2>Basic support</h2>
 <p>jQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you've included modal.css) and will have the class <code>modal-spinner</code>. If you've set the <code>modalClass</code> option, the spinner will be prefixed with that class name instead.</p>
 <p>You can add text or additional HTML to the spinner with the <code>spinnerHtml</code> option, or disable the spinner entirely by setting <code>showSpinner: false</code>.</p>
+<p>The default spinner is from the excellent <a href="http://tobiasahlin.com/spinkit/">SpinKit</a> by <a href="https://twitter.com/tobiasahlin">Tobias Ahlin</a> 👍</p>
 <h2>Events</h2>
 <p>The following events are triggered when AJAX modals are requested.</p>
 <pre>$.modal.AJAX_SEND = <span class="hljs-string">'modal:ajax:send'</span>;
