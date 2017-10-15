@@ -17,6 +17,7 @@
     html {
       font-size: 18px;
     }
+
     body {
       font-weight: 400;
       font-family: "Nunito", "Helvetica Neue", arial, sans-serif;
@@ -44,7 +45,7 @@
 
     small { color: #aaa; }
     h1,h2,h3,h4 { color: #404a50; font-weight: 800; font-size: 1.75em; line-height: 1.1; margin: 0 0 1.5rem 0; }
-    h2 a { color: #bbb; text-decoration: none; font-weight: normal; font-size: .75em; margin-left: -1em; border: none; }
+    h2 a { color: #cad1d5; border: none; }
     h2 a:hover { color: #fa0065; }
     a { color: #fa0065; font-weight: 700; transition-duration: .2s; text-decoration: none; border-bottom: 2px solid transparent; }
     a:hover { color: #22272a; border-color: #22272a; }
@@ -139,6 +140,14 @@
 
     .modal p { margin: 1em 0; }
     .modal a.close-modal { border: none; }
+
+    @media(max-width: 600px) {
+      html {
+        font-size: 14px;
+      }
+      pre { font-size: 11px; line-height: 1.5; }
+      pre code { padding: 5px; }
+    }
 
   </style>
   <title>jQuery Modal</title>
