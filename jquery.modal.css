@@ -21,7 +21,7 @@
   background-color: transparent;
 }
 .modal {
-  display: inline-block;
+  display: none;
   vertical-align: middle;
   position: relative;
   z-index: 2;
