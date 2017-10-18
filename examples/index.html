@@ -274,6 +274,7 @@
 <pre><code>// Open modal in AJAX callback
 $('#manual-ajax').click(function(event) {
   event.preventDefault();
+  this.blur(); // Manually remove focus from clicked link.
   $.get(this.href, function(html) {
     $(html).appendTo('body').modal();
   });
@@ -494,6 +495,7 @@ $('#sub-modal').modal({
 
     $('#manual-ajax').click(function(event) {
       event.preventDefault();
+      this.blur();
       $.get(this.href, function(html) {
         $(html).appendTo('body').modal();
       });
