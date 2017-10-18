@@ -88,7 +88,9 @@
       this.anchor.blur();
       if(this.options.doFade) {
         setTimeout(function() {
-          m.show();
+          if ($.modal.isActive()) {
+            m.show();                
+          }
         }, this.options.fadeDuration * this.options.fadeDelay);
       } else {
         this.show();
