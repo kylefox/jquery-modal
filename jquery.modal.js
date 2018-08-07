@@ -85,7 +85,13 @@
         // popstate gets the _after_ state, not the _before_ state
         $.modal.handlePopstate = function(event) {
           if (event.state.no_modals) {
-            $.modal.close();
+            if (typeof Turbolinks != 'undefined' && Turbolinks.supported) {
+              // do nothing; Turbolinks will be reloading the page anyway, unfortunately,
+              // so rather than hiding a modal (suggesting the page is ready) and then refreshing
+              // the page, we keep the modal displayed while the page reloads
+            } else {
+              $.modal.close();
+            }
           } else if (event.state.modal) {
             elm = $(event.state.modal);
             elm.trigger($.modal.REOPEN, event);
