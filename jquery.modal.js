@@ -44,8 +44,16 @@
       this.anchor = el;
       //Select element by id from href
       if (/^#/.test(target)) {
-        this.$elm = $(target);
-        if (this.$elm.length !== 1) return null;
+        if(target === '#') {
+          if(this.options.content !== '') {
+            this.$elm = $('<form id="new-form" class="modal">' + this.options.content + '</form>');
+          }
+        } else {
+          this.$elm = $(target);
+        }
+        if (this.$elm.length !== 1) {
+          return null;
+        }
         this.$body.append(this.$elm);
         this.open();
       //AJAX
@@ -72,7 +80,11 @@
         });
       }
     } else {
-      this.$elm = el;
+       if(this.options.content !== '') {
+        this.$elm = $('<form id="new-form" class="modal">' + this.options.content + '</form>');
+      } else {
+        this.$elm = el;
+      }
       this.anchor = el;
       this.$body.append(this.$elm);
       this.open();
@@ -205,6 +217,7 @@
     escapeClose: true,
     clickClose: true,
     closeText: 'Close',
+    content: '',
     closeClass: '',
     modalClass: "modal",
     blockerClass: "jquery-modal",

@@ -59,7 +59,7 @@
     td { border: 1px solid #eee; padding: 15px; }
     td pre { margin: 0; }
     code { font-family: 'fira mono', monospace; }
-    a.btn {
+    .btn {
       color: #fff;
       background: #FF0066;
       padding: .5rem 1rem;
@@ -69,7 +69,7 @@
       border: none;
       font-size: 14px;
     }
-    a.btn:hover {
+    .btn:hover {
       background: #22272a;
     }
 
@@ -415,6 +415,7 @@ $('#sub-modal').modal({
   closeClass: 'icon-remove',
   closeText: '!'
 });</code></pre>
+
 <p>And then of course your custom CSS</p>
 <pre><code>.modal a.close-modal[class*="icon-"] {
   top: -10px;
@@ -465,6 +466,19 @@ $('#sub-modal').modal({
     box-shadow:         1px 1px 5px rgba(0,0,0,0.5);
   }
 </style>
+
+<hr />
+<h2 id="example-11"><a href="#example-11">#</a> Example 9: Content set by options</h2>
+
+<p>This demonstrates how you make a modal with content set via the options.</p>
+
+<pre><code> $(this).modal({
+ content: 'Content set via the options'
+});</code></pre>
+
+<a class="btn ex11" href="#">Open Modal</a>
+
+<div class="btn ex11">Div as button</div>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
@@ -543,7 +557,13 @@ $('#sub-modal').modal({
         closeText: '!'
       });
     });
-
+    
+    $('.ex11').click(function(event){
+      event.preventDefault();
+      $(this).modal({
+        content: 'Content set via the options.'
+      });
+    });
   });
 </script>
 
