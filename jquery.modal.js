@@ -30,6 +30,9 @@
       };
 
   $.modal = function(el, options) {
+    if (el.data('is-loading') === 'true') {
+      return;
+    }
     var remove, target;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
@@ -50,12 +53,14 @@
         this.open();
       //AJAX
       } else {
+        el.data('is-loading', 'true');
         this.$elm = $('<div>');
         this.$body.append(this.$elm);
         remove = function(event, modal) { modal.elm.remove(); };
         this.showSpinner();
         el.trigger($.modal.AJAX_SEND);
         $.get(target).done(function(html) {
+          el.data('is-loading', null);
           if (!$.modal.isActive()) return;
           el.trigger($.modal.AJAX_SUCCESS);
           var current = getCurrent();
