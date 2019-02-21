@@ -216,6 +216,7 @@ The first and only argument passed to these event handlers is the `modal` object
 modal.$elm;       // Original jQuery object upon which modal() was invoked.
 modal.options;    // Options passed to the modal.
 modal.$blocker;   // The overlay element.
+modal.$anchor;    // The anchor originating the event.
 ```
 
 So, you could do something like this:
