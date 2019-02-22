@@ -210,13 +210,13 @@ $.modal.CLOSE = 'modal:close';                  // Fires when the modal begins c
 $.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
 ```
 
-The first and only argument passed to these event handlers is the `modal` object, which has three properties:
+The first and only argument passed to these event handlers is the `modal` object, which has four properties:
 
 ```js
 modal.$elm;       // Original jQuery object upon which modal() was invoked.
 modal.options;    // Options passed to the modal.
 modal.$blocker;   // The overlay element.
-modal.$anchor;    // The anchor originating the event.
+modal.$anchor;    // Anchor element originating the event.
 ```
 
 So, you could do something like this:
