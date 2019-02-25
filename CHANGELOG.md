@@ -1,3 +1,13 @@
+<a name="0.9.2"></a>
+## 0.9.2 (2019-02-25)
+
+
+* Added anchor to custom event context ([3770312](https://github.com/kylefox/jquery-modal/commit/3770312))
+* Merge pull request #238 from artem-tim/master ([30875a5](https://github.com/kylefox/jquery-modal/commit/30875a5))
+* Updated documentation & min js ([89528ab](https://github.com/kylefox/jquery-modal/commit/89528ab))
+
+
+
 <a name="0.8.2"></a>
 ## 0.8.2 (2017-07-03)
 
