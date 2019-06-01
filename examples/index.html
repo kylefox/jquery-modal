@@ -12,7 +12,7 @@
   <script type="text/javascript" charset="utf-8"> hljs.initHighlightingOnLoad(); </script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <link rel="stylesheet" href="highlight/github.css" type="text/css" media="screen" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,400i,700,800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,900,900i&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400" rel="stylesheet">
   <style type="text/css" media="screen">
     html {
@@ -21,7 +21,7 @@
 
     body {
       font-weight: 400;
-      font-family: "Nunito", "Helvetica Neue", arial, sans-serif;
+      font-family: "Lato", "Helvetica Neue", arial, sans-serif;
       line-height: 1.666;
       -webkit-font-smoothing: antialiased;
       color: #5e6c76;
@@ -148,6 +148,74 @@
       a.btn { display: block; text-align: center; padding: 1rem; }
     }
 
+    .sponsor .note {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    .sponsor img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .sponsor .banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .sponsor .illustration {
+      width: 40%;
+    }
+
+    .sponsor .content {
+      width: 50%;
+    }
+
+    .sponsor .text {
+      font-size: 16px;
+      line-height: 1.75;
+      margin: 28px 0;
+    }
+
+    .sponsor .content .text a {
+      color: #1284ff;
+      border-color: #1284ff;
+    }
+
+    .sponsor .content .text a:hover {
+      color: #373a3c;
+      border-color: #373a3c;
+    }
+
+    .sponsor .button {
+      background: #3ecf4a;
+      border-radius: 3px;
+      color: #fff;
+      padding: 10px 20px;
+      display: inline-block;
+      border: none;
+    }
+
+    .sponsor .button:hover {
+      background: #2baf36;
+      transform: translateY(-3px);
+    }
+
+    @media only screen and (max-width: 600px) {
+      .sponsor .note {
+        margin-bottom: 16px;
+      }
+
+      .sponsor .illustration {
+        display: none;
+      }
+
+      .sponsor .content {
+        width: 100%;
+      }
+    }
   </style>
   <title>jQuery Modal</title>
   <meta name="description" content="jQuery Modal is the easiest way to display modal windows with jQuery. Built by Kyle Fox.">
@@ -186,6 +254,29 @@
     <li>Close with click or ESC key</li>
     <li>Built by <a href="https://twitter.com/kylefox" target="_blank">@kylefox</a> 🍸</li>
   </ul>
+</div>
+
+<hr>
+
+<div class="sponsor">
+  <div class="note">Sponsor</div>
+  <div class="banner">
+    <div class="illustration">
+      <a href="https://www.getrewardful.com/?via=jquery-modal" target="_blank">
+        <img src="https://r.wdfl.co/financial-money-heart.svg" alt="Incentivize and reward your best promoters.">
+      </a>
+    </div>
+    <div class="content">
+      <a href="https://www.getrewardful.com/?via=jquery-modal" target="_blank">
+        <img width="200" src="https://r.wdfl.co/rewardful-logo.svg" alt="Rewardful: simple affiliate programs for Stripe.">
+      </a>
+      <div class="text">
+        <a href="https://www.getrewardful.com/?via=jquery-modal" target="_blank">Rewardful</a> is a simple way for SaaS companies to create <strong>affiliate and referral programs with Stripe.</strong>
+        Just connect your account and let us track referrals, discounts, and commissions for you!
+      </div>
+      <a href="https://www.getrewardful.com/?via=jquery-modal" class="button" target="_blank">Learn more &rarr;</a>
+    </div>
+  </div>
 </div>
 
 <hr>
