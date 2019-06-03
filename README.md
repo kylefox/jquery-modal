@@ -167,6 +167,30 @@ Similar to how links can be automatically bound to open modals, they can be boun
 
 _(Note that modals loaded with AJAX are removed from the DOM when closed)._
 
+# Interacting with window.history
+
+By default, jquery-modal will not interact with the browser history: if you open a modal dialog, then clicking
+the back button will not close the modal, but will rather take you back to the previous page.
+
+By setting the `updateHistory` option to `true`, and defining a `modal:reopen` event handler on your modal,
+the browser history will be updated (using pushState/popState), and your users can use back/forward buttons.
+For example:
+
+```js
+$("#open-modal").on('click', function() {
+  var target = $("#my-modal");
+  var options = {
+    // insert your other default options here
+    updateHistory: true,
+  };
+
+  target.on('modal:reopen', function() {
+    target.modal(options);
+  });
+  target.modal(options);
+}
+```
+
 # Checking current state
 
 * Use `$.modal.isActive()` to check if a modal is currently being displayed.
@@ -186,6 +210,7 @@ $.modal.defaults = {
   showClose: true,        // Shows a (X) icon/link in the top-right corner
   modalClass: "modal",    // CSS class added to the element being displayed in the modal.
   blockerClass: "modal",  // CSS class added to the overlay (blocker).
+  updateHistory: false,   // Whether to update the browser history, enabling back/forward buttons (must implement `modal:reopen` event).
 
   // HTML appended to the default spinner during AJAX requests.
   spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
@@ -208,6 +233,7 @@ $.modal.OPEN = 'modal:open';                    // Fires after the modal has fin
 $.modal.BEFORE_CLOSE = 'modal:before-close';    // Fires when the modal has been requested to close.
 $.modal.CLOSE = 'modal:close';                  // Fires when the modal begins closing (including animations).
 $.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
+$.modal.REOPEN = 'modal:reopen';                // Fires when navigation needs a modal to re-open (see above).
 ```
 
 The first and only argument passed to these event handlers is the `modal` object, which has four properties:

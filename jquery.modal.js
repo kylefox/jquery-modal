@@ -77,6 +77,37 @@
       this.$body.append(this.$elm);
       this.open();
     }
+
+    if (this.options.updateHistory) {
+      // we can only have a single popstate handler for the entire document, otherwise
+      // callbacks will start to be duplicated, and the UI may start having bugs
+      if (!$.modal.handlePopstate) {
+        // popstate gets the _after_ state, not the _before_ state
+        $.modal.handlePopstate = function(event) {
+          if (event.state.no_modals) {
+            if (typeof Turbolinks != 'undefined' && Turbolinks.supported) {
+              // do nothing; Turbolinks will be reloading the page anyway, unfortunately,
+              // so rather than hiding a modal (suggesting the page is ready) and then refreshing
+              // the page, we keep the modal displayed while the page reloads
+            } else {
+              $.modal.close();
+            }
+          } else if (event.state.modal) {
+            elm = $(event.state.modal);
+            elm.trigger($.modal.REOPEN, event);
+          }
+        };
+
+        $(window).on("popstate", function(jqueryEvent) {
+          $.modal.handlePopstate(jqueryEvent.originalEvent);
+        });
+      }
+
+      var copyState = history.state || {};
+      copyState.no_modals = true;
+      copyState.modal = null;
+      history.pushState(copyState, "", "");
+    }
   };
 
   $.modal.prototype = {
@@ -149,6 +180,17 @@
         this.$elm.css('display', 'inline-block');
       }
       this.$elm.trigger($.modal.OPEN, [this._ctx()]);
+      if (this.options.updateHistory && this.$elm.length == 1) {
+        var id = this.$elm[0].id;
+        if (typeof id !== 'undefined') {
+          var copyState = history.state || {};
+          if (copyState.modal != "#" + id) {
+            copyState.no_modals = false;
+            copyState.modal = "#" + id;
+            history.pushState(copyState, "", ""); // ideally we'd set the location (third arg) to #id, but then we'd have to support opening modals on pageload from #id hash
+          }
+        }
+      }
     },
 
     hide: function() {
@@ -211,6 +253,7 @@
     spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
     showSpinner: true,
     showClose: true,
+    updateHistory: false,
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
     fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
   };
@@ -223,6 +266,7 @@
   $.modal.BEFORE_CLOSE = 'modal:before-close';
   $.modal.CLOSE = 'modal:close';
   $.modal.AFTER_CLOSE = 'modal:after-close';
+  $.modal.REOPEN = 'modal:reopen';
   $.modal.AJAX_SEND = 'modal:ajax:send';
   $.modal.AJAX_SUCCESS = 'modal:ajax:success';
   $.modal.AJAX_FAIL = 'modal:ajax:fail';
