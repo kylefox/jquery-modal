@@ -85,7 +85,7 @@
     open: function() {
       var m = this;
       this.block();
-      this.anchor.blur();
+      this.anchor.trigger('blur');
       if(this.options.doFade) {
         setTimeout(function() {
           m.show();
@@ -98,7 +98,7 @@
         if (event.which === 27 && current.options.escapeClose) current.close();
       });
       if (this.options.clickClose)
-        this.$blocker.click(function(e) {
+        this.$blocker.on('click', function(e) {
           if (e.target === this)
             $.modal.close();
         });
