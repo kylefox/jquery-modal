@@ -31,9 +31,9 @@
 
   $.modal = function(el, options) {
     var remove, target;
-    this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
     this.options.doFade = !isNaN(parseInt(this.options.fadeDuration, 10));
+    this.$attach = $(this.options.attach);
     this.$blocker = null;
     if (this.options.closeExisting)
       while ($.modal.isActive())
@@ -46,12 +46,12 @@
       if (/^#/.test(target)) {
         this.$elm = $(target);
         if (this.$elm.length !== 1) return null;
-        this.$body.append(this.$elm);
+        this.$attach.append(this.$elm);
         this.open();
       //AJAX
       } else {
         this.$elm = $('<div>');
-        this.$body.append(this.$elm);
+        this.$attach.append(this.$elm);
         remove = function(event, modal) { modal.elm.remove(); };
         this.showSpinner();
         el.trigger($.modal.AJAX_SEND);
@@ -74,7 +74,7 @@
     } else {
       this.$elm = el;
       this.anchor = el;
-      this.$body.append(this.$elm);
+      this.$attach.append(this.$elm);
       this.open();
     }
   };
@@ -114,8 +114,8 @@
 
     block: function() {
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
-      this.$body.css('overflow','hidden');
-      this.$blocker = $('<div class="' + this.options.blockerClass + ' blocker current"></div>').appendTo(this.$body);
+      this.$attach.css('overflow','hidden');
+      this.$blocker = $('<div class="' + this.options.blockerClass + ' blocker current"></div>').appendTo(this.$attach);
       selectCurrent();
       if(this.options.doFade) {
         this.$blocker.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
@@ -127,12 +127,12 @@
       if (!now && this.options.doFade)
         this.$blocker.fadeOut(this.options.fadeDuration, this.unblock.bind(this,true));
       else {
-        this.$blocker.children().appendTo(this.$body);
+        this.$blocker.children().appendTo(this.$attach);
         this.$blocker.remove();
         this.$blocker = null;
         selectCurrent();
         if (!$.modal.isActive())
-          this.$body.css('overflow','');
+          this.$attach.css('overflow','');
       }
     },
 
@@ -171,7 +171,7 @@
       if (!this.options.showSpinner) return;
       this.spinner = this.spinner || $('<div class="' + this.options.modalClass + '-spinner"></div>')
         .append(this.options.spinnerHtml);
-      this.$body.append(this.spinner);
+      this.$attach.append(this.spinner);
       this.spinner.show();
     },
 
@@ -212,7 +212,8 @@
     showSpinner: true,
     showClose: true,
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
-    fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    fadeDelay: 1.0,       // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    attach: 'body'        // Selector defining where to attach the modal DOM.  Defaults to body
   };
 
   // Event constants
