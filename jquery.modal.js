@@ -114,7 +114,9 @@
 
     block: function() {
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
-      this.$body.css('overflow','hidden');
+      if(this.options.backgroundBlock) {
+        this.$body.css('overflow','hidden');
+      }
       this.$blocker = $('<div class="' + this.options.blockerClass + ' blocker current"></div>').appendTo(this.$body);
       selectCurrent();
       if(this.options.doFade) {
@@ -201,6 +203,7 @@
   $.modal.getCurrent = getCurrent;
 
   $.modal.defaults = {
+    backgroundBlock: true,
     closeExisting: true,
     escapeClose: true,
     clickClose: true,
