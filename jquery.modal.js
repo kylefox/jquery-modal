@@ -139,7 +139,7 @@
     show: function() {
       this.$elm.trigger($.modal.BEFORE_OPEN, [this._ctx()]);
       if (this.options.showClose) {
-        this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
+        this.closeButton = $('<a href="#close-modal" data-rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
         this.$elm.append(this.closeButton);
       }
       this.$elm.addClass(this.options.modalClass).appendTo(this.$blocker);
@@ -236,8 +236,8 @@
   };
 
   // Automatically bind links with rel="modal:close" to, well, close the modal.
-  $(document).on('click.modal', 'a[rel~="modal:close"]', $.modal.close);
-  $(document).on('click.modal', 'a[rel~="modal:open"]', function(event) {
+  $(document).on('click.modal', 'a[rel~="modal:close"],a[data-rel~="modal:close"]', $.modal.close);
+  $(document).on('click.modal', 'a[rel~="modal:open"],a[data-rel~="modal:open"]', function(event) {
     event.preventDefault();
     $(this).modal();
   });
