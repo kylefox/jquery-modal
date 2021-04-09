@@ -35,11 +35,11 @@
   -o-border-radius: 8px;
   -ms-border-radius: 8px;
   border-radius: 8px;
-  -webkit-box-shadow: 0 0 10px #000;
-  -moz-box-shadow: 0 0 10px #000;
-  -o-box-shadow: 0 0 10px #000;
-  -ms-box-shadow: 0 0 10px #000;
-  box-shadow: 0 0 10px #000;
+  -webkit-box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
+  -o-box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
+  -ms-box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
+  box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, 0.22), 0 4.8px 14.4px 0 rgba(0, 0, 0, 0.18);
   text-align: left;
 }
 
