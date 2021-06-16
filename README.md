@@ -208,6 +208,7 @@ $.modal.OPEN = 'modal:open';                    // Fires after the modal has fin
 $.modal.BEFORE_CLOSE = 'modal:before-close';    // Fires when the modal has been requested to close.
 $.modal.CLOSE = 'modal:close';                  // Fires when the modal begins closing (including animations).
 $.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
+$.modal.ALL = 'modal:*';                        // Fires on all callbacks
 ```
 
 The first and only argument passed to these event handlers is the `modal` object, which has four properties:
@@ -224,6 +225,14 @@ So, you could do something like this:
 ```js
 $('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
   clear_shopping_cart();
+});
+```
+
+When using `$.modal.ALL`, the event that triggered the callback is passed as the second argument:
+
+```js
+$('#purchase-form').on($.modal.ALL, function(event, modal, event_source) {
+  console.log("[event] " + event_source);
 });
 ```
 
