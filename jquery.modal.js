@@ -47,26 +47,28 @@
         this.$elm = $(target);
         if (this.$elm.length !== 1) return null;
         this.$body.append(this.$elm);
-        this.open();
+        el.trigger($.modal.INITIALIZED, [this._ctx()]);
+        if(!this.options.preload) this.open();
       //AJAX
       } else {
         this.$elm = $('<div>');
         this.$body.append(this.$elm);
         remove = function(event, modal) { modal.elm.remove(); };
-        this.showSpinner();
+        if(!this.options.preload) this.showSpinner();
         el.trigger($.modal.AJAX_SEND);
         $.get(target).done(function(html) {
           if (!$.modal.isActive()) return;
           el.trigger($.modal.AJAX_SUCCESS);
           var current = getCurrent();
           current.$elm.empty().append(html).on($.modal.CLOSE, remove);
-          current.hideSpinner();
-          current.open();
+          el.trigger($.modal.INITIALIZED, [this._ctx()]);
+          if(!this.options.preload) current.hideSpinner();
+          if(!this.options.preload) current.open();
           el.trigger($.modal.AJAX_COMPLETE);
         }).fail(function() {
           el.trigger($.modal.AJAX_FAIL);
           var current = getCurrent();
-          current.hideSpinner();
+          if(!this.options.preload) current.hideSpinner();
           modals.pop(); // remove expected modal from the list
           el.trigger($.modal.AJAX_COMPLETE);
         });
@@ -75,7 +77,8 @@
       this.$elm = el;
       this.anchor = el;
       this.$body.append(this.$elm);
-      this.open();
+      el.trigger($.modal.INITIALIZED, [this._ctx()]);
+      if(!this.options.preload) this.open();
     }
   };
 
@@ -105,7 +108,10 @@
     },
 
     close: function() {
-      modals.pop();
+      // Don't pop preloaded modals
+      if(modals.length && !modals[modals.length - 1]._ctx().options.preload){
+        modals.pop();
+      }
       this.unblock();
       this.hide();
       if (!$.modal.isActive())
@@ -186,16 +192,25 @@
   };
 
   $.modal.close = function(event) {
-    if (!$.modal.isActive()) return;
     if (event) event.preventDefault();
     var current = getCurrent();
+    if(!current) return;
     current.close();
     return current.$elm;
   };
 
   // Returns if there currently is an active modal
   $.modal.isActive = function () {
-    return modals.length > 0;
+    return modals.filter(function(m){
+      return !m._ctx().options.preload;
+    }).length > 0;
+  };
+
+  // Get modal instance from DOM element
+  $.modal.get = function (el) {
+    return modals.find(function(m){
+      return m._ctx().elm.is(el);
+    });
   };
 
   $.modal.getCurrent = getCurrent;
@@ -212,10 +227,12 @@
     showSpinner: true,
     showClose: true,
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
-    fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    fadeDelay: 1.0,       // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    preload: false        // Preload the modal on init, without displaying it
   };
 
   // Event constants
+  $.modal.INITIALIZED = 'modal:initialized';
   $.modal.BEFORE_BLOCK = 'modal:before-block';
   $.modal.BLOCK = 'modal:block';
   $.modal.BEFORE_OPEN = 'modal:before-open';
