@@ -172,6 +172,10 @@ _(Note that modals loaded with AJAX are removed from the DOM when closed)._
 * Use `$.modal.isActive()` to check if a modal is currently being displayed.
 * Use `$.modal.getCurrent()` to retrieve a reference to the currently active modal instance, if any.
 
+# Getting a modal instance
+
+* Use `$.modal.get($elm)` to a modal instance.
+
 # Options
 
 These are the supported options and their default values:
@@ -192,7 +196,8 @@ $.modal.defaults = {
 
   showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
   fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)
-  fadeDelay: 1.0          // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+  fadeDelay: 1.0,         // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+  preload: false          // Preload the modal on init, without displaying it
 };
 ```
 
@@ -201,6 +206,7 @@ $.modal.defaults = {
 The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).
 
 ```javascript
+$.modal.INITIALIZED = 'modal:initialized';      // Fires when the modal content has been loaded.
 $.modal.BEFORE_BLOCK = 'modal:before-block';    // Fires just before the overlay (blocker) appears.
 $.modal.BLOCK = 'modal:block';                  // Fires after the overlay (block) is visible.
 $.modal.BEFORE_OPEN = 'modal:before-open';      // Fires just before the modal opens.
