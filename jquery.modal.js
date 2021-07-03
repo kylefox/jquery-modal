@@ -85,6 +85,9 @@
     open: function() {
       var m = this;
       this.block();
+      // Store previous focus
+      this.previousFocus = document.activeElement;
+
       this.anchor.blur();
       if(this.options.doFade) {
         setTimeout(function() {
@@ -148,6 +151,7 @@
       } else {
         this.$elm.css('display', 'inline-block');
       }
+      this.trapFocus();
       this.$elm.trigger($.modal.OPEN, [this._ctx()]);
     },
 
@@ -164,6 +168,7 @@
           _this.$elm.trigger($.modal.AFTER_CLOSE, [_this._ctx()]);
         });
       }
+      this.releaseFocus();
       this.$elm.trigger($.modal.CLOSE, [this._ctx()]);
     },
 
@@ -177,6 +182,46 @@
 
     hideSpinner: function() {
       if (this.spinner) this.spinner.remove();
+    },
+
+    // Trap focus in modal for screen readers & keyboard navigation
+    trapFocus: function() {
+      // All focusable elements
+      var focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+      var firstFocusableElement = this.$elm[0].querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+      var focusableContent = this.$elm[0].querySelectorAll(focusableElements);
+      var lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+
+      $(this.$elm).on('keydown', function(e) {
+        let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+
+        if (!isTabPressed) {
+          return;
+        }
+
+        if (e.shiftKey) { // if shift key pressed for shift + tab combination
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus(); // add focus for the last focusable element
+            e.preventDefault();
+          }
+        } else { // if tab key is pressed
+          if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+            firstFocusableElement.focus(); // add focus for the first focusable element
+            e.preventDefault();
+          }
+        }
+      });
+
+      firstFocusableElement.focus();
+    },
+
+    releaseFocus: function() {
+      $(this.$elm).off('keydown');
+
+      // Restore previous focus
+      this.previousFocus.focus();
     },
 
     //Return context for custom events
