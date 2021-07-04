@@ -114,8 +114,8 @@
 
     block: function() {
       this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
-      this.$body.css('overflow','hidden');
-      this.$blocker = $('<div class="' + this.options.blockerClass + ' blocker current"></div>').appendTo(this.$body);
+      this.options.backdropParent.css('overflow','hidden');
+      this.$blocker = $('<div class="' + this.options.blockerClass + ' blocker current"></div>').appendTo(this.options.backdropParent);
       selectCurrent();
       if(this.options.doFade) {
         this.$blocker.css('opacity',0).animate({opacity: 1}, this.options.fadeDuration);
@@ -127,12 +127,12 @@
       if (!now && this.options.doFade)
         this.$blocker.fadeOut(this.options.fadeDuration, this.unblock.bind(this,true));
       else {
-        this.$blocker.children().appendTo(this.$body);
+        this.$blocker.children().appendTo(this.options.backdropParent);
         this.$blocker.remove();
         this.$blocker = null;
         selectCurrent();
         if (!$.modal.isActive())
-          this.$body.css('overflow','');
+          this.options.backdropParent.css('overflow','');
       }
     },
 
@@ -212,7 +212,8 @@
     showSpinner: true,
     showClose: true,
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
-    fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    fadeDelay: 1.0,       // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    backdropParent: $('body') // Blocker parent
   };
 
   // Event constants
