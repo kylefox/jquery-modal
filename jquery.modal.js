@@ -74,7 +74,8 @@
     } else {
       this.$elm = el;
       this.anchor = el;
-      this.$body.append(this.$elm);
+      remove = function(event, modal) { modal.elm.remove(); };
+      this.$body.append(this.$elm).on($.modal.CLOSE, remove);
       this.open();
     }
   };
