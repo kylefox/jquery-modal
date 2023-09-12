@@ -178,6 +178,7 @@ These are the supported options and their default values:
 
 ```js
 $.modal.defaults = {
+  backgroundBlock: true,  // Block site behid. Set this to false if you need scroll your site behind
   closeExisting: true,    // Close existing modals. Set this to false if you need to stack multiple modal instances.
   escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
   clickClose: true,       // Allows the user to close the modal by clicking the overlay
