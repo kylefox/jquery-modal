@@ -442,6 +442,30 @@ $('#sub-modal').modal({
   <p>This modal has a fancy-shmancy close button.</p>
 </div>
 
+<hr />
+
+<h2 id="example-9"><a href="#example-9">#</a> Example 9: Preload and display later</h2>
+<ol>
+  <li>Preload the modal once</li>
+  <li>Open it with <code>.open()</code> when you need to.</li>
+</ol>
+<pre><code>// Preload the modal
+  $('#preloaded-data').modal({
+    preload: true
+  });
+
+  // Open the modal when needed
+  $('#button').on('click', () => {
+    $.modal.get($('#preloaded-data')).open();
+  });
+</code></pre>
+
+<a class="btn" id="example-9-trigger" href="">Open Modal</a>
+
+<div class="modal" id="example-9-modal">
+  <p>I was loaded <span class="loaded-since"></span> seconds ago.</p>
+</div>
+
 <style type="text/css">
   .modal a.close-modal[class*="icon-"] {
     top: -10px;
@@ -472,6 +496,7 @@ $('#sub-modal').modal({
       if(typeof console != 'undefined' && console.log) console.log("[event] " + event.type);
     };
 
+    $(document).on($.modal.INITIALIZED, log_modal_event);
     $(document).on($.modal.BEFORE_BLOCK, log_modal_event);
     $(document).on($.modal.BLOCK, log_modal_event);
     $(document).on($.modal.BEFORE_OPEN, log_modal_event);
@@ -482,6 +507,8 @@ $('#sub-modal').modal({
     $(document).on($.modal.AJAX_SEND, log_modal_event);
     $(document).on($.modal.AJAX_SUCCESS, log_modal_event);
     $(document).on($.modal.AJAX_COMPLETE, log_modal_event);
+
+
 
     $('#more').click(function() {
       $(this).parent().after($(this).parent().next().clone());
@@ -543,6 +570,28 @@ $('#sub-modal').modal({
       });
     });
 
+
+
+    $(document).on($.modal.INITIALIZED, function(_, ctx){
+      if(ctx.elm.find('.loaded-since').length){
+        // Count down seconds since init
+        const span = ctx.elm.find('.loaded-since');
+        let seconds = 0;
+        setInterval(function(){
+          seconds++;
+          span.text(seconds);
+        }, 1000);
+      }
+    });
+
+    $('#example-9-modal').modal({
+      preload: true
+    });
+
+    $('#example-9-trigger').on('click', function(e){
+      e.preventDefault();
+      $.modal.get($('#example-9-modal')).open();
+    });
   });
 </script>
 
