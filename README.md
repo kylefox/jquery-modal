@@ -185,7 +185,7 @@ $.modal.defaults = {
   closeClass: '',         // Add additional class(es) to the close <a> tag.
   showClose: true,        // Shows a (X) icon/link in the top-right corner
   modalClass: "modal",    // CSS class added to the element being displayed in the modal.
-  blockerClass: "modal",  // CSS class added to the overlay (blocker).
+  blockerClass: "blocker",  // CSS class added to the overlay (blocker).
 
   // HTML appended to the default spinner during AJAX requests.
   spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',
