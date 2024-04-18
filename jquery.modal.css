@@ -20,7 +20,7 @@
 .blocker.behind {
   background-color: transparent;
 }
-.modal {
+.jquery-modal .modal {
   display: none;
   vertical-align: middle;
   position: relative;
@@ -43,7 +43,7 @@
   text-align: left;
 }
 
-.modal a.close-modal {
+.jquery-modal .modal a.close-modal {
   position: absolute;
   top: -12.5px;
   right: -12.5px;
@@ -58,7 +58,7 @@
 
 }
 
-.modal-spinner {
+.jquery-modal .modal-spinner {
   display: none;
   position: fixed;
   top: 50%;
@@ -70,7 +70,7 @@
   height: 20px;
 }
 
-.modal-spinner > div {
+.jquery-modal .modal-spinner > div {
   border-radius: 100px;
   background-color: #fff;
   height: 20px;
@@ -82,17 +82,17 @@
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
 
-.modal-spinner .rect2 {
+.jquery-modal .modal-spinner .rect2 {
   -webkit-animation-delay: -1.1s;
   animation-delay: -1.1s;
 }
 
-.modal-spinner .rect3 {
+.jquery-modal .modal-spinner .rect3 {
   -webkit-animation-delay: -1.0s;
   animation-delay: -1.0s;
 }
 
-.modal-spinner .rect4 {
+.jquery-modal .modal-spinner .rect4 {
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
 }

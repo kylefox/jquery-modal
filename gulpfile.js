@@ -11,7 +11,7 @@ gulp.task('min', function() {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('css', function() {
+gulp.task('css', async function() {
   gulp.src('jquery.modal.css')
     .pipe(uglifycss())
     .pipe(rename('jquery.modal.min.css'))
