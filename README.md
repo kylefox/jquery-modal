@@ -27,7 +27,7 @@ or use the hosted version from [cdnjs](https://cdnjs.com/libraries/jquery-modal)
 
 ```html
 <!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <!-- jQuery Modal -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
@@ -181,11 +181,11 @@ $.modal.defaults = {
   closeExisting: true,    // Close existing modals. Set this to false if you need to stack multiple modal instances.
   escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
   clickClose: true,       // Allows the user to close the modal by clicking the overlay
-  closeText: 'Close',     // Text content for the close <a> tag.
+  closeText: 'Close',     // Text content for the close <a> tag (rendered as plain text).
   closeClass: '',         // Add additional class(es) to the close <a> tag.
   showClose: true,        // Shows a (X) icon/link in the top-right corner
   modalClass: "modal",    // CSS class added to the element being displayed in the modal.
-  blockerClass: "modal",  // CSS class added to the overlay (blocker).
+  blockerClass: "jquery-modal", // CSS class added to the overlay (blocker).
 
   // HTML appended to the default spinner during AJAX requests.
   spinnerHtml: '<div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div>',

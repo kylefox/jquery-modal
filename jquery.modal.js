@@ -95,7 +95,10 @@
       }
       $(document).off('keydown.modal').on('keydown.modal', function(event) {
         var current = getCurrent();
-        if (event.which === 27 && current.options.escapeClose) current.close();
+        if (!current) return;
+        if ((event.which === 27 || event.key === 'Escape') && current.options.escapeClose) {
+          current.close();
+        }
       });
       if (this.options.clickClose)
         this.$blocker.click(function(e) {
@@ -139,7 +142,11 @@
     show: function() {
       this.$elm.trigger($.modal.BEFORE_OPEN, [this._ctx()]);
       if (this.options.showClose) {
-        this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
+        this.closeButton = $('<a href="#close-modal" rel="modal:close" role="button"></a>')
+          .addClass('close-modal')
+          .addClass(this.options.closeClass)
+          .text(this.options.closeText)
+          .attr('aria-label', this.options.closeText);
         this.$elm.append(this.closeButton);
       }
       this.$elm.addClass(this.options.modalClass).appendTo(this.$blocker);
