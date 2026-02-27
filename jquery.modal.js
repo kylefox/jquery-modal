@@ -30,7 +30,8 @@
       };
 
   $.modal = function(el, options) {
-    var remove, target;
+    var remove, target, self;
+    self = this;
     this.$body = $('body');
     this.options = $.extend({}, $.modal.defaults, options);
     this.options.doFade = !isNaN(parseInt(this.options.fadeDuration, 10));
@@ -56,18 +57,20 @@
         this.showSpinner();
         el.trigger($.modal.AJAX_SEND);
         $.get(target).done(function(html) {
-          if (!$.modal.isActive()) return;
+          if (modals.indexOf(self) === -1) return;
           el.trigger($.modal.AJAX_SUCCESS);
-          var current = getCurrent();
-          current.$elm.empty().append(html).on($.modal.CLOSE, remove);
-          current.hideSpinner();
-          current.open();
+          self.$elm.empty().append(html).on($.modal.CLOSE, remove);
+          self.hideSpinner();
+          self.open();
           el.trigger($.modal.AJAX_COMPLETE);
         }).fail(function() {
           el.trigger($.modal.AJAX_FAIL);
-          var current = getCurrent();
-          current.hideSpinner();
-          modals.pop(); // remove expected modal from the list
+          if (modals.indexOf(self) === -1) {
+            el.trigger($.modal.AJAX_COMPLETE);
+            return;
+          }
+          self.hideSpinner();
+          modals.splice(modals.indexOf(self), 1);
           el.trigger($.modal.AJAX_COMPLETE);
         });
       }
