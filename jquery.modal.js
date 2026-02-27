@@ -14,6 +14,11 @@
   }
 }(function($, window, document, undefined) {
 
+  // Prevent duplicate plugin initialization when the script is imported more than once.
+  if ($.modal && $.modal.close && $.fn.modal) {
+    return;
+  }
+
   var modals = [],
       getCurrent = function() {
         return modals.length ? modals[modals.length - 1] : null;
