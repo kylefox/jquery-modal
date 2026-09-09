@@ -38,7 +38,6 @@
     if (this.options.closeExisting)
       while ($.modal.isActive())
         $.modal.close(); // Close any open modals.
-    modals.push(this);
     if (el.is('a')) {
       target = el.attr('href');
       this.anchor = el;
@@ -46,10 +45,12 @@
       if (/^#/.test(target)) {
         this.$elm = $(target);
         if (this.$elm.length !== 1) return null;
+        modals.push(this);
         this.$body.append(this.$elm);
         this.open();
       //AJAX
       } else {
+        modals.push(this);
         this.$elm = $('<div>');
         this.$body.append(this.$elm);
         remove = function(event, modal) { modal.elm.remove(); };
@@ -72,6 +73,7 @@
         });
       }
     } else {
+      modals.push(this);
       this.$elm = el;
       this.anchor = el;
       this.$body.append(this.$elm);
