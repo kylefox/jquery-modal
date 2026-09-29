@@ -87,7 +87,9 @@
       this.block();
       this.anchor.blur();
       if(this.options.doFade) {
-        setTimeout(function() {
+        clearTimeout(this._openTimer);
+        this._openTimer = setTimeout(function() {
+          m._openTimer = null;
           m.show();
         }, this.options.fadeDuration * this.options.fadeDelay);
       } else {
@@ -105,6 +107,10 @@
     },
 
     close: function() {
+      // Cancel a pending fade-in so a close() issued before the fade-in timer
+      // fires cannot leave a "zombie" modal: shown but unblocked. Issue #120.
+      clearTimeout(this._openTimer);
+      this._openTimer = null;
       modals.pop();
       this.unblock();
       this.hide();
@@ -123,13 +129,17 @@
       this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
     },
 
-    unblock: function(now) {
+    unblock: function(now, $blocker) {
+      // Carry the blocker being unblocked as an argument: a fadeOut callback can
+      // land after the same instance has already been re-opened with a fresh
+      // blocker, and must not tear that new blocker down. Issue #120.
+      $blocker = $blocker || this.$blocker;
       if (!now && this.options.doFade)
-        this.$blocker.fadeOut(this.options.fadeDuration, this.unblock.bind(this,true));
+        $blocker.fadeOut(this.options.fadeDuration, this.unblock.bind(this, true, $blocker));
       else {
-        this.$blocker.children().appendTo(this.$body);
-        this.$blocker.remove();
-        this.$blocker = null;
+        $blocker.children().appendTo(this.$body);
+        $blocker.remove();
+        if (this.$blocker === $blocker) this.$blocker = null;
         selectCurrent();
         if (!$.modal.isActive())
           this.$body.css('overflow','');
@@ -137,6 +147,9 @@
     },
 
     show: function() {
+      // Bail out if this modal was closed (or superseded) while the fade-in was
+      // still pending; there is nothing valid left to show into. Issue #120.
+      if (getCurrent() !== this || !this.$blocker) return;
       this.$elm.trigger($.modal.BEFORE_OPEN, [this._ctx()]);
       if (this.options.showClose) {
         this.closeButton = $('<a href="#close-modal" rel="modal:close" class="close-modal ' + this.options.closeClass + '">' + this.options.closeText + '</a>');
